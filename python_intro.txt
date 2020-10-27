@@ -1,0 +1,343 @@
+In Python, keywords are case sensitive.
+
+There are 33 keywords in Python 3.7. This number can vary slightly over the course of time.
+
+All the keywords except True, False and None are in lowercase and they must be written as they are. The list of all the keywords is given below.
+
+The docstrings are associated with the object as their __doc__ attribute.
+def double(num):
+    """Function to double the value"""
+    return 2*num
+print(double.__doc__)
+Python Variables
+A variable is a named location used to store data in the memory.
+number = 10
+number = 1.1
+Initially, the value of number was 10. Later, it was changed to 1.1.
+Note: In Python, we don't actually assign values to the variables. Instead, Python gives the reference of the object(value) to the variable.
+Python contains one special literal i.e. None. We use it to specify that the field has not been created.
+Python Numbers
+Integers, floating point numbers and complex numbers fall under Python numbers
+the isinstance() function is used to check if an object belongs to a particular class.
+a = 1+2j
+print(a, "is complex number?", isinstance(1+2j,complex))
+Integers can be of any length, it is only limited by the memory available.
+A floating-point number is accurate up to 15 decimal places.
+Type Conversion is the conversion of object from one data type to another data type.
+Implicit Type Conversion is automatically performed by the Python interpreter.
+Python avoids the loss of data in Implicit Type Conversion.
+Explicit Type Conversion is also called Type Casting, the data types of objects are converted using predefined functions by the user.
+Python Input, Output and Import
+The actual syntax of the print() function is:
+
+print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+Here, objects is the value(s) to be printed.
+
+The sep separator is used between the values. It defaults into a space character.
+
+After all values are printed, end is printed. It defaults into a new line.
+
+The file is the object where the values are printed and its default value is sys.stdout (screen). 
+
+Output formatting
+Sometimes we would like to format our output to make it look attractive. This can be done by using the str.format() method. This method is visible to any string object.
+Here, the curly braces {} are used as placeholders. We can specify the order in which they are printed by using numbers (tuple index).
+
+print('I love {0} and {1}'.format('bread','butter'))
+print('I love {1} and {0}'.format('bread','butter'))
+We can even use keyword arguments to format the string.
+
+ print('Hello {name}, {greeting}'.format(greeting = 'Goodmorning', name = 'John'))
+Hello John, Goodmorning
+We can also format strings like the old sprintf() style used in C programming language. We use the % operator to accomplish this.
+
+>>> x = 12.3456789
+>>> print('The value of x is %3.2f' %x)
+The value of x is 12.35
+>>> print('The value of x is %3.4f' %x)
+The value of x is 12.3457
+Python Import
+A module is a file containing Python definitions and statements. Python modules have a filename and end with the extension .py.
+
+Definitions inside a module can be imported to another module or the interactive interpreter in Python. We use the import keyword to do this.
+We can also import some specific attributes and functions only, using the from keyword. For example:
+While importing a module, Python looks at several places defined in sys.path. It is a list of directory locations.
+
+>>> import sys
+>>> sys.path
+['', 
+ 'C:\\Python33\\Lib\\idlelib', 
+ 'C:\\Windows\\system32\\python33.zip', 
+ 'C:\\Python33\\DLLs', 
+ 'C:\\Python33\\lib', 
+ 'C:\\Python33', 
+ 'C:\\Python33\\lib\\site-packages']
+We can also add our own location to this list.
+What is a Namespace in Python?
+simply put it, a namespace is a collection of names.
+
+In Python, you can imagine a namespace as a mapping of every name you have defined to corresponding objects.
+Different namespaces can co-exist at a given time but are completely isolated.
+
+A namespace containing all the built-in names is created when we start the Python interpreter and exists as long as the interpreter runs.
+
+This is the reason that built-in functions like id(), print() etc. are always available to us from any part of the program. Each module creates its own global namespace.
+
+These different namespaces are isolated. Hence, the same name that may exist in different modules do not collide.
+Modules can have various functions and classes. A local namespace is created when a function is called, which has all the names defined in it. Similar, is the case with class. 
+Python Variable Scope
+Although there are various unique namespaces defined, we may not be able to access all of them from every part of the program. The concept of scope comes into play.
+
+A scope is the portion of a program from where a namespace can be accessed directly without any prefix.
+
+At any given moment, there are at least three nested scopes.
+
+Scope of the current function which has local names
+Scope of the module which has global names
+Outermost scope which has built-in names
+When a reference is made inside a function, the name is searched in the local namespace, then in the global namespace and finally in the built-in namespace
+
+Indentation is the only way to figure out the level of nesting. They can get confusing, so they must be avoided unless necessary.
+The range() function
+We can generate a sequence of numbers using range() function. range(10) will generate numbers from 0 to 9 (10 numbers).
+
+We can also define the start, stop and step size as range(start, stop,step_size). step_size defaults to 1 if not provided.
+
+The range object is "lazy" in a sense because it doesn't generate every number that it "contains" when we create it. However, it is not an iterator since it supports in, len and __getitem__ operations.
+
+This function does not store all the values in memory; it would be inefficient. So it remembers the start, stop, step size and generates the next number on the go.
+for loop with else
+A for loop can have an optional else block as well. The else part is executed if the items in the sequence used in for loop exhausts.
+
+The break keyword can be used to stop a for loop. In such cases, the else part is ignored. Hence, a for loop's else part runs if no break occurs.
+
+Assign Multiple Variables in One Line
+This also works when destructuring/unpacking sequences such as lists or tuples and is a more elegant way of assigning elements of a sequence to individual variables as there is no need to use a loop or separately index each element of the sequence.
+Use enumerate
+Enumerate is a built-in function of Python and allows us to loop over an iterable and have an automatic counter. It essentially pairs every element in our list with the corresponding index. Most of the newcomers and even some advanced programmers are unaware of it.
+
+The Dir Function
+dir() is a powerful inbuilt function in Python3, which returns a list of the attributes and methods of any object i.e. functions, modules, strings, lists, dictionaries etc.
+This can be very useful when having little to no information about the module and helps to learn new modules faster.
+The dir() is often used for debugging purposes. The ability of dir() to list out all the attributes of the parameter passed, is really useful when handling a lot of classes and functions, separately.
+
+
+1. Filtering Lists with Python
+1. a) With the Filter() Function
+The filter() function takes two parameters: a function and an iterable item.
+
+Combining Lists with the Zip() Function
+There may be cases when you want to combine two or more lists. This is where the zip() function comes in! The zip() function creates an object containing the lists’ corresponding elements at each index.
+numbers = [1,2,3]
+letters = ['a', 'b', 'c']
+combined = zip(numbers, letters)
+combined_list = list(combined)
+# returns [(1, 'a'), (2, 'b'), (3, 'c')]
+Reversing a List
+Python lists are ordered data structures. Because of this, the order of items matters. Sometimes you may need to reverse the items in a list. This can be easily done using the Python slicing operation.
+reversed_list = original_list[::-1]
+Checking for Membership in a List
+You can do this simply by using the in operator.
+if game_nsme in list_name : print(f" {game_nsme} is there in game list")
+
+Python Scope of Variables
+In Python, variables are the containers for storing data values. They are reference, or pointers, to an object in memory which means that whenever a variable is assigned to an instance, it gets mapped to that instance. 
+A variable is created the moment we first assign a value to it.
+Global and local variables
+Global variables are the ones that are defined and declared outside any function and are not specified to any function. They can be used by any part of the program. Local variable are used inside the function only.
+we need to use global keyword. We only need to use global keyword in a function if we want to do assignments / change them. global is not needed for printing and accessing.
+Any variable which is changed or created inside of a function is local, if it hasn’t been declared as a global variable.
+Nonlocal keyword
+In Python, nonlocal keyword is used in the case of nested functions. This keyword works similar to the global, but rather than global, this keyword declares a variable to point to the variable of outside enclosing function, in case of nested functions. see geeks for geeks example
+In Python, if you'd like a statement to continue to the next line, it is possible to use the "\" marker to indicate this:
+It is also possible to continue expressions on the next line within parentheses, without using the "\" marker:
+x = 1 + 2 + 3 + 4 +\
+    5 + 6 + 7 + 8
+Semicolon Can Optionally Terminate a Statement
+lower = []; upper = []
+Using a semicolon to put multiple statements on a single line is generally discouraged by most Python style guides, though occasionally it proves convenient.
+Get directory of current Python script
+Folder where the Python script is running is known as Current Directory. This is not the path where the Python script is located.
+Python provides OS module for interacting with the operating system. This module comes under Python’s standard utility module. All functions in os module raise OSError in the case of invalid or inaccessible file names and paths, or other arguments that have the correct type, but are not accepted by the operating system.
+To get the location of the current working directory os.getcwd() is used.
+Getting the path of script
+os.path.realpath() can be used to get the path of the current Pyhton script. Actually os.path.realpath() method in Python is used to get the canonical path of the specified filename by eliminating any symbolic links encountered in the path. A special variable __file__ is passed to the realpath() method to get the path of the Python script.
+Note: __file__ is the pathname of the file from which the module was loaded, if it was loaded from a file.
+Different ways to run Python Script
+Interactive Mode
+Command Line
+Text Editor (VS Code)
+IDE (PyCharm)
+One way to remember how slices work is to think of the indices as pointing between characters, with the left edge of the first character numbered 0. Then the right edge of the last character of a string of n characters has index n, for example:
+
+ +---+---+---+---+---+---+
+ | P | y | t | h | o | n |
+ +---+---+---+---+---+---+
+ 0   1   2   3   4   5   6
+-6  -5  -4  -3  -2  -1
+
+Variable length arguments
+We can have both normal and keyword variAccessing elements from the Array
+In order to access the array items refer to the index number. Use the index operator [ ] to access an item in a array. The index must be an integer.able number of arguments.
+
+The special syntax *args in function definitions in Python is used to pass a variable number of arguments to a function. It is used to pass a non-keyworded, variable-length argument list.
+The special syntax **kwargs in function definitions in python is used to pass a keyworded, variable-length argument list. We use the name kwargs with the double star. The reason is because the double star allows us to pass through keyword arguments (and any number of them).
+
+Python Arrays
+An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together.
+A user can treat lists as arrays. However, user cannot constraint the type of elements stored in a list. If you create arrays using the array module, all elements of the array must be of the same type.
+Array in Python can be created by importing array module. array(data_type, value_list) is used to create an array with data type and value list specified in its arguments.
+Some of the data types are mentioned below which will help in creating an array of different data types.
+Adding Elements to a Array
+Elements can be added to the Array by using built-in insert() function. Insert is used to insert one or more data elements into an array. Based on the requirement, a new element can be added at the beginning, end, or any given index of array. append() is also used to add the value mentioned in its arguments at the end of the array.
+Accessing elements from the Array
+In order to access the array items refer to the index number. Use the index operator [ ] to access an item in a array. The index must be an integer.
+Removing Elements from the Array
+Elements can be removed from the array by using built-in remove() function but an Error arises if element doesn’t exist in the set. Remove() method only removes one element at a time, to remove range of elements, iterator is used. pop() function can also be used to remove and return an element from the array, but by default it removes only the last element of the array, to remove element from a specific position of the array, index of the element is passed as an argument to the pop() method.
+Note – Remove method in List will only remove the first occurrence of the searched element.
+Slicing of a Array
+In Python array, there are multiple ways to print the whole array with all the elements, but to print a specific range of elements from the array, we use Slice operation. Slice operation is performed on array with the use of colon(:). To print elements from beginning to a range use [:Index], to print elements from end use [:-Index], to print elements from specific Index till the end use [Index:], to print elements within a range, use [Start Index:End Index] and to print whole List with the use of slicing operation, use [:]. Further, to print whole array in reverse order, use [::-1].
+Updating Elements in a Array
+In order to update an element in the array we simply reassign a new value to the desired index we want to update.
+
+
+from urllib import *
+open(foo)   # which open gets called, os.open or urllib.open or open?
+Another disadvantage of “from sys import *” is that it makes it harder to find the definition of a name. If you see “sys.exit()” in the code, you know exactly where exit() is defined. If you see “exit()” in a module that has several “from xx import *” statements, you will have to search each imported module for the definition of exit().
+The bottom line is it is usually better to accept the extra typing and use
+import foo
+or for just a few names
+from foo import bar, baz
+In Python, a module is a self-contained Python file that contains Python statements and definitions, like a file named GFG.py, can be considered as a module named GFG which can be imported with the help of import statement. However, one might get confused about the difference between modules and packages. A package is a collection of modules in directories that give structure and hierarchy to the modules.
+to ensure your module is found, you need to do one of the following:
+
+Put mod.py in the directory where the input script is located or the current directory, if interactive
+Modify the PYTHONPATH environment variable to contain the directory where mod.py is located before starting the interpreter
+Or: Put mod.py in one of the directories already contained in the PYTHONPATH variable
+Put mod.py in one of the installation-dependent directories, which you may or may not have write-access to, depending on the OS
+There is actually one additional option: you can put the module file in any directory of your choice and then modify sys.path at run-time so that it contains that directory. For example, in this case, you could put mod.py in directory C:\Users\john and then issue the following statements:
+
+>>> sys.path.append(r'C:\Users\john')
+>>> sys.path
+['', 'C:\\Users\\john\\Documents\\Python\\doc', 'C:\\Python36\\Lib\\idlelib',
+'C:\\Python36\\python36.zip', 'C:\\Python36\\DLLs', 'C:\\Python36\\lib',
+'C:\\Python36', 'C:\\Python36\\lib\\site-packages', 'C:\\Users\\john']
+
+>> import mod
+>>> mod.__file__
+'C:\\Users\\john\\mod.py'
+
+>>> import re
+>>> re.__file__
+'C:\\Python36\\lib\\re.py
+Several comma-separated modules may be specified in a single import statement:
+
+import <module_name>[, <module_name> ...]
+from <module_name> import <name(s)>
+An alternate form of the import statement allows individual objects from the module to be imported directly into the caller’s symbol table:
+
+from <module_name> import <name(s)>
+Following execution of the above statement, <name(s)> can be referenced in the caller’s environment without the <module_name> prefix:
+any objects that already exist with the same name will be overwritten:
+from <module_name> import *
+This will place the names of all objects from <module_name> into the local symbol table, with the exception of any that begin with the underscore (_) character
+This isn’t necessarily recommended in large-scale production code. It’s a bit dangerous because you are entering names into the local symbol table en masse. Unless you know them all well and can be confident there won’t be a conflict, you have a decent chance of overwriting an existing name inadvertently
+from <module_name> import <name> as <alt_name>[, <name> as <alt_name> …]
+This makes it possible to place names directly into the local symbol table but avoid conflicts with previously existing names:
+import <module_name> as <alt_name>
+Module contents can be imported from within a function definition. In that case, the import does not occur until the function is called:
+The dir() Function
+The built-in function dir() returns a list of defined names in a namespace. Without arguments, it produces an alphabetically sorted list of names in the current local symbol table:
+When given an argument that is the name of a module, dir() lists the names defined in the module:
+import mod
+dir(mod)
+If you make a change to a module and need to reload it, you need to either restart the interpreter or use a function called reload() from module importlib:
+
+from urllib import *
+open(foo)   # which open gets called, os.open or urllib.open or open?
+Another disadvantage of “from sys import *” is that it makes it harder to find the definition of a name. If you see “sys.exit()” in the code, you know exactly where exit() is defined. If you see “exit()” in a module that has several “from xx import *” statements, you will have to search each imported module for the definition of exit().
+The bottom line is it is usually better to accept the extra typing and use
+import foo
+or for just a few names
+from foo import bar, baz
+In Python, a module is a self-contained Python file that contains Python statements and definitions, like a file named GFG.py, can be considered as a module named GFG which can be imported with the help of import statement. However, one might get confused about the difference between modules and packages. A package is a collection of modules in directories that give structure and hierarchy to the modules.
+to ensure your module is found, you need to do one of the following:
+
+Put mod.py in the directory where the input script is located or the current directory, if interactive
+Modify the PYTHONPATH environment variable to contain the directory where mod.py is located before starting the interpreter
+Or: Put mod.py in one of the directories already contained in the PYTHONPATH variable
+Put mod.py in one of the installation-dependent directories, which you may or may not have write-access to, depending on the OS
+There is actually one additional option: you can put the module file in any directory of your choice and then modify sys.path at run-time so that it contains that directory. For example, in this case, you could put mod.py in directory C:\Users\john and then issue the following statements:
+
+>>> sys.path.append(r'C:\Users\john')
+>>> sys.path
+['', 'C:\\Users\\john\\Documents\\Python\\doc', 'C:\\Python36\\Lib\\idlelib',
+'C:\\Python36\\python36.zip', 'C:\\Python36\\DLLs', 'C:\\Python36\\lib',
+'C:\\Python36', 'C:\\Python36\\lib\\site-packages', 'C:\\Users\\john']
+
+>> import mod
+>>> mod.__file__
+'C:\\Users\\john\\mod.py'
+
+>>> import re
+>>> re.__file__
+'C:\\Python36\\lib\\re.py
+Several comma-separated modules may be specified in a single import statement:
+
+import <module_name>[, <module_name> ...]
+from <module_name> import <name(s)>
+An alternate form of the import statement allows individual objects from the module to be imported directly into the caller’s symbol table:
+
+from <module_name> import <name(s)>
+Following execution of the above statement, <name(s)> can be referenced in the caller’s environment without the <module_name> prefix:
+any objects that already exist with the same name will be overwritten:
+from <module_name> import *
+This will place the names of all objects from <module_name> into the local symbol table, with the exception of any that begin with the underscore (_) character
+This isn’t necessarily recommended in large-scale production code. It’s a bit dangerous because you are entering names into the local symbol table en masse. Unless you know them all well and can be confident there won’t be a conflict, you have a decent chance of overwriting an existing name inadvertently
+from <module_name> import <name> as <alt_name>[, <name> as <alt_name> …]
+This makes it possible to place names directly into the local symbol table but avoid conflicts with previously existing names:
+import <module_name> as <alt_name>
+Module contents can be imported from within a function definition. In that case, the import does not occur until the function is called:
+The dir() Function
+The built-in function dir() returns a list of defined names in a namespace. Without arguments, it produces an alphabetically sorted list of names in the current local symbol table:
+When given an argument that is the name of a module, dir() lists the names defined in the module:
+import mod
+dir(mod)
+If you make a change to a module and need to reload it, you need to either restart the interpreter or use a function called reload() from module importlib:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

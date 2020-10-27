@@ -1,0 +1,778 @@
+When running publicly rather than in development, you should not use the built-in development server (flask run). The development server is provided by Werkzeug for convenience, but is not designed to be particularly efficient, stable, or secure.
+
+Instead, use a production WSGI server. For example, to use Waitress, first install it in the virtual environment:
+
+$ pip install waitress
+You need to tell Waitress about your application, but it doesn’t use FLASK_APP like flask run does. You need to tell it to import and call the application factory to get an application object.
+
+$ waitress-serve --call 'flaskr:create_app'
+Serving on http://0.0.0.0:8080
+Or you can use waitress.serve() in the code instead of using the CLI command.
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "<h1>Hello!</h1>"
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
+$ python hello.py
+
+
+While this is possible, you should not use the Flask dev server in production. The Flask dev server is not designed to be particularly secure, stable, or efficient. See the docs on deploying for correct solutions.
+
+Add a parameter to your app.run(). By default it runs on localhost, change it to app.run(host= '0.0.0.0') to run on your machines IP address
+
+******************************************
+'flask' is not recognized as an internal or external command,
+operable program or batch file.
+check the following
+
+pip show flask
+
+flask --version
+
+
+app.run() or flask run both these methods start a development web server, which is a server that you will use locally on your own system while you develop your application
+ For a production deployment use a production-ready web server such as gunicorn or uWSGI.
+
+
+Prior to Flask 1.0, this was controlled by the FLASK_DEBUG=1 environment variable instead.
+
+If you're using the app.run() method instead of the flask run command, pass debug=True to enable debug mode.
+From the 1.1.x documentation, you can enable debug mode by exporting an environment variable to your shell prompt:
+
+export FLASK_APP=/daemon/api/views.py  # path to app
+export FLASK_DEBUG=1
+python -m flask run --host=0.0.0.0
+
+
+Flask is actually not an MVC framework. ... Flask doesn't prescribe any model.
+
+Is flask full stack?
+Flask is used for the backend, but it makes use of a templating language called Jinja2 which is used to create HTML, XML or other markup formats that are returned to the user via an HTTP request
+
+Is Django a MVC framework?
+Django appears to be a MVC framework, but you call the Controller the “view”, and the View the “template”.
+
+How many connections can flask handle?
+Flask will process one request per thread at the same time. If you have 2 processes with 4 threads each, that's 8 concurrent requests. Flask doesn't spawn or manage threads or processes.
+
+What is G in python flask?
+Flask provides the g object for this purpose. It is a simple namespace object that has the same lifetime as an application context. The g name stands for “global”, but that is referring to the data being global within a context.
+
+How does a flask framework work?
+flask is the framework here, while Flask is a Python class datatype. In other words, Flask is the prototype used to create instances of web application or web applications if you want to put it simple. So, once we import Flask, we need to create an instance of the Flask class for our web app. That's what line 3 does.
+
+
+
+One can also use the Flask Debug Toolbar extension to get more detailed information embedded in rendered pages.
+
+from flask import Flask
+from flask_debugtoolbar import DebugToolbarExtension
+import logging
+
+app = Flask(__name__)
+app.debug = True
+app.secret_key = 'development key'
+
+toolbar = DebugToolbarExtension(app)
+
+@app.route('/')
+def index():
+    logging.warning("See this message in Flask Debug Toolbar!")
+    return "<html><body></body></html>"
+Start the application as follows:
+
+FLASK_APP=main.py FLASK_DEBUG=1 flask run
+
+flask run --port 8085
+
+if you run "pip freeze > requirements.txt" you will get all the packages that are installed dumped to the requirements.txt file. Then you can do "pip install -r requirements.txt" to get those installed in a different virtualenv.
+
+
+If you want something quick & dirty to use during development, use "flask run -h 0.0.0.0" when you run your server, and that will make it accept connections from other machines in your LAN.
+
+
+
+PDB - The Python Debugger
+
+The module pdb supports setting breakpoints. A breakpoint is an intentional pause of the program. where you can get more information about the programs state.
+https://pythonspot.com/python-debugging/
+
+
+The FlaskForm class uses introspection to find any methods defined in the form class that have the name "validate_", and invokes them during validation.
+
+When you add any methods that match the pattern validate_<field_name>, WTForms takes those as custom validators and invokes them in addition to the stock validators.
+
+You can continue to use the same virtualenv as you change to a new set of files, you don't have to redo it every time. The virtualenv can be in a different directory, so you can create one and leave it there to use with all your versions of the application.
+
+there is a way to record the stuff that you install in your virtualenv so that you can recreate it later. If you run "pip freeze > requirements.txt" you will get all the packages that are installed dumped to the requirements.txt file. Then you can do "pip install -r requirements.txt" to get those installed in a different virtualenv.
+
+use "flask run -h 0.0.0.0" when you run your server, and that will make it accept connections from other machines in your LAN.
+
+
+The "c" is an attribute of SQLAlchemy tables that are not defined as models. For these tables, the table columns are all exposed as sub-attributes of this "c" attribute.
+
+
+ why combine the GET and POST endpoints into a single method? 
+This is a matter of preference. There is going to be some duplication if you separate the endpoints into two functions. For example, the case of a failed validation in the POST request is handled similarly to the case of the initial GET request that renders the form. But if you prefer to separate them, I suggest that you do, there aren't any drawbacks that I can think of.
+
+Can you please explain how the avatar is referenced here.
+I can understand it from the User Class as it is declared but not from post.author
+post.author is the relationship that connects a post to its author. In other words, SQLAlchemy sets post.author to the corresponding instance of the User class.
+
+"Each time the logged-in user navigates to a new page, Flask-Login retrieves the ID of the user from the session, and then loads that user into memory."
+
+
+So if I say, the current_user is loaded into the database session in memory
+I noticed that when a user is logged in they can view other users profiles by just entering the other users username in the url bar ---> http://.../user/.   Any way to prevent that?  Thank you!
+check that the logged in user is equal to the user requested in the URL, and else do "abort(404)".
+
+from flask import abort
+...
+ if username == current_user.username:
+        return render_template('user.html', user=user, posts=posts)
+    else:
+        abort(404)
+the profile pages of users are public, any user can view the profile page of all the other users in the system, and this has nothing to do with those users being logged in or not. If you want to prevent a user from seeing the profile page of another user, then you have a couple of options:
+
+at the beginning of the user() view function, add a check such as "if username != current_user.username: abort(404)". This would give a not found error to any users when they try to access the profile page of another user.
+
+a more practical way to do this is to change the URL route associated with the user profile to something that does not have a dynamic component, for example "/me". If you do this, then the username will always be obtained from current_user.username, and that way you make it impossible for a user to access the profile page of another user.
+
+When a user submits invalid data to the edit_profile form, why does the invalid data stay visible after they click submit? 
+
+the contents of the fields is usually preserved when there is a validation problem. If you want to clear a field you have to do it yourself. For example, something like this:
+
+
+if form.validate_on_submit():
+    # form is valid
+else:
+    # form is invalid
+    form.my_field.data = ''  # clear "my_field"
+return render_template("template.html", form=form)
+
+did you modify the models, then create a new migration and finally upgrade the database with that migration? That is the process that you need to follow to introduce changes in the database.
+
+it is a best practice to always respond to a form post request with a redirect. If you are curious about why and can't wait, google "post/redirect/get pattern".
+
+
+Will it be a better idea to first check whether user has changed data in a field, and if so, then only update that value. i.e.
+
+
+if current_user.username != form.username.data:
+     current_user.username = form.username.data
+
+
+rather than directly updating all values irrespective of the fact that they have been changed or not?
+
+
+#78 Miguel Grinberg said 2 years ago
+
+@AR: there is really no point in checking, because when the value did not change you will be assigning the same value. Consider that for a field that changed you would be doing two operations (the comparison and then the assignment), while for a field that did not change you would be doing just one (the comparison). With my version you are always doing one operation, and you end up with the same result.
+
+In my application, I have a form with two inputs. One is the db column which has to be updated and other is the value for that column. When the form is 'post'ed  and 'verified', i would like to update that particular column of db which was selected by user, so selection of db column is dynamic. 
+
+
+In this case I can not pre-build the query like so - 
+
+
+update = user.query.filter_by(username = form.username.data)
+
+
+Rather, i will have to do something like this - 
+invalid literal for int() with base 10
+update = user.query.filter_by(form.selectField.data = form.username.data)
+
+
+How can i do something like this because dynamic field selection in the db query gives error. 
+
+
+#80 Miguel Grinberg said 2 years ago
+@AR: Try this:
+kwargs = {form.selectField.data: form.username.data}
+update = user.query.filter_by(**kwargs)
+
+update an existing row of  database. User has the option to select which column needs to be updated using a dropdown in the form and then in next input, enter the value to be updated.
+
+
+So, i will query that row - 
+update_row = User.query.get(userId)
+
+
+then, 
+update_row.form.selectField.data = form.FieldValue.data
+
+
+So I guess, some changes in your suggested answer are required. I do not have very good understanding of args, *kwargs, so finding it difficult to find work around using your suggested answer.
+
+
+my suggestion was for a filter, which is what you asked about. If you want to change an attribute you have to use setattr:
+
+
+setattr(update_row, form.selectField.data, form.fieldValue.data)
+
+The "current_user" variable comes from Flask-Login, it always points to the logged in user. The "user" and "post" variables are likely global variables, so if they have a wrong value they will give you errors.
+
+I've a python coding question. 
+In the edit_profile method, the username is set as follows:
+form.username.data = current_user.username
+The username is a Class variable set in the EditProfileForm class. Does .data correspond to the DataRequired() used when setting the username? i.e.
+username = StringField('Username', validators=[DataRequired()])
+
+Why don't we have to import before_request from flask_login ? 
+
+
+Seems the same as using login_required and for that we had to import it?
+
+
+I also see it used here to validate the email:
+user = User.query.filter_by(email=email.data).first()
+
+
+So when validating data fields, the DataRequired class needs to be invoked through .data, is that right?   
+
+WTForms does some advanced techniques. You are correct that the username attribute is a class variable, but when a form object is instantiated those class attributes are overriden, so form.username does not really refer to the class variable but to an instance variable of that particular form object. Think of the class variables as sort of a "template" that helps WTForms know what attributes to define in your form objects. This technique is also used by SQLAlchemy, by the way.
+
+Why don't we have to import before_request from flask_login ? 
+
+
+Seems the same as using login_required and for that we had to import it?
+before_request comes from Flask, not Flask-Login. It is an attribute of the Flask object.
+
+I have a question about the part you use the user.avatar(128)
+instead of calling a function of the user object wouldn't it be better practice to call the avatar as an attribute of user object it would be better to save the result of avatar object to database as avatar attribute and call so we would not have to execute and wait for the result of the avatar function and that would be faster ( in ideal case).
+I used .net MVC for a long time and have never seen the usage of function in the HTML part. 
+Thank you. 
+
+
+#113 Miguel Grinberg said a year ago
+
+@Cem: I wouldn't call it a better practice. Generating an md5 hash is a relatively cheap operation, but if you prefer to store it in the database that's fine, I don't see a problem with it. You'll just need to remember to update the hash when/if the email changes.
+Just a question. Updating the date and time last seen also works implemented in the load_user function in models.py.
+Is this a worse way to do it than using before_request?
+
+
+#117 Miguel Grinberg said a year ago
+
+@Squirrel: In terms of correctness, I think I prefer doing it in before_request. The user_loader function is called the first time current_user is referenced, so if you have a route that does not need current_user at all then the update will not happen.
+
+The validate_ methods are a way to define custom validation procedures in WTForms and Flask-WTF. You can add validations for any fields in this way. These methods are called by WTForms during form validation, they are not called by the application.
+
+I have a question regarding post.body in template, what if I have an html text written i want it to be displayed as html not a text? Eg: One post body contains  This is what is written  but rest is normal.  Again something 
+so in loop when i tried it was displayed as plane text wit bold as  was used prior to {{post.body}}
+
+
+How to get entire HTML text within body displayed as HTML?
+as a security measure, Jinja2 always escapes all texts by default. If this variable that you have with HTML is safe to print as HTML, you can do so with the "safe" filter: {{ variable | safe }}. Your variable can be considered safe if the HTML in it is generated internally by your application. If the contents of the variable come from a user, then it is unsafe, so you need to sanitize it before you can consider it safe. For example, you may want to remove all  tags, etc.
+
+When I included the line <a href="{{ url_for('user', username=current_user.username) }}">Profile</a> in base.html I started getting the following traceback dump:
+werkzeug.routing.BuildError: Could not build url for endpoint 'user' with values ['username']. Did you mean 'username' instead?
+
+@Gabriel: Yes, the error means that the user() function is not known to Flask. This is the route function that handles the /user/ URL. If you used a different name than user() for this function, then the first argument to url_for() needs to be the name that you used.
+I'm getting this error after adding the view for username  :
+jinja2.exceptions.UndefinedError: 'user' is undefined
+@Vivek: you need to pass a user keyword argument in the call to render_template.
+
+In the User class inside models.py, I notice that a function reference is passed instead of making a function call:
+
+
+last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+vs.
+
+
+current_user.last_seen = datetime.utcnow() in routes.py.
+
+
+How would you write a default which calls a function with an argument?
+
+@Gabor: You can use functools.partial from the Python standard library to create a callable with predefined arguments. Example:
+
+
+
+
+
+from functools import partial
+def my_function(arg):
+...     print(arg)
+... 
+f = partial(my_function, 123)
+f()
+123
+
+i have the the last seen column in database but its empty and i think  below function never run for me
+
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
+
+
+where should i add it to get run and save the last seen for client??
+
+@tcpzix: the function can be in any file really, the important thing is that it is imported, because the decorator registers it with Flask. If the file in which the function is located is not imported then Flask will not see it.
+
+Once the profile has been edited, the page is redirected to the same page (edit_profile).
+I attempted to change it to the user profile page by changing the following: 
+
+
+    flash('Your changes have been saved.')
+    return redirect(url_for('user'))
+
+as was defined by the @app.route ('/user/'), but I continue to receive an error:
+
+
+werkzeug.routing.BuildError
+werkzeug.routing.BuildError: Could not build url for endpoint 'user'. Did you forget to specify values ['username']?
+
+@Brandon: the user route takes an argument, the username. The redirect should be to url_for('user', username=current_user.username).
+
+you can pass any dictionary with form variables as an argument when you create your form class. If your variables do not come in request.form which is the default, just pass the dictionary and the form will work.
+
+why does the" form.validate_on_submit()" returns false ,  if i dont include "form.hidden_tag()" in "edit_profile.html" .
+with the default settings, Flask-WTF will validate that the client submitted a CSRF token. If you don't put the hidden_tag in your template there will be no CSRF token in the form, so the validation will think the client did not send it.
+
+i have a question about dynamic  url generation in this lesson.
+We use @app.route('/user/'). In comments i found how can i restrict view profile for another user.
+ if username == current_user.username:
+        return render_template('user.html', user=user, posts=posts)
+    else:
+        abort(404)
+But if i login and then restart flask app(ctrl+c and then  flask run) i can see http://127.0.0.1:5000/user/susan.
+How can i throw off session after restart flask?
+
+@anpolumestny: the session is stored in a cookie in the client. The easiest way to get rid of the session cookie is to close your browser and reopen it. You can also manually delete the cookie if you know how to do this, or delete all cookies if you prefer.
+
+if there's a way to populate a form in bulk. For people with the same kind of question, yes there's the populate_obj() function offered by BaseForm class.
+
+{% if user == current_user %}
+                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+                {% endif %}
+
+
+Hi, where exactly is the user variable coming from in this statement?
+Is this referring to the /<user>/username url or something different?
+
+The user variable is passed as an argument in the render_template() call. The current_user variable is automatically added to all templates by the Flask-Login extension.
+
+I want to know how can I add login with google/twitter/facebook or anything else on the microblog.
+I have blogged about OAuth authentication in the past, see https://blog.miguelgrinberg.com/post/oauth-authentication-with-flask.
+
+The login_required decorator prevents the index route to be accessed by anonymous users.
+
+@Peter: email verification make sense for a lot of applications, sure. For this tutorial I did not implement it, but I have done the password reset feature, which is actually very similar. If you want to see an implementation of the email verification, my Flasky app has this: https://github.com/miguelgrinberg/flasky.
+
+how does views/templates know variables from python files backend?
+
+
+@Joel: some variables that are defined in the Python side are exported by Flask into the Jinja context so that they can be used there as well. Flask-Login's 	 variable is one example, and the url_for() function from Flask is another.
+
+) What happens to "password" field's data when we register new user, does a web browser send it as plain text or somehow protects it?
+
+The password field submitted with the form is going to travel from the client to the server in plaintext. There is really no way to avoid this, since the server needs to hash the password during registration, and then rehash it during log in. The only way to make this form secure is by using HTTPS in your production application. I provide an introduction to how to do this in the deployment chapters near the end of the tutorial, and have also written a dedicated article on this blog about using Let's Encrypt SSL certificates with Flask applications to obtain an A+ security rating on your application
+
+
+@Aleksandr: the rules for how the validate methods should be structured are set by WTForms. If you use a different definition for this method, then when WTForms invokes assuming it is a regular method it the call will fail.
+
+I have a problem, I need two user models in my app, let's say a client and a provider of services, they both have their own table in the database, since there are just a lot of different fields, only the email and password would be the same fields.
+
+
+Could I use Flask login for such a use case?
+@Flaviu: yes, that should be fine, as long as you don't have duplicate ids between clients and providers. If the ids are not unique it can still be done, but you need to figure out a way to make the ids unique for Flask-Login.
+
+Just a small point, in the register.html file i noticed that you do not have the novalidate attribute in order to fully leave the validation task to Flask as you previously did with the login form. Maybe you did this intentionally as it did allow me to see the effect of not including it. So as i said just a minor point.
+
+@Gawayne: Yes, I wanted you to see both options, so that you can decide which one you prefer.
+
+Can you please give me a tip how to make the validation on submitting the form?
+@pcx: your validate_submit() method is going to take a single argument, which is the field being validated (the submit button). Use self.username or self.email to access the other fields.
+
+password. You return it from the client completely unsecure. It means anyone may sniff it and use it latter on. Isn't it necessary to use hash before returning login/register forms data? Of course, using https will help.
+
+@zeev: If you hash the password in the client, then the hashed password can also be sniffed, so hashing in the client does not help at all. If you encrypt it, then the encryption key needs to be sent from the server to the client, so it is subject to the same sniffing risks. The best way to protect the data in transit between the client and the server is to use public-key encryption, and this is exactly what https does. If you have https, then any other measures that you take are inferior in security, so there is no point. If you don't have https, then you are at risk no matter what you do with these inferior techniques. Note that the password is hashed in the server and stored hash, the original password is discarded by the server once the hash is calculated.
+
+
+You use this 'username=username.data' pattern in some places,
+user = User.query.filter_by(username=username.data).first()
+
+Why did you use 'username=username.data'? This method gets the username params. I understand username.data is the form field. Why username.data is not enough?
+@Tibor: the filter_by() method uses keyword arguments so that it knows by which field you want to do the filtering. You may want to read the Python docs regarding positional and keyword arguments, this is an area where Python differs from many other languages, keyword arguments are a very useful feature in the language.
+
+@nick: My guess is that you have at least one validator in your registration form that was created as a class instead of an object. Note that you have to say "validators=[DataRequired()]" and not "validators=[DataRequired]".
+
+ImportError: cannot import name 'LoginManager'
+@JC: start by recreating your virtual environment, in case your current one is corrupted. If that does not help, open a Python shell and type "from flask_login import LoginManager" to check if you can run the import directly.
+
+How to produce custom error messages for an invalid email or for an invalid password2 ? 
+At this point, an invalid email will raise an error, thanks to wtforms.validators.Email(), and a wrong password2 as well, thanks to wtforms.validators.EqualTo(), but these errors don't seem to produce a message, and the app shows empty red brackets. 
+
+@Guillaume: I suspect you have a problem in your template that is not rendering the error messages, but in any case, if you want to use a non-default error message for a validator, just pass the text as the first argument. For example: validators=[Email('the email is invalid')].
+
+
+I've question which found nothing helpful on official documents of flask-login: what about the cookie lifetime of flask-login WITHOUT "remember me" checked? 
+Close the browser? I suppose it's not this answer, because I can still visit pages without re-login the site next morning. 
+
+@Fisherworks: without remember me Flask-Login opens a session cookie, so the authentication goes away when you close the browser window.
+
+@cs: that's actually a good idea, normalizing all emails to lower case would prevent duplicates.
+
+can I use flask-login with sqlserver and how?
+@abdou: Flask-Login does not interact with the database at all. If you have a user object in your application, then you can use Flask-Login with it. Just follow the instructions in the extension's documentation to prepare your object.
+
+@Iain: Flask-WTF wraps the validate_username, etc. calls with a try/except block, so it immediately finds out if a field raised in a custom validator.
+
+
+	
+At the time of login, session cookie is set. I want to set its expiration time, for which I am using PERMANENT_SESSION_LIFETIME. For this to work, I need to set session.permanent = True. Where in our code, I can set it? I am thinking of doing it in login route after login_user is set. 
+
+
+Ref: http://flask.pocoo.org/docs/1.0/security/
+@Ankur: you can set it in the before_request handler, for example, to ensure that all endpoints have it.
+
+@AR: my answer does not change. The change password route should log the user out, then return the settings page template, with the user logged out. The moment the user clicks on any link, they'll have to log in again.
+
+when the login function is called with the GET method, a LoginForm is instantiated, used to render the template, etc. Then, when the login function is called with the POST method, another LoginForm object is instantiated, which has never been rendered yet, still, one can query the form.request.username field, even though it seems to be a brand new object. What is going on in the background?
+
+@György: The login form object uses information about the request provided by Flask to initialize itself. When the client sent a GET request, the form object initializes as an empty form, since there is no form data available. When the client sends a POST request with form data, all that data is loaded into the form object, and you can access these field values.
+
+@AR: See the documentation for the generate_password_hash in Werkzeug for how to specify other hashing algorithms: http://werkzeug.pocoo.org/docs/0.14/utils/#werkzeug.security.generate_password_hash.
+
+@Simon: Python is a dynamic language, there are many situations where a linter cannot really figure things out. Flask-SQLAlchemy is one of those packages that do things in a way that linters cannot follow.
+
+@mimmon: Flask-Login uses a cookie to record the logged in state of a user. Maybe your browser is configured to not accept cookies?
+
+how to implement a user registration process where I can confirm that the user is a part of my organization before giving them access. (Example: person from my organization registers, I recognize they are a part of my organization, then give them access to my web application credentials)
+
+
+#258 Miguel Grinberg said 2 years ago
+
+@Tyler: If you have a list of valid users (or a database that you can query for them), then in the login endpoint when the client sends the POST request with the login form data you can add a check to make sure the username or email provided is one of the valid ones.
+
+Is there any possible way of deleting the users in the system? For example, if an admin realizes that a user has been in the system but hasn't been active or has been acting badly, could he/she remove the user?
+
+
+#264 Miguel Grinberg said a year ago
+
+@Curtis: Yes, you have two options. One is to just delete the user, using the db.session.delete() method shown in the previous chapter. That is not a great idea because a user may be referenced in other parts of the database such as in posts, comments, etc. The more common solution is to use a "soft delete" pattern, where instead of deleting the user a "disabled" flag is added and set to True when the user needs to be ignored. I have blogged about soft deletes with Flask-SQLAlchemy: https://blog.miguelgrinberg.com/post/implementing-the-soft-delete-pattern-with-flask-and-sqlalchemy
+
+
+You seem to have a preference for negation,
+1. like u prefer if user is none instead of if user: what's the difference btn the two 
+2. How come for next page wen I try to do the reverse of 
+If not next_page or url_parse(next_page).netloc != "": 
+Which would be
+ if next_page or url_parse(next_page).netloc == ""
+I get an error:
+AttributeError: 'NoneType' object has no attribute 'find'
+In the traceback:
+I=url.find(s(":"))
+
+
+#266 Miguel Grinberg said a year ago
+
+@Kenmugy:
+1. I'm confused, because "if user is None" is not the same as "if user". They are actually opposite! If you meant to say "if user is not None", then yes, both are the same. My version is more readable, in my opinion.
+2. You are not reversing your conditions correctly. The reverse of "if not A or B" is "if A and not B". Change the or for an and and it should work.
+
+
+@Tema: when you press the submit button on the form, the browser sends a POST request to the URL indicated by the form action attribute. If you set the action to "/login", then that is the URL that will be used, and obviously this URL does not have the "next" argument.
+
+
+On the other side, if you set action to empty, then the browser uses the URL that is in the address bar to send the POST request. This URL was created by Flask-Login when you attempted to enter a protected page. For example, if you wanted to go to "/users" and this URL requires login, then Flask-Login intercepts the request and instead redirects you to "/login?next=/users". So then the POST request with the login information will have the "next" argument. Hope this clarifies how this works.
+I have a question.
+The line "form = RegistrationForm()", it is automagically populated with fields which client populated.
+Is this some feature of Flask Forms?
+
+@Igor: Yes, the FlaskForm class accesses the form fields in the flask request object. If it finds anything in request.forms, then it loads that into the form object.
+
+Exception: No user_loader has been installed for this LoginManager. Refer tohttps://flask-login.readthedocs.io/en/latest/#how-it-works for more info.
+
+@Jared: the error message that you are getting indicates that you forgot to define a user loader callback for Flask-Login. See the section "User Loader Function" in this article.
+
+@randomforest: the validate_[fieldname] methods are called automatically by Flask-WTF and WTForms. This happens inside the validate_on_submit() call.
+
+@Richard: your login function does not appear to be returning a response. This is invalid, all Flask views must return something. Compare the function against mine to find what you are missing.
+
+Can you please explain the line in the register function?
+        user = User(username=form.username.data, email=form.email.data)
+We do not have an init method, why we put parameters? 
+
+
+#314 Miguel Grinberg said a year ago
+
+@Anton: The User class inherits from db.Model from Flask-SQLAlchemy. There is an init() method in db.Model which takes all the arguments and applies it to the model's attributes.
+
+Is there a best practice for how to restrict the characters a user can use when creating a username? i.e. no special characters such as @ or !.
+
+
+#316 Miguel Grinberg said a year ago
+
+@Androgen: You can add a custom validator to your form that checks for those invalid characters. Optionally you can use a JavaScript form validation library that immediately blocks the characters that aren't allowed in addition to the server-side validation.
+
+I think you would also need to add the Flask-Session & Flask-Sessionstore modules to be added and initialized as part of this code for it to work now. I spent a day trying to figure out why my Flask App was throwing an Exception whenever I was sending out the response to the login request.
+
+
+#320 Miguel Grinberg said 11 months ago
+
+@Akshitij: No need to add any custom session extensions, this code works fine with the Flask provided sessions. If you get errors, then show me the errors and maybe I can help you figure it out.
+
+Just a small issue I faced though, when I put the login.user_loader within the models.py, it was throwing an error.
+Then I moved the statement to the init.py and it worked.
+Would you know what was the difference?
+
+
+#324 Miguel Grinberg said 11 months ago
+
+@Joe: there's probably no difference, just that when you had it in models.py you've made a mistake, and that got corrected when you copied the code to the other file. What was the error if I may ask?
+
+
+"The session is unavailable because no secret "
+RuntimeError: The session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+
+
+Help is appreciated.
+
+
+#330 Miguel Grinberg said 10 months ago
+
+@Truman: you haven't set the SECRET_KEY variable in the configuration. Go back to chapter 3 of this tutorial to learn about this.
+
+
+On startup, I was setting 'SECRET_KEY to a random value every time, but that means that the remeber_me token doesn't work after any server change.
+
+
+#332 Miguel Grinberg said 10 months ago
+
+@Legorooj: It's okay to use a random value, the problem is changing it every time you run the application. You should generate your random key and then keep using it. The problem is much bigger than what you noticed, you will not be able to keep any data in the user session if you continuously change the secret key, as this invalidates the signatures that protect the contents of the session against tampering.
+
+
+
+sqlalchemy.exc.OperationalError
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: 
+@Allen: your database is not in sync with your database models. Try running "flask db upgrade".
+
+Furthermore, I've found a workaround through the whole set_password function by using the hybrid_property and hybrid_method from sqlalchemy.ext.hybrid.
+
+
+As I'm also not using werkzeug.security, instead flask_bcrypt on its place. Here's how it looks:
+
+
+app/init.py: importing Bcrypt.
+
+
+...
+# Importing Bcrypt
+from flask_bcrypt import Bcrypt
+
+...
+# Wrapping my app within a Bcrypt object
+bcrypt = Bcrypt(app)
+
+app/models.py: Implementing bcrypt as my password hasher
+    # ...
+
+
+# Importing my Bcrypt wrapped app
+from app import bcrypt
+
+# Importing Hybrid Attributes
+from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
+
+# Updating my User object password
+# OBS: I'm using the key 'password_hash' instead of 'password' also, bcause I'm using Python 3.6.9, generate_password will return a Binary, so why not store the password as a Binary instead of applying .enconde('utf-8'), just to store it as a db.String?
+class User(db.Model, UserMixin):
+
+
+# ...
+
+
+password_hash = db.Column(db.Binary(60))
+
+# ...
+
+# Workaround so it's possible to assign a password by: user_object.password = <plaintext_password>
+@password.setter
+def password(self, plaintext_password):
+    self.password_hash = bcrypt.generate_password_hash(plaintext_password)
+
+@hybrid_method
+def check_password(self, plaintext_password):
+    return(bcrypt.check_password_hash(self.password_hash, plaintext_password))
+
+app/routes.py: Slightly changing the routine to set password of a user
+    @app.route('/register', methods=['GET', 'POST'])
+    # ...
+
+
+if form.validate_on_submit():
+user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+# ...
+
+microblog.py: Updating my flask shell to include the Bcrypted app
+    # ...
+    @app.shell_context_processor
+    def make_shell_context():
+        return({
+        # ...
+        'bcrypt': bcrypt,
+        })
+
+
+WOW, I think it's finally over.
+Anyways, do you find it appropriate?
+
+
+Thank you very much again for this 100% free and excellent tutorial!!!!
+
+
+#338 Miguel Grinberg said 10 months ago
+
+@Eduardo: Yes the hybrid method is a valid approach, I see no problems with it.
+
+@Lucas: you are not supposed to call the validate_xxx methods yourself. Flask-WTF calls them as part of the validate_on_submit process.
+
+@Guht: you don't have to do anything other than let Flask-WTF (or Flask-Bootstrap) render the fields of your form, as shown in Chapter 3. If the form fields have any values associated with them, these are pre-populated when the form is rendered after a validation failure.
+@Fredrick: a 500 error means that your application has crashed. 
+Do you use Flask-Session to store anything? Is there any part of your article which uses Flask-Session? I want to store some data there and then display it on the index.html page if it has data.
+
+@Shafeek: Flask-Session is an optional extension. Flask supports session storage through the "session" context variable, which is used in this tutorial.
+
+
+
+
+Just to verify I am understanding the framework correctly, up to this point in the tutorial/write-up is the forms.py module acting as a controller?
+
+
+#353 Miguel Grinberg said 8 months ago
+
+@TekkSparrow: Flask does not follow the MVC paradigm. The closest thing to a controller is the routes.py module, which is the code that uses the models and the views (i.e. templates) to return a response to the client.
+
+Flask-Login does not implement a role system. You have to implement your own, or maybe use the Flask-Principal extension.
+
+How does the user loader function work actually? How can the 'id' pass in the loader function? 
+
+@Lihua: this function is invoked by Flask-Login. It passes the id that it recovered from the user session.
+
+I have a question. Why don't we need to pass current_user=current_user when calling render_template('index.html', title='Home', posts=posts) in routes.py.
+
+
+#369 Miguel Grinberg said 7 months ago
+
+@GregHuang: The Flask-Login extension globally registers current_user for all templates.
+
+@Mario: Python is a dynamic language. A tool such as the PyCharm linter cannot always figure out what are the valid arguments to a call. In this problem I suspect PyCharm is confused because of all the complexity from SQLAlchemy in generating model classes. I know a lot of people don't want to hear this, but in a language such as Python you can't always trust linters to be correct.
+
+	
+Question just for my own curiosity - why is is that the current_user object is available to the index.html template without having to explicitly pass this value in the render_template() call when we define index() in routes.py? Is flask_login working some kind of magic here that I'm unaware of?
+
+
+#373 Miguel Grinberg said 6 months ago
+
+@Casey: Yes. Flask-Login registers current_user with Jinja templates so that you can use it in templates.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

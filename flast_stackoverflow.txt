@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/42601478/flask-calling-python-function-on-button-onclick-event
+https://stackoverflow.com/questions/50426137/flask-get-clicked-link-info-and-display-on-rendered-page
+https://stackoverflow.com/questions/50426137/flask-get-clicked-link-info-and-display-on-rendered-page

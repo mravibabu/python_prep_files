@@ -1,0 +1,44 @@
+
+Shwati Kumar
+, Python Expert
+Answered September 26, 2019
+
+Rather than writing a list of boring python questions, let me give you 10 questions which you will for sure get in your next interview.
+
+Apart from the questions, I will tell you the intention of interviewer behind that question, you should keep your self ready.
+
+While taking interviews I always ask following questions:
+
+Describe your project and tell about your roles and responsibilities (if you want to crack the interview try to match roles and responsibilities with the JD)
+Challenges you have faced while working on the mentioned project (He want to check whether you have actual experience)
+Research work you have done for the project (Here the intention is to understand innovative & problem solving capabilities)
+Why did you chose Python over other language like Java / C++ / Scala (to understand your reasoning and knowledge about Python)
+Tell me about the architecture of your project (He could ask about the name & version of all the components)
+Scenario based question to see your approach to solve the problem (most important part, he will either give a scenario similar to your project or in case of stress interview he could give impossible situation)
+Few coding questions, based on your experience (He wants to check your fundamentals)
+How will you manage a conflict situation with your colleague (He wants to see whether you are a team player)
+Tell me about your top 5 predictions for the next 15 years (For senior guys, to check their vision)
+How you motivate yourself to work 24 x 7 x 365? (He wants to see your commitment & consistency)
+I guarantee, in you next interview you will get 7 out of 10 questions mentioned above.
+
+To prepare for the interview more thoroughly, please finish the list of 150 Python interview questions
+
+Are an experienced professional, please refer: Python interview questions for Experienced
+
+
+Knowledge, Skills and Experience:
+Prior experience in a Python web environment
+Strong backend development and experience with Django
+Must have the ability to be a FULL STACK ENGINEER using CSS, HTML, Javascript
+Work in an AGILE environment
+Lead by example and be a good team player
+Good and clear communication
+Interest in being part of a fast-paced and exciting web environment
+Have an entrepreneurial mindset
+Ability to work with complex systems
+XML parsing and generation using python.
+Experience in using MySQLdb and psycopg.
+Experience in using python on Linux.
+Making daemon programs in Linux using python.
+
+knowledge in Python, with proficiency in least one Python web framework (e.g. Django, Flask, Pyramid)Strong working knowledge of relational databases (MySQL, PostgreSQL, etc…) and Python ORM libraries requiredExperience with distributed architectures and measuring system performance metrics.Expert

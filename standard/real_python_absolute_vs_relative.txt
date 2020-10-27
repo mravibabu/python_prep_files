@@ -1,0 +1,1546 @@
+How Imports Work
+The first thing Python will do is look up the name abc in sys.modules. This is a cache of all modules that have been previously imported.
+
+If the name isn’t found in the module cache, Python will proceed to search through a list of built-in modules. These are modules that come pre-installed with Python and can be found in the Python Standard Library. If the name still isn’t found in the built-in modules, Python then searches for it in a list of directories defined by sys.path. This list usually includes the current directory, which is searched first.
+
+When Python finds the module, it binds it to a name in the local scope
+You can import both packages and modules. (Note that importing a package essentially imports the package’s __init__.py file as a module.)
+Imports should always be written at the top of the file, after any module comments and docstrings.
+
+Imports should be divided according to what is being imported. There are generally three groups:
+
+standard library imports (Python’s built-in modules)
+related third party imports (modules that are installed and do not belong to the current application)
+local application imports (modules that belong to the current application)
+Each group of imports should be separated by a blank space.
+
+
+Absolute Imports
+An absolute import specifies the resource to be imported using its full path from the project’s root folder.
+
+
+Let’s say you have the following directory structure:
+
+└── project
+    ├── package1
+    │   ├── module1.py
+    │   └── module2.py
+    └── package2
+        ├── __init__.py
+        ├── module3.py
+        ├── module4.py
+        └── subpackage1
+            └── module5.py
+
+Let’s assume the following:
+
+package1/module2.py contains a function, function1.
+package2/__init__.py contains a class, class1.
+package2/subpackage1/module5.py contains a function, function2.
+The following are practical examples of absolute imports:
+
+from package1 import module1
+from package1.module2 import function1
+from package2 import class1
+from package2.subpackage1.module5 import function2
+
+Pros and Cons of Absolute Imports
+Absolute imports are preferred because they are quite clear and straightforward. It is easy to tell exactly where the imported resource is, just by looking at the statement. Additionally, absolute imports remain valid even if the current location of the import statement changes. In fact, PEP 8 explicitly recommends absolute imports.
+
+Relative Imports
+A relative import specifies the resource to be imported relative to the current location—that is, the location where the import statement is. There are two types of relative imports: implicit and explicit. Implicit relative imports have been deprecated in Python 3, so I won’t be covering them here.
+The syntax of a relative import depends on the current location as well as the location of the module, package, or object to be imported. Here are a few examples of relative imports:
+
+from .some_module import some_class
+from ..some_package import some_function
+from . import some_class
+You can see that there is at least one dot in each import statement above. Relative imports make use of dot notation to specify location.
+
+A single dot means that the module or package referenced is in the same directory as the current location. Two dots mean that it is in the parent directory of the current location—that is, the directory above. Three dots mean that it is in the grandparent directory, and so on. This will probably be familiar to you if you use a Unix-like operating system!
+
+You can import class1 and function2 into the package2/module3.py file this way:
+
+# package2/module3.py
+
+from . import class1
+from .subpackage1.module5 import function2
+
+In the first import statement, the single dot means that you are importing class1 from the current package. Remember that importing a package essentially imports the package’s __init__.py file as a module.
+
+In the second import statement, you’d use a single dot again because subpackage1 is in the same directory as the current module, which is module3.py.
+Unfortunately, relative imports can be messy, particularly for shared projects where directory structure is likely to change. Relative imports are also not as readable as absolute ones, and it’s not easy to tell the location of the imported resources.
+
+Remember that you should generally opt for absolute imports over relative ones, unless the path is complex and would make the statement too long.
+
+
+
+
+
+************************************************************************************************************************************************************
+
+Python Modules and Packages – An Introduction
+
+
+ Python modules and Python packages, two mechanisms that facilitate modular programming.
+
+Modular programming refers to the process of breaking a large, unwieldy programming task into separate, smaller, more manageable subtasks or modules. Individual modules can then be cobbled together like building blocks to create a larger application.
+
+There are several advantages to modularizing code in a large application:
+
+Simplicity: Rather than focusing on the entire problem at hand, a module typically focuses on one relatively small portion of the problem. If you’re working on a single module, you’ll have a smaller problem domain to wrap your head around. This makes development easier and less error-prone.
+
+Maintainability: Modules are typically designed so that they enforce logical boundaries between different problem domains. If modules are written in a way that minimizes interdependency, there is decreased likelihood that modifications to a single module will have an impact on other parts of the program. (You may even be able to make changes to a module without having any knowledge of the application outside that module.) This makes it more viable for a team of many programmers to work collaboratively on a large application.
+
+Reusability: Functionality defined in a single module can be easily reused (through an appropriately defined interface) by other parts of the application. This eliminates the need to duplicate code.
+
+Scoping: Modules typically define a separate namespace, which helps avoid collisions between identifiers in different areas of a program. (One of the tenets in the Zen of Python is Namespaces are one honking great idea—let’s do more of those!)
+
+
+
+Functions, modules and packages are all constructs in Python that promote code modularization.
+mod.py
+
+s = "If Comrade Napoleon says it, it must be right."
+a = [100, 200, 300]
+
+def foo(arg):
+    print(f'arg = {arg}')
+
+class Foo:
+    pass
+
+import mod
+When the interpreter executes the above import statement, it searches for mod.py in a list of directories assembled from the following sources:
+The directory from which the input script was run or the current directory if the interpreter is being run interactively
+The list of directories contained in the PYTHONPATH environment variable, if it is set. (The format for PYTHONPATH is OS-dependent but should mimic the PATH environment variable.)
+An installation-dependent list of directories configured at the time Python is installed
+The resulting search path is accessible in the Python variable sys.path, which is obtained from a module named sys:
+
+>>> import sys
+>>> sys.path
+['', 'C:\\Users\\john\\Documents\\Python\\doc', 'C:\\Python36\\Lib\\idlelib',
+'C:\\Python36\\python36.zip', 'C:\\Python36\\DLLs', 'C:\\Python36\\lib',
+'C:\\Python36', 'C:\\Python36\\lib\\site-packages']
+
+There is actually one additional option: you can put the module file in any directory of your choice and then modify sys.path at run-time so that it contains that directory. For example, in this case, you could put mod.py in directory C:\Users\john and then issue the following statements:
+
+>>> sys.path.append(r'C:\Users\john')
+>>> sys.path
+['', 'C:\\Users\\john\\Documents\\Python\\doc', 'C:\\Python36\\Lib\\idlelib',
+'C:\\Python36\\python36.zip', 'C:\\Python36\\DLLs', 'C:\\Python36\\lib',
+'C:\\Python36', 'C:\\Python36\\lib\\site-packages', 'C:\\Users\\john']
+>>> import mod
+
+Once a module has been imported, you can determine the location where it was found with the module’s __file__ attribute:
+
+>>> import mod
+>>> mod.__file__
+'C:\\Users\\john\\mod.py'
+
+>>> import re
+>>> re.__file__
+'C:\\Python36\\lib\\re.py'
+The directory portion of __file__ should be one of the directories in sys.path.
+
+ Each module has its own private symbol table, which serves as the global symbol table for all objects defined in the module. Thus, a module creates a separate namespace, as already noted.
+The statement import <module_name> only places <module_name> in the caller’s symbol table. The objects that are defined in the module remain in the module’s private symbol tabl
+
+After the following import statement, mod is placed into the local symbol table. Thus, mod has meaning in the caller’s local context:
+
+>>> import mod
+>>> mod
+<module 'mod' from 'C:\\Users\\john\\Documents\\Python\\doc\\mod.py'>
+But s and foo remain in the module’s private symbol table and are not meaningful in the local context:
+
+>>> s
+NameError: name 's' is not defined
+To be accessed in the local context, names of objects defined in the module must be prefixed by mod:
+
+An alternate form of the import statement allows individual objects from the module to be imported directly into the caller’s symbol table:
+>>> from mod import Foo
+>>> x = Foo()
+>>> x
+<mod.Foo object at 0x02E3AD50>
+Because this form of import places the object names directly into the caller’s symbol table, any objects that already exist with the same name will be overwritten:
+>>> a = ['foo', 'bar', 'baz']
+>>> a
+['foo', 'bar', 'baz']
+
+>>> from mod import a
+>>> a
+[100, 200, 300]
+
+It is even possible to indiscriminately import everything from a module at one fell swoop:
+
+from <module_name> import *
+This will place the names of all objects from <module_name> into the local symbol table, with the exception of any that begin with the underscore (_) character.
+
+This isn’t necessarily recommended in large-scale production code. It’s a bit dangerous because you are entering names into the local symbol table en masse. Unless you know them all well and can be confident there won’t be a conflict, you have a decent chance of overwriting an existing name inadvertently. However, this syntax is quite handy when you are just mucking around with the interactive interpreter, for testing or discovery purposes, because it quickly gives you access to everything a module has to offer without a lot of typing.
+
+
+It is also possible to import individual objects but enter them into the local symbol table with alternate names:
+This makes it possible to place names directly into the local symbol table but avoid conflicts with previously existing names:
+
+>>> s = 'foo'
+>>> a = ['foo', 'bar', 'baz']
+
+>>> from mod import s as string, a as alist
+>>> s
+'foo'
+>>> string
+'If Comrade Napoleon says it, it must be right.'
+>>> a
+['foo', 'bar', 'baz']
+>>> alist
+[100, 200, 300]
+
+You can also import an entire module under an alternate name:
+>>> import mod as my_module
+>>> my_module.a
+
+
+However, Python 3 does not allow the indiscriminate import * syntax from within a function:
+
+>>> def bar():
+...     from mod import *
+...
+SyntaxError: import * only allowed at module level
+
+Lastly, a try statement with an except ImportError clause can be used to guard against unsuccessful import attempts:
+
+>>> try:
+...     # Non-existent module
+...     import baz
+... except ImportError:
+...     print('Module not found')
+...
+
+Module not found
+
+The dir() Function
+The built-in function dir() returns a list of defined names in a namespace. Without arguments, it produces an alphabetically sorted list of names in the current local symbol table:
+
+When given an argument that is the name of a module, dir() lists the names defined in the module:
+
+>>> import mod
+>>> dir(mod)
+When a .py file is imported as a module, Python sets the special dunder variable __name__ to the name of the module. However, if a file is run as a standalone script, __name__ is (creatively) set to the string '__main__'. Using this fact, you can discern which is the case at run-time and alter behavior accordingly:
+
+Reloading a Module
+For reasons of efficiency, a module is only loaded once per interpreter session.
+But a module can contain executable statements as well, usually for initialization. Be aware that these statements will only be executed the first time a module is imported.
+mod.py
+
+a = [100, 200, 300]
+print('a =', a)
+ 
+>>> import mod
+a = [100, 200, 300]
+>>> import mod
+>>> import mod
+You can technically import the package as well:
+
+>>> import pkg
+ it doesn’t do much of anything useful. In particular, it does not place any of the modules in pkg into the local namespace:
+>>> pkg.mod1
+Traceback (most recent call last):
+  File "<pyshell#34>", line 1, in <module>
+    pkg.mod1
+AttributeError: module 'pkg' has no attribute 'mod1'
+
+Package Initialization
+If a file named __init__.py is present in a package directory, it is invoked when the package or a module in the package is imported. This can be used for execution of package initialization code, such as initialization of package-level data.
+
+when import * is used for a module, all objects from the module are imported into the local symbol table, except those whose names begin with an underscore, as alway
+from <package_name> import *
+What does that do?
+ Not much.
+if the __init__.py file in the package directory contains a list named __all__, it is taken to be a list of modules that should be imported when the statement from <package_name> import * is encountered.
+
+pkg/__init__.py
+
+__all__ = [
+        'mod1',
+        'mod2',
+        'mod3',
+        'mod4'
+        ]
+Now from pkg import * imports all four modules:
+
+>>> dir()
+['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__',
+'__package__', '__spec__']
+
+>>> from pkg import *
+>>> dir()
+['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__',
+'__package__', '__spec__', 'mod1', 'mod2', 'mod3', 'mod4']
+>>> mod2.bar()
+[mod2] bar()
+>>> mod4.Qux
+<class 'pkg.mod4.Qux'>
+Using import * still isn’t considered terrific form, any more for packages than for modules.
+By the way, __all__ can be defined in a module as well and serves the same purpose: to control what is imported with import *. For example, modify mod1.py as follows:
+
+pkg/mod1.py
+
+__all__ = ['foo']
+
+def foo():
+    print('[mod1] foo()')
+
+class Foo:
+    pass
+Now an import * statement from pkg.mod1 will only import what is contained in __all__:
+In summary, __all__ is used by both packages and modules to control what is imported when import * is specified. But the default behavior differs:
+
+For a package, when __all__ is not defined, import * does not import anything.
+For a module, when __all__ is not defined, import * imports everything (except—you guessed it—names starting with an underscore).
+
+Or you can use a relative import, where .. refers to the package one level up. From within mod3.py, which is in subpackage sub_pkg2,
+
+.. evaluates to the parent package (pkg), and
+..sub_pkg1 evaluates to subpackage sub_pkg1 of the parent package.
+
+pkg/sub__pkg2/mod3.py
+
+def baz():
+    print('[mod3] baz()')
+
+class Baz:
+    pass
+
+from .. import sub_pkg1
+print(sub_pkg1)
+
+from ..sub_pkg1.mod1 import foo
+foo()
+ 
+>>> from pkg.sub_pkg2 import mod3
+<module 'pkg.sub_pkg1' (namespace)>
+[mod1] foo()
+
+
+**************************************************************************************************************************88
+The else Clause
+Python allows an optional else clause at the end of a while loop. 
+
+while <expr>:
+    <statement(s)>
+else:
+    <additional_statement(s)>
+The <additional_statement(s)> specified in the else clause will be executed when the while loop terminates.
+When <additional_statement(s)> are placed in an else clause, they will be executed only if the loop terminates “by exhaustion”—that is, if the loop iterates until the controlling condition becomes false. If the loop is exited by a break statement, the else clause won’t be executed.
+
+One-Line while Loops
+>>> n = 5
+>>> while n > 0: n -= 1; print(n)
+if statement on one line:
+
+>>> if True: print('foo')
+The Guts of the Python for Loop
+
+Term	Meaning
+Iteration	The process of looping through the objects or items in a collection
+Iterable	An object (or the adjective used to describe an object) that can be iterated over
+Iterator	The object that produces successive items or values from its associated iterable
+iter()	The built-in function used to obtain an iterator from an iterable
+The else Clause
+A for loop can have an else clause as well. The interpretation is analogous to that of a while loop. The else clause will be executed if the loop terminates through exhaustion of the iterable:
+The else clause won’t be executed if the list is broken out of with a break statement:
+
+***************************************************************************************************************************************************************
+When to Use a List Comprehension in Python
+***************************************************************************************************************************************************************
+The [:] syntax works for lists. However, there is an important difference between how this operation works with a list and how it works with a string.
+
+If s is a string, s[:] returns a reference to the same object:
+>>> s = 'foobar'
+>>> s[:]
+'foobar'
+>>> s[:] is s
+True
+Conversely, if a is a list, a[:] returns a new object that is a copy of a:
+
+>>> a = ['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+>>> a[:]
+['foo', 'bar', 'baz', 'qux', 'quux', 'corge']
+>>> a[:] is a
+False
+
+
+Note: The string methods you saw in the previous tutorial did not modify the target string directly. That is because strings are immutable. Instead, string methods return a new string object that is modified as directed by the method. They leave the original target string unchanged:
+
+
+Remember, list methods modify the target list in place. They do not return a new list:
+Remember that when the + operator is used to concatenate to a list, if the target operand is an iterable, then its elements are broken out and appended to the list individually
+
+a.append(<obj>) appends object <obj> to the end of list a:
+
+>>> a + [1, 2, 3]
+['a', 'b', 1, 2, 3]
+The .append() method does not work that way! If an iterable is appended to a list with .append(), it is added as a single object:
+
+>>> a.append([1, 2, 3])
+>>> a
+['a', 'b', [1, 2, 3]]
+
+a.extend(<iterable>)
+Extends a list with the objects from an iterable.
+.extend() also adds to the end of a list, but the argument is expected to be an iterable. The items in <iterable> are added individually:
+
+In other words, .extend() behaves like the + operator. More precisely, since it modifies the list in place, it behaves like the += operator:
+a.pop(index=-1)
+Removes an element from a list.
+
+This method differs from .remove() in two ways:
+
+You specify the index of the item to remove, rather than the object itself.
+The method returns a value: the item that was removed.
+a.pop() simply removes the last item in the list:
+<index> defaults to -1, so a.pop(-1) is equivalent to a.pop().
+
+Tuples are identical to lists in all respects, except for the following properties:
+
+Tuples are defined by enclosing the elements in parentheses (()) instead of square brackets ([]).
+Tuples are immutable.
+
+
+ note: string and list reversal mechanism works for tuples as well:
+
+Note: Even though tuples are defined using parentheses, you still index and slice tuples using square brackets, just as for strings and lists.
+
+>>> t[::-1]
+('corge', 'quux', 'qux', 'baz', 'bar', 'foo')
+
+Everything you’ve learned about lists—they are ordered, they can contain arbitrary objects, they can be indexed and sliced, they can be nested—is true of tuples as well. But they can’t be modified:
+
+Why use a tuple instead of a list?
+
+Program execution is faster when manipulating a tuple than it is for the equivalent list. (This is probably not going to be noticeable when the list or tuple is small.)
+
+Sometimes you don’t want data to be modified. If the values in the collection are meant to remain constant for the life of the program, using a tuple instead of a list guards against accidental modification.
+
+There is another Python data type that you will encounter shortly called a dictionary, which requires as one of its components a value that is of an immutable type. A tuple can be used for this purpose, whereas a list can’t be.
+>>> a = 'foo'
+>>> b = 42
+>>> a, 3.14159, b
+('foo', 3.14159, 42)
+Python displays the response in parentheses because it is implicitly interpreting the input as a tuple.
+
+
+But what happens when you try to define a tuple with one item:
+>>> t = (2)
+>>> type(t)
+<class 'int'>
+
+Since parentheses are also used to define operator precedence in expressions, Python evaluates the expression (2) as simply the integer 2 and creates an int object. To tell Python that you really want to define a singleton tuple, include a trailing comma (,) just before the closing parenthesis:
+
+>>> t = (2,)
+>>> type(t)
+<class 'tuple'>
+Python allows the parentheses that are usually used for denoting a tuple to be left out:
+
+>>> t = 1, 2, 3
+>>> t
+(1, 2, 3)
+
+>>> x1, x2, x3 = t
+>>> x1, x2, x3
+(1, 2, 3)
+
+comprehensions
+
+Every list comprehension in Python includes three elements:
+
+expression is the member itself, a call to a method, or any other valid expression that returns a value. In the example above, the expression i * i is the square of the member value.
+member is the object or value in the list or iterable. In the example above, the member value is i.
+iterable is a list, set, sequence, generator, or any other object that can return its elements one at a time.
+
+new_list = [expression for member in iterable]
+
+the expression requirement is so flexible, a list comprehension in Python works well in many places where you would use map(). 
+
+Using map() Objects
+map() provides an alternative approach that’s based in functional programming. You pass in a function and an iterable, and map() will create an object. This object contains the output you would get from running each iterable element through the supplied function.
+>>> txns = [1.09, 23.56, 57.84, 4.56, 6.78]
+>>> TAX_RATE = .08
+>>> def get_price_with_tax(txn):
+...     return txn * (1 + TAX_RATE)
+>>> final_prices = map(get_price_with_tax, txns)
+>>> list(final_prices)
+
+
+Same above example by using list comprehension
+>>> final_prices = [get_price_with_tax(i) for i in txns]
+>>> final_prices
+
+The only distinction between this implementation and map() is that the list comprehension in Python returns a list, not a map object.
+
+ In addition to standard list creation, list comprehensions can also be used for mapping and filtering. You don’t have to use a different approach for each scenario.
+new_list = [expression for member in iterable (if conditional)]
+The conditional can test any valid expression. If you need a more complex filter, then you can even move the conditional logic to a separate function:
+You can place the conditional at the end of the statement for simple filtering, but what if you want to change a member value instead of filtering it out? In this case, it’s useful to place the conditional near the beginning of the expression:
+
+new_list = [expression (if conditional) for member in iterable]
+
+>>> original_prices = [1.25, -9.45, 10.22, 3.78, -5.92, 1.16]
+>>> prices = [i if i > 0 else 0 for i in original_prices]
+If  this seems overwhelming, then it may be helpful to view the conditional logic as its own function:
+
+>>> def get_price(price):
+...     return price if price > 0 else 0
+>>> prices = [get_price(i) for i in original_prices]
+Using Set and Dictionary Comprehensions
+A set comprehension is almost exactly the same as a list comprehension in Python. The difference is that set comprehensions make sure the output contains no duplicates. You can create a set comprehension by using curly braces instead of brackets:
+>>> quote = "life, uh, finds a way"
+>>> unique_vowels = {i for i in quote if i in 'aeiou'}
+Dictionary comprehensions are similar, with the additional requirement of defining a key:
+
+>>> squares = {i: i * i for i in range(10)}
+>>> squares
+{0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+Python 3.8 will introduce the assignment expression, also known as the walrus operator.
+
+Say you need to make ten requests to an API that will return temperature data. You only want to return results that are greater than 100 degrees Fahrenheit. Assume that each request will return different data. In this case, there’s no way to use a list comprehension in Python to solve the problem. The formula expression for member in iterable (if conditional) provides no way for the conditional to assign data to a variable that the expression can access.
+
+The walrus operator solves this problem. It allows you to run an expression while simultaneously assigning the output value to a variable.
+
+
+>>> def get_weather_data():
+...     return random.randrange(90, 110)
+>>> hot_temps = [temp for _ in range(20) if (temp := get_weather_data()) >= 100]
+
+
+
+When Not to Use a List Comprehension in Python
+They might make your code run more slowly or use more memory. If your code is less performant or harder to understand, then it’s probably better to choose an alternative.
+
+Watch Out for Nested Comprehensions
+Comprehensions can be nested to create combinations of lists, dictionaries, and sets within a collection. 
+
+Python list comprehension nested within a dictionary comprehension
+For example, say a climate laboratory is tracking the high temperature in five different cities for the first week of June. The perfect data structure for storing this data could be a Python list comprehension nested within a dictionary comprehension:
+>>> cities = ['Austin', 'Tacoma', 'Topeka', 'Sacramento', 'Charlotte']
+>>> temps = {city: [0 for _ in range(7)] for city in cities}
+
+Nested lists are a common way to create matrices,
+matrix = [[i for i in range(5)] for _ in range(6)]
+
+matrix = [
+...     [0, 0, 0],
+...     [1, 1, 1],
+...     [2, 2, 2],
+... ]
+flattening nested lists
+flat = [num for row in matrix for num in row]
+
+Choose Generators for Large Datasets
+When the size of a list becomes problematic, it’s often helpful to use a generator instead of a list comprehension in Python. A generator doesn’t create a single, large data structure in memory, but instead returns an iterable. Your code can ask for the next value from the iterable as many times as necessary or until you’ve reached the end of your sequence, while only storing a single value at a time.
+
+If you were to sum the first billion squares with a generator, then your program will likely run for a while, but it shouldn’t cause your computer to freeze. The example below uses a generator:
+
+>>> sum(i * i for i in range(1000000000))
+333333332833333333500000000
+
+the expression isn’t surrounded by brackets or curly braces. Optionally, generators can be surrounded by parentheses
+
+The example above still requires a lot of work, but it performs the operations lazily. Because of lazy evaluation, values are only calculated when they’re explicitly requested. After the generator yields a value (for example, 567 * 567), it can add that value to the running sum, then discard that value and generate the next value (568 * 568). When the sum function requests the next value, the cycle starts over. This process keeps the memory footprint small.
+
+map() also operates lazily, meaning memory won’t be an issue if you choose to use it in this case:
+>>> sum(map(lambda i: i*i, range(1000000000)))
+333333332833333333500000000
+It’s up to you whether you prefer the generator expression or map().
+
+
+
+
+
+
+
+
+
+*******************************************
+
+How to Iterate Through a Dictionary in Python
+defines a dictionary as follows:
+
+An associative array, where arbitrary keys are mapped to values. The keys can be any object with __hash__() and __eq__() methods. 
+There are a couple points to keep in mind:
+
+Dictionaries map keys to values and store them in an array or collection.
+The keys must be of a hashable type, which means that they must have a hash value that never changes during the key’s lifetime.
+
+In Python 3.6 and beyond, the keys and values of a dictionary are iterated over in the same order in which they were created. However, this behavior may vary across different Python versions, and it depends on the dictionary’s history of insertions and deletions.
+
+
+
+In Python 3.6 and beyond, dictionaries are ordered data structures, which means that they keep their elements in the same order in which they were introduced
+
+This is a relatively new feature of Python’s dictionaries, and it’s a very useful one. But if you’re writing code that is supposed to be run in different Python versions, then you must not rely on this feature, because it can generate buggy behaviors.
+
+Another important feature of dictionaries is that they are mutable data structures, which means that you can add, delete, and update their items. It’s worth noting that this also means that they can’t be used as keys to other dictionaries, as they are not hashable objects.
+
+Note: Everything you’ve learned in this section is related to the core Python implementation, CPython.
+
+Other Python implementations, like PyPy, IronPython or Jython, could exhibit different dictionary behaviors and features that are beyond the scope of this article.
+
+How to Iterate Through a Dictionary in Python: The Basics
+
+To visualize the methods and attributes of any Python object, you can use dir(), which is a built-in function that serves that purpose. If you run dir() with an empty dictionary as an argument, then you’ll be able to see all the methods and attributes that dictionaries implement:
+
+>>> dir({})
+['__class__', '__contains__', '__delattr__', ... , '__iter__', ...]
+ you’ll see '__iter__'. This is a method that is called when an iterator is required for a container, and it should return a new iterator object that can iterate through all the objects in the container.
+For mappings (like dictionaries), .__iter__() should iterate over the keys. This means that if you put a dictionary directly into a for loop, Python will automatically call .__iter__() on that dictionary, and you’ll get an iterator over its keys
+
+using the indexing operator [] with the dictionary and its keys to get access to the values:
+**************************************************************************************
+>>> for key in a_dict:
+...     print(key, '->', a_dict[key])
+...
+color -> blue
+fruit -> apple
+pet -> dog
+
+Iterating Through .items()
+********************************
+One of the most useful ways to iterate through a dictionary in Python is by using .items(), which is a method that returns a new view of the dictionary’s items:
+>>> a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+>>> d_items = a_dict.items()
+dict_items([('color', 'blue'), ('fruit', 'apple'), ('pet', 'dog')])
+Views can be iterated over to yield their respective data, so you can iterate through a dictionary in Python by using the view object returned by .items():
+>>> for item in a_dict.items():
+...     print(item)
+...     print(type(item))
+...
+('color', 'blue')
+<class 'tuple'>
+('fruit', 'apple')
+<class 'tuple'>
+('pet', 'dog')
+<class 'tuple'>
+Once you know this, you can use tuple unpacking to iterate through the keys and values of the dictionary you are working with
+>>> for key, value in a_dict.items():
+...     print(key, '->', value)
+the variables key and value in the header of your for loop do the unpacking
+Note: Notice that .values() and .keys() return view objects just like .items(), as you’ll see in the next two sections.
+Iterating Through .keys()
+****************************************
+If you just need to work with the keys of a dictionary, then you can use .keys(), which is a method that returns a new view object containing the dictionary’s keys:
+>>> keys = a_dict.keys()
+This view can be used to iterate through the keys of a_dict.
+>>> for key in a_dict.keys():
+...     print(key)
+...     print(key, '->', a_dict[key])
+
+Iterating Through .values()
+*********************************************
+It’s also common to only use the values to iterate through a dictionary in Python
+ use .values(), which returns a view with the values of the dictionary
+>>> values = a_dict.values()
+
+As any view object, the object returned by .values() can also be iterated over. In this case, .values() yields the values of a_dict:
+
+>>> for value in a_dict.values():
+...     print(value)
+
+Using .values(), you’ll be getting access to only the values of a_dict, without dealing with the keys.
+It’s worth noting that they also support membership tests (in), which is an important feature if you’re trying to know if a specific element is in a dictionary or not:
+>>> a_dict = {'color': 'blue', 'fruit': 'apple', 'pet': 'dog'}
+>>> 'pet' in a_dict.keys()
+True
+>>> 'apple' in a_dict.values()
+True
+https://realpython.com/iterate-through-dictionary-python/
+
+
+Note: In Python 2, .items(), .keys(), and .values() return list objects. But .iteritems(), iterkeys(), and .itervalues() return iterators. So, if you’re using Python 2, then you can modify the dictionary’s keys by using .keys() directly.
+
+On the other hand, if you’re using iterkeys() in your Python 2 code and you try to modify the keys of a dictionary, then you’ll get a RuntimeError.
+
+Using Comprehensions
+A dictionary comprehension is a compact way to process all or part of the elements in a collection and return a dictionary as a results. In contrast to list comprehensions, they need two expressions separated with a colon followed by for and if (optional) clauses
+
+Python’s zip(*iterables)
+you have two lists of data, and you need to create a new dictionary from them. In this case, you can use Python’s zip(*iterables) to loop over the elements of both lists in pairs:
+>>> objects = ['blue', 'apple', 'dog']
+>>> categories = ['color', 'fruit', 'pet']
+>>> a_dict = {key: value for key, value in zip(categories, objects)}
+Here, zip() receives two iterables (categories and objects) as arguments and makes an iterator that aggregates elements from each iterable. The tuple objects generated by zip() are then unpacked into key and value, which are finally used to create the new dictionary.
+Turning Keys Into Values and Vice Versa: Revisited
+>>> a_dict = {'one': 1, 'two': 2, 'thee': 3, 'four': 4}
+>>> new_dict = {value: key for key, value in a_dict.items()}
+The condition for this code to work is the same one you saw before: the values must be hashable objects. Otherwise, you won’t be able to use them as keys for new_dict.
+
+Filtering Items: Revisited
+To filter the items in a dictionary with a comprehension, you just need to add an if clause that defines the condition you want to meet.
+
+Doing Some Calculations: Revisited
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> total_income = sum([value for value in incomes.values()])
+
+ comprehension into a generator 
+If you change the square brackets for a pair of parentheses (the parentheses of sum() here), you’ll be turning the list comprehension into a generator expression, and your code will be memory efficient, because generator expressions yield elements on demand. Instead of creating and storing the whole list in memory, you’ll only have to store one element at a time.
+
+>>> total_income = sum(incomes.values())
+
+Removing Specific Items
+
+Remember how key-view objects are like sets?Key-view objects also support common set operations.Well, these similarities go beyond just being collections of hashable and unique objects. 
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> non_citric = {k: incomes[k] for k in incomes.keys() - {'orange'}}
+This code works because key-view objects support set operations like unions, intersections, and differences. When you wrote incomes.keys() - {'orange'} inside the dictionary comprehension, you were really doing a set difference operation. If you need to perform any set operations with the keys of a dictionary, then you can just use the key-view object directly without first converting it into a set. This is a little-known feature of key-view objects that can be useful in some situations.
+
+Sorting a Dictionary
+ Since Python 3.6, dictionaries are ordered data structures, so if you use Python 3.6 (and beyond), you’ll be able to sort the items of any dictionary by using sorted() and with the help of a dictionary comprehension:
+>>> # Python 3.6, and beyond
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> sorted_income = {k: incomes[k] for k in sorted(incomes)}
+
+Iterating in Sorted Order
+When you call sorted(iterable), you get a list with the elements of iterable in sorted order.you can use your dictionary as an argument to sorted(). 
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> for key in sorted(incomes):
+
+
+Sorted by Values
+You could also need to iterate through a dictionary in Python with its items sorted by values. You can use sorted() too, but with a second argument called key.
+
+The key keyword argument specifies a function of one argument that is used to extract a comparison key from each element you’re processing.
+
+To sort the items of a dictionary by values, you can write a function that returns the value of each item and use this function as the key argument to sorted():
+
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> def by_value(item):
+...     return item[1]
+...
+>>> for k, v in sorted(incomes.items(), key=by_value):
+...     print(k, '->', v)
+...
+('orange', '->', 3500.0)
+('banana', '->', 5000.0)
+('apple', '->', 5600.0)
+
+The key function (by_value()) tells sorted() to sort incomes.items() by the second element of each item, that is, by the value (item[1]).
+
+You may also just want to iterate through the values of a dictionary in sorted order, without worrying about the keys. In that case, you can use .values() as follows:The keys won’t be accessible if you use incomes.values(), but sometimes you don’t really need the keys, just the values, and this is a fast way to get access to them.
+
+>>> for value in sorted(incomes.values()):
+...     print(value)
+
+
+Reversed
+If you need to sort your dictionaries in reverse order, you can add reverse=True as an argument to sorted().
+>>> incomes = {'apple': 5600.00, 'orange': 3500.00, 'banana': 5000.00}
+>>> for key in sorted(incomes, reverse=True):
+...     print(key, '->', incomes[key])
+
+Finally, it’s important to note that sorted() doesn’t really modify the order of the underlying dictionary. What really happen is that sorted() creates an independent list with its element in sorted order, so incomes remains the same:
+
+>>> incomes
+{'apple': 5600.0, 'orange': 3500.0, 'banana': 5000.0}
+ sorted() didn’t modify incomes. It just created a new sorted list from the keys of incomes.
+
+
+Iterating Destructively With .popitem()
+
+popitem(), which will remove and return an arbitrary key-value pair from a dictionary. On the other hand, when you call .popitem() on an empty dictionary, it raises a KeyError.
+
+Using Some of Python’s Built-In Functions
+Python provides some built-in functions that could be useful when you’re working with collections, like dictionaries. These functions are a sort of iteration tool that provides you with another way of iterating through a dictionary in Python. Let’s see some of them.
+
+map()
+Python’s map() is defined as map(function, iterable, ...) and returns an iterator that applies function to every item of iterable, yielding the results on demand. So, map() could be viewed as an iteration tool that you can use to iterate through a dictionary in Python.
+
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> def discount(current_price):
+...     return (current_price[0], round(current_price[1] * 0.95, 2))
+...
+>>> new_prices = dict(map(discount, prices.items()))
+
+In this case, you need to use dict() to generate the new_prices dictionary from the iterator returned by map().
+Note that discount() returns a tuple of the form (key, value), where current_price[0] represents the key and round(current_price[1] * 0.95, 2) represents the new value.
+
+filter()
+filter() is another built-in function that you can use to iterate through a dictionary in Python and filter out some of its items. This function is defined as filter(function, iterable) and returns an iterator from those elements of iterable for which function returns True.
+
+>>> prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> def has_low_price(price):
+...     return prices[price] < 0.4
+...
+>>> low_price = list(filter(has_low_price, prices.keys()))
+Finally, you need to use list() to generate the list of products with a low price, because filter() returns an iterator, and you really need a list object.
+
+Using collections.ChainMap
+collections is a useful module from the Python Standard Library that provides specialized container data types. One of these data types is ChainMap
+With ChainMap, you can group multiple dictionaries together to create a single, updateable view.
+Now, suppose you have two (or more) dictionaries, and you need to iterate through them together as one. To achieve this, you can create a ChainMap object and initialize it with your dictionaries:
+
+>>> from collections import ChainMap
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35}
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+>>> chained_dict = ChainMap(fruit_prices, vegetable_prices)
+>>> chained_dict  # A ChainMap object
+ChainMap({'apple': 0.4, 'orange': 0.35}, {'pepper': 0.2, 'onion': 0.55})
+>>> for key in chained_dict:
+...     print(key, '->', chained_dict[key])
+ChainMap objects also implement .keys(), values(), and .items() as a standard dictionary does, so you can use these methods to iterate through the dictionary-like object generated by ChainMap, just like you would do with a regular dictionary:
+
+>>> for key, value in chained_dict.items():
+...     print(key, '->', value)
+
+Using itertools
+Python’s itertools is a module that provides some useful tools to perform iteration tasks.
+
+Cyclic Iteration With cycle()
+Suppose you want to iterate through a dictionary in Python, but you need to iterate through it repeatedly in a single loop. To get this task done, you can use itertools.cycle(iterable)
+
+Chained Iteration With chain()
+itertools also provides chain(*iterables), which gets some iterables as arguments and makes an iterator that yields elements from the first iterable until it’s exhausted, then iterates over the next iterable and so on, until all of them are exhausted.
+
+This allows you to iterate through multiple dictionaries in a chain, like to what you did with collections.ChainMap:
+>>> from itertools import chain
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35, 'banana': 0.25}
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55, 'tomato': 0.42}
+>>> for item in chain(fruit_prices.items(), vegetable_prices.items()):
+...     print(item)
+It’s also possible to use .keys() or .values(), depending on your needs, with the condition of being homogeneous: if you use .keys() for an argument to chain(), then you need to use .keys() for the rest of them.
+
+Using the Dictionary Unpacking Operator (**)
+Suppose you have two (or more) dictionaries, and you need to iterate through them together, without using collections.ChainMap or itertools.chain(), as you’ve seen in the previous sections. In this case, you can use the dictionary unpacking operator (**) to merge the two dictionaries into a new one and then iterate through it:
+
+>>> fruit_prices = {'apple': 0.40, 'orange': 0.35}
+>>> vegetable_prices = {'pepper': 0.20, 'onion': 0.55}
+>>> # How to use the unpacking operator **
+>>> {**vegetable_prices, **fruit_prices}
+{'pepper': 0.2, 'onion': 0.55, 'apple': 0.4, 'orange': 0.35}
+>>> # You can use this feature to iterate through multiple dictionaries
+>>> for k, v in {**vegetable_prices, **fruit_prices}.items():
+...     print(k, '->', v)
+
+******************************************************************************
+Dictionaries in Python
+****************************************************************************
+Dictionaries and lists share the following characteristics:
+
+Both are mutable.
+Both are dynamic. They can grow and shrink as needed.
+Both can be nested. A list can contain another list. A dictionary can contain another dictionary. A dictionary can also contain a list, and vice versa.
+Dictionaries differ from lists primarily in how elements are accessed:
+
+List elements are accessed by their position in the list, via indexing.
+Dictionary elements are accessed via keys.
+Dictionaries are Python’s implementation of a data structure that is more generally known as an associative array.
+You can also construct a dictionary with the built-in dict() function. The argument to dict() should be a sequence of key-value pairs. A list of tuples works well for this:
+Python does guarantee that the order of items in a dictionary is preserved. When displayed, items will appear in the order they were defined, and iteration through the keys will occur in that order as well. Items added to a dictionary are added at the end. If items are deleted, the order of the remaining items is retained.
+It was added as a part of the Python language specification in version 3.7
+Restrictions on Dictionary Keys
+where integer, float, and Boolean objects are used as keys:
+>>> foo = {42: 'aaa', 2.78: 'bbb', True: 'ccc'}
+You can even use built-in objects like types and functions:
+>>> d = {int: 1, float: 2, bool: 3}
+However, there are a couple restrictions that dictionary keys must abide by.
+a given key can appear in a dictionary only once. Duplicate keys are not allowed. 
+if you specify a key a second time during the initial creation of a dictionary, the second occurrence will override the first:
+Secondly, a dictionary key must be of a type that is immutable. You have already seen examples where several of the immutable types you are familiar with—integer, float, string, and Boolean—have served as dictionary keys.
+
+A tuple can also be a dictionary key, because tuples are immutable:
+However, neither a list nor another dictionary can serve as a dictionary key, because lists and dictionaries are mutable:
+__________________________________________________________________________________________________
+an object must be hashable, which means it can be passed to a hash function. A hash function takes data of arbitrary size and maps it to a relatively simpler fixed-size value called a hash value (or simply hash), which is used for table lookup and comparison.
+Python’s built-in hash() function returns the hash value for an object which is hashable, and raises an exception for an object which isn’t:
+___________________________________________________________________________________________________________
+
+>>> hash('foo')
+11132615637596761
+
+>>> hash([1, 2, 3])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+All of the built-in immutable types you have learned about so far are hashable, and the mutable container types (lists and dictionaries) are not
+In future tutorials, you will encounter mutable objects which are also hashable.
+Operators and Built-in Functions
+many of the operators and built-in functions that can be used with strings, lists, and tuples. Some of these work with dictionaries as well.
+>>> 'Toronto' in MLB_team
+False
+You can use the in operator together with short-circuit evaluation to avoid raising an error when trying to access a key that is not in the dictionary:
+>>> MLB_team['Toronto']
+Traceback (most recent call last):
+  File "<pyshell#2>", line 1, in <module>
+    MLB_team['Toronto']
+KeyError: 'Toronto'
+>>> 'Toronto' in MLB_team and MLB_team['Toronto']
+False
+In the second case, due to short-circuit evaluation, the expression MLB_team['Toronto'] is not evaluated, so the KeyError exception does not occur.
+The len() function returns the number of key-value pairs in a dictionary:
+Built-in Dictionary Methods
+In fact, in some cases, the list and dictionary methods share the same name. 
+Clears a dictionary.
+
+d.clear() empties dictionary d of all key-value pairs:
+
+The Python dictionary .get() method provides a convenient way of getting the value of a key from a dictionary without checking ahead of time whether the key exists, and without raising an error.
+
+d.get(<key>) searches dictionary d for <key> and returns the associated value if it is found. If <key> is not found, it returns None:
+If <key> is not found and the optional <default> argument is specified, that value is returned instead of None:
+
+d.items() returns a list of tuples containing the key-value pairs in d. The first item in each tuple is the key, and the second item is the key’s value:
+>>> list(d.items())[1][1]
+d.keys() returns a list of all keys in d:
+>>> list(d.keys())
+d.values() returns a list of all values in d:
+>>> list(d.values())
+Technical Note: The .items(), .keys(), and .values() methods actually return something called a view object.
+
+If <key> is present in d, d.pop(<key>) removes <key> and returns its associated value:
+d.pop(<key>) raises a KeyError exception if <key> is not in d:
+If <key> is not in d, and the optional <default> argument is specified, then that value is returned, and no exception is raised:
+>>> d.pop('z', -1)
+
+d.popitem() removes the last key-value pair added from d and returns it as a tuple:
+If d is empty, d.popitem() raises a KeyError exception:
+Note: In Python versions less than 3.6, popitem() would return an arbitrary (random) key-value pair since Python dictionaries were unordered before version 3.6.
+Merges a dictionary with another dictionary or with an iterable of key-value pairs.
+
+If <obj> is a dictionary, d.update(<obj>) merges the entries from <obj> into d. For each key in <obj>:
+
+If the key is not present in d, the key-value pair from <obj> is added to d.
+If the key is already present in d, the corresponding value in d for that key is updated to the value from <obj>.
+
+>>> d1 = {'a': 10, 'b': 20, 'c': 30}
+>>> d2 = {'b': 200, 'd': 400}
+
+>>> d1.update(d2)
+>>> d1
+{'a': 10, 'b': 200, 'c': 30, 'd': 400}
+<obj> may also be a sequence of key-value pairs, similar to when the dict() function is used to define a dictionary. For example, <obj> can be specified as a list of tuples:
+>>> d1.update([('b', 200), ('d', 400)])
+
+Or the values to merge can be specified as a list of keyword arguments:
+
+>>> d1 = {'a': 10, 'b': 20, 'c': 30}
+>>> d1.update(b=200, d=400)
+>>> d1
+{'a': 10, 'b': 200, 'c': 30, 'd': 400}
+##############################################################################################################################################################
+Sets in Python
+###############################################################################################################################################################
+The argument to set() is an iterable. It generates a list of elements to be placed into the set.
+The objects in curly braces are placed into the set intact, even if they are iterable.
+Observe the difference between these two set definitions:
+
+>>> {'foo'}
+{'foo'}
+
+>>> set('foo')
+{'o', 'f'}
+A set can be empty. However, recall that Python interprets empty curly braces ({}) as an empty dictionary, so the only way to define an empty set is with the set() function:
+>>> x = set()
+>>> bool(x)
+False
+Set Size and Membership
+The len() function returns the number of elements in a set, and the in and not in operators can be used to test for membership:
+Operating on a Set
+
+ sets can’t be indexed or sliced. 
+Operators vs. Methods
+Most, though not quite all, set operations in Python can be performed in two different ways: by operator or by method.
+Consider these two sets:
+
+x1 = {'foo', 'bar', 'baz'}
+x2 = {'baz', 'qux', 'quux'}
+In Python, set union can be performed with the | operator:
+>>> x1 | x2
+{'baz', 'quux', 'qux', 'bar', 'foo'}
+
+Set union can also be obtained with the .union() method. The method is invoked on one of the sets, and the other is passed as an argument:
+
+>>> x1.union(x2)
+{'baz', 'quux', 'qux', 'bar', 'foo'}
+The way they are used in the examples above, the operator and method behave identically. But there is a subtle difference between them. When you use the | operator, both operands must be sets. The .union() method, on the other hand, will take any iterable as an argument, convert it to a set, and then perform the union.
+More than two sets may be specified with either the operator or the method:
+>>> a = {1, 2, 3, 4}
+>>> b = {2, 3, 4, 5}
+>>> c = {3, 4, 5, 6}
+>>> d = {4, 5, 6, 7}
+
+>>> a.union(b, c, d)
+{1, 2, 3, 4, 5, 6, 7}
+
+>>> a | b | c | d
+{1, 2, 3, 4, 5, 6, 7}
+Compute the intersection of two or more sets.
+x1.intersection(x2) and x1 & x2 return the set of elements common to both x1 and x2:
+
+>>> a.intersection(b, c, d)
+{4}
+
+>>> a & b & c & d
+{4}
+
+Compute the difference between two or more sets.
+x1.difference(x2) and x1 - x2 return the set of all elements that are in x1 but not in x2:
+
+>>> a.difference(b, c)
+{1, 2, 3}
+
+>>> a - b - c
+{1, 2, 3}
+When multiple sets are specified, the operation is performed from left to right. In the example above, a - b is computed first, resulting in {1, 2, 3, 300}. Then c is subtracted from that set, leaving {1, 2, 3}:
+
+Compute the symmetric difference between sets.
+
+x1.symmetric_difference(x2) and x1 ^ x2 return the set of all elements in either x1 or x2, but not both:
+
+>>> x1 = {'foo', 'bar', 'baz'}
+>>> x2 = {'baz', 'qux', 'quux'}
+
+>>> x1.symmetric_difference(x2)
+{'foo', 'qux', 'quux', 'bar'}
+
+>>> x1 ^ x2
+{'foo', 'qux', 'quux', 'bar'}
+The ^ operator also allows more than two sets:
+
+>>> a = {1, 2, 3, 4, 5}
+>>> b = {10, 2, 3, 4, 50}
+>>> c = {1, 50, 100}
+
+>>> a ^ b ^ c
+{100, 5, 10}
+As with the difference operator, when multiple sets are specified, the operation is performed from left to right.
+
+Determines whether or not two sets have any elements in common.
+
+x1.isdisjoint(x2) returns True if x1 and x2 have no elements in common:
+If x1.isdisjoint(x2) is True, then x1 & x2 is the empty set:
+
+Determine whether one set is a subset of the other.
+In set theory, a set x1 is considered a subset of another set x2 if every element of x1 is in x2.
+
+x1.issubset(x2) and x1 <= x2 return True if x1 is a subset of x2:
+
+A set is considered to be a subset of itself:
+
+Determines whether one set is a proper subset of the other.
+A proper subset is the same as a subset, except that the sets can’t be identical. A set x1 is considered a proper subset of another set x2 if every element of x1 is in x2, and x1 and x2 are not equal.
+
+x1 < x2 returns True if x1 is a proper subset of x2:
+Note: The < operator is the only way to test whether a set is a proper subset. There is no corresponding method.
+
+Determine whether one set is a superset of the other.
+
+A superset is the reverse of a subset. A set x1 is considered a superset of another set x2 if x1 contains every element of x2.
+
+x1.issuperset(x2) and x1 >= x2 return True if x1 is a superset of x2:
+
+Determines whether one set is a proper superset of the other.
+A proper superset is the same as a superset, except that the sets can’t be identical. A set x1 is considered a proper superset of another set x2 if x1 contains every element of x2, and x1 and x2 are not equal.
+
+x1 > x2 returns True if x1 is a proper superset of x2
+Note: The > operator is the only way to test whether a set is a proper superset. There is no corresponding method.
+Frozen Sets
+Python provides another built-in type called a frozenset, which is in all respects exactly like a set, except that a frozenset is immutable. You can perform non-modifying operations on a frozenset:
+
+********************************************************************************************************************************************************
+generator functions are a special kind of function that return a lazy iterator. These are objects that you can loop over like a list. However, unlike lists, lazy iterators do not store their contents in memory.
+
+
+There is one thing to keep in mind, though. If the list is smaller than the running machine’s available memory, then list comprehensions can be faster to evaluate than the equivalent generator expression.
+You can generate a readout with cProfile.run():
+
+>>> import cProfile
+>>> cProfile.run('sum([i * 2 for i in range(10000)])')
+         5 function calls in 0.001 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.001    0.001 <string>:1(<listcomp>)
+        1    0.000    0.000    0.001    0.001 <string>:1(<module>)
+        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.sum}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+>>> cProfile.run('sum((i * 2 for i in range(10000)))')
+         10005 function calls in 0.003 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    10001    0.002    0.000    0.002    0.000 <string>:1(<genexpr>)
+        1    0.000    0.000    0.003    0.003 <string>:1(<module>)
+        1    0.000    0.000    0.003    0.003 {built-in method builtins.exec}
+        1    0.001    0.001    0.003    0.003 {built-in method builtins.sum}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+Here, you can see that summing across all values in the list comprehension took about a third of the time as summing across the generator. If speed is an issue and memory isn’t, then a list comprehension is likely a better tool for the job.
+
+Note: StopIteration is a natural exception that’s raised to signal the end of an iterator. for loops, for example, are built around StopIteration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

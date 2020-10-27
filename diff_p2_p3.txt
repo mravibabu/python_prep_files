@@ -1,0 +1,128 @@
+In Python 2, the map() function retuns a list. In Python 3, however, the function returns a map object which is a generator object. To get the result as a list, the built-in list() function can be called on the map object. i.e. list(map(func, *iterables))
+The number of arguments to func must be the number of iterables listed.
+
+ A when we try to refer to a deleted object, it raises NameError.
+ We use the next() function to manually iterate through all the items of an iterator. When we reach the end and there is no more data to be returned, it will raise the StopIteration Exception.
+ 
+ reduce module from functools
+ 
+ 
+ 
+ Python Tuples vs Lists
+ Both are heterogeneous collections of python objects.
+ A tuple is returned when we call the method localtime().
+import time
+time.localtime()
+
+To access a tuple, we use indexing, which begins at 0.  ====>numbers[1]
+we can delete an entire tuple.    del numbers
+
+The major difference between tuples and lists is that a list is mutable, whereas a tuple is immutable. This means that a list can be changed, but a tuple cannot.
+we will delete just one element from the list.
+del list1[1]
+tuple:-we can slice it to access it, but we can’t delete a slice. This is because it is immutable.
+tuple’ object doesn’t support single item deletion also  del tuple[1]===> error
+we conclude that you can slice a tuple, reassign it whole, or delete it whole.
+But you cannot delete or reassign just a few elements or a slice.
+Functions
+Some python functions apply on both, these are- len(), max(), min(), sum(), any(), all(), sorted(). We’ll take just one example here for both containers
+Methods
+Lists and tuples share the index() and count() methods. But other than those, there are a few methods that apply to lists. These are- append(), insert(), remove(), pop(), clear(), sort(), and reverse(). Let’s take an example of one of these.
+**********************************************************************************************************************
+
+
+Python Method Vs Function – Objective
+Python function is a sequence of statements that execute in a certain order, given a name. They let us implement code reusability. When we talked about Python Functions, we talked about built-in and user-defined functions. These let us create a modular program, which in turn lets us make a change easily whenever we want to.
+Python method is like a function, except it is attached to an object. We call a method on an object, and it possibly makes changes to that object. A method, then, belongs to a class
+Comparison Between Method and Function in Python
+Python method is called on an object,unlike a function so it can access the data within it.Conversely, we call Python function quite generically- we don’t call it on any object.
+A method may alter an object’s state, but Python function usually only operates on it, and then prints something or returns a value.
+so The only major difference is that we call Python method on an object, but it’s not the same with functions. Also, methods may modify an object; Python functions don’t.
+
+Python 3.8 Features
+1. (Assignment Expressions) – The walrus operator (:=)
+You will get to see a new type of operator which is being known as the walrus operator (:=). This allows you to assign variables inside an expression. The major benefit of this is to save you some lines of code and you can write even cleaner and compact code in Python.
+Example 1
+
+Code:
+
+num1 = [1,2,3,4,5]
+if( (size:=len(num1)) < 10 ):
+  print(f”Length of list is small, size={size}”)
+  
+Example 2
+
+This can be useful while writing loops, something like this.
+general Code:
+
+Item = getItem()
+while Item:
+  do_something(item)
+  Item = getItem()
+
+Can be written as:
+
+while Item:= getItem():
+  do_something(Item)
+Example 3
+
+Simplifying list comprehensions when filtering a value
+
+[y for x in data if (y := f(x)) is not None]
+2. (Positional only arguments)
+There is a new function parameter syntax (/) to highlight that some of the functions must be stated positionally and not by keyword arguments. We also have an operator (*) that indicates that the arguments must be keyword only. This can be a little confusing but after seeing the code this gets easier to understand, so let’s see them in action.
+This will impose the way we can call this function:
+
+a and b arguments are positional only.
+c and d arguments can be positional as well as keyword.
+e and f arguments are keyword only.
+func(1,2, 3,4, e=5, f=6 ) #Valid - prints 1 2 3 4 5 6
+func(1,2, c=3,d=4, e=5, f=6 ) #Valid - prints 1 2 3 4 5 6
+However, these calls will be invalid
+
+func(a=1,b=2, 3,4, e=5, f=6 ) #Invalid - Error : a and b arguments are positional only 
+func(1,2, c=3,d=4, 5, 6 ) #Invalid - Error : e and f are keyword only arguments.
+3.( Vectorcall)
+This release has made some improvements in the vectorcall which is a fast calling protocol for CPython. A new C API is introduced to optimize the calls of objects. This feature was already used in CPython but with the new C API, “fastcall” convention can be used by a user-defined extension class.
+4.( Pickle Protocol 5 with out-of-band data)
+Pickle is used widely to transfer big amounts of data between Python processors to take full advantage of multicore processors. It’s important to maximize the transfer speed by optimizing memory copies. Pickle protocol 5 now supports out-of-band data buffers and extra metadata is required.
+5.F-strings now support = (Easy debugging)
+A small improvement has been made in the f-strings formatting. They can now support = operator in f-strings that allows debugging easier.
+In previous Python versions, this would give you Syntax Error:
+A = 5
+print(f’{A=}’)
+Now from Python 3.8, we can do the following
+A=5
+print(f”{A=}”) #prints : A=5
+
+6. Improved Typing
+6.1 PEP 591 ( Final qualifier )
+Python now supports the “final”. Java programmers already know about this. It has 3 major uses:
+
+Declaring a class final will prevent it from inheriting.
+Declaring a variable final will prevent it from reassigning the value.
+Declaring a method final will prevent it from being overridden.
+6.2 PEP 586 (Literal types )
+Literal types are used to know the literal value of an attribute or a variable. They are useful in type checking.
+
+Consider this expression:
+
+0== False
+
+This will give True as result but 0 is of type integer and False is of type bool. So with literal,
+we can force type checks to be literally some specific type.
+
+============================================================================================================================================================
+As you are in python3 , use dict.items() instead of dict.iteritems()
+
+iteritems() was removed in python3, so you can't use this method anymore.
+
+Take a look at Python 3.0 Wiki Built-in Changes section, where it is stated:
+
+Removed dict.iteritems(), dict.iterkeys(), and dict.itervalues().
+
+Instead: use dict.items(), dict.keys(), and dict.values() respectively.
+
+
+
+

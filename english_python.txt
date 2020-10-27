@@ -1,0 +1,175 @@
+but before they touch the relationship they use the is_following() supporting method to make sure the requested action makes sense. For example, if I ask user1 to follow user2, but it turns out that this following relationship already exists in the database,
+
+This kind of work is what relational databases excel at.
+This is actually an awful solution that does not scale well.
+then let the database figure out how to extract that information in the most efficient way.
+
+because I'm not going to be as detailed as I normally am with the Python side
+
+We can access as much or as little as we need.
+
+It's also a good time to catch up on life and discuss any random thing.("Hey, did you catch the game last night?") Kick the day off with some human interaction and set a positive tone for the day.
+Virtual – Not physically existing as such but made by software to appear to do so.
+A virtual classroom is a learning environment in which students (customers, partners, or any third-party) engage with the lesson material online. Information is often conveyed through voice or video conferencing with several participants and instructors connected to the same chat interface.
+
+
+What is the meaning of virtual image?
+: an image (such as one seen in a plane mirror) formed of points from which divergent rays (as of light) seem to emanate without actually doing so.
+
+There are no up-front investments required
+
+
+there are a lot less reasons to keep the application global.
+
+
+The obvious place to use this function 
+
+despite its complexity and rather terse beginnings
+
+
+Sound good? Then let’s get started
+clickbait (on the Internet) content whose main purpose is to attract attention and encourage visitors to click on a link to a particular web page.
+But you can get pretty close in about 25 minutes.
+
+The way they handle this is wildly different because of what they're used for.
+
+you can tack on the g object some value.. like g['foo'] = 'bar'. 
+
+
+ but the contextmanager ises ContextDecorator so the context managers it creates can be used as decorators as well as in with statements.
+
+
+this will be definetely life saver in my opinion
+
+master branch is always clean, means ready to ship
+
+when a company is looking for some specific traits.
+can steer the interview into a wrong direction.
+Even though they will tell you that the session went well,
+But that might also turn against you. 
+Be short, but detailed enough.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

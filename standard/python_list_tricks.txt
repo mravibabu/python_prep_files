@@ -1,0 +1,641 @@
+Rather than appending three times, you can use extend() in such cases. You need to put the three elements in a tuple form (an iterable).
+Note that you cannot use extend for appending a single element i.e., data.extend((90)) won't work.
+grades.extend((99, 100, 95))
+“Can the negative indices be used to access the last 3 elements?”.
+grades = [70, 100, 97, 67, 85]
+grades[-3:]
+>>> [97, 67, 85]
+Sorting a list
+There are two direct ways to sort a list.
+a) Using the sorted() function. This will not sort the list in-place.
+b) Using thelist.sort() function. This performs in-place sorting.
+
+Reversing a list
+There are two ways to reverse a list.
+a) Using slicing as [::-1]. This will not change the list in-place. You will have to re-assign the list to reflect the changes in the original list.
+data = [1, 2, 3]
+data[::-1]
+>>> [3, 2, 1]
+print (data)
+>>> [1, 2, 3] # The original list does not change
+# You have to re-assign the list after reversing
+data = [1, 2, 3]
+data = data[::-1] # Re-assign print (data)
+>>> [3, 2, 1]
+b) Using the list.reverse() function. Here, you do not need to reassign as the list is reversed in-place.
+data = [1, 2, 3]
+data.reverse() # reverses the list in-place print (data)
+>>> [3, 2, 1] # The original list does not change
+
+Counting item frequency in a list
+You can count the frequency of a given item in a list using list.count(item)
+Copying a list
+when you write list_A = list_B, you create a reference to ‘list_A’. Hence, the changes in ‘list_A’ will also be reflected in ‘list_B’.
+How to avoid changes in list_B?
+The answer is to create a shallow copy. I will explain two ways to do it.
+a) Using list.copy()
+b) Using list[:]
+
+ f-Strings
+Python 3.6 came up with a brilliant way to format strings known as f-strings
+>> f'{name} {surname} was an {Occupation_1}, {Occupation_2}, {Occupation_3}, {Occupation_4} and {Occupation_5}.'
+'Leonardo Da Vinci was an Artist, Inventor, Scientist, Mathematician and Philosopher.'
+>> f'{2*3}'
+>> f'{name.lower()}'
+Lists and Dictionaries (Packing, Unpacking)
+>> def some_function (a,b,c,d):
+       print (a,b,c,d)
+>> some_list = [1,2,3,4]
+>> some_dictionary = {'a':1, 'b':2, 'c':13, 'd':14
+# Unpacking list
+>> some_function(*some_list)
+# Unpacking dictionary
+>> some_function(**some_dictionary)
+It must be noted that the dictionary keys are matched with the function, if the keys were different, you would get an error.
+# List Packing
+>> def some_list_packing(*args):
+       args = list(args)
+       
+       args[0] = 'I am about to'
+       args[1] = 'pack lists'
+>> some_list_packing('I am packing','','','')
+I am about to pack lists
+
+# Dictionary Packing
+def some_dictionary_packing(**kwargs):
+	for key in kwargs:
+		print(f'{key} = {kwargs[key]}')
+some_dictionary_packing(a= "I", b= "am", c= "about", d= "to write..")
+a = I
+b = am
+c = about
+d = to write..
+Dynamic New Type
+Did you know that Python allows you to create classes on the go with ‘type’?
+>>> NewClass = type("NewClass", (object,), {"intro": "This is an awesome new class"})
+>>> n = NewClass()
+>>> n.intro
+*******************************
+Mutable Defaults
+************************************
+def something(x=[]):
+        x.append(1)
+        print (x)
+>>> something()
+[1]
+>>> something()
+[1, 1]
+You see, the list gets appended every time you use this function. Instead, you should use a default value denoting "not indicated" and replace with the mutable you'd like as default:
+def something(x= None):
+        if x is None:
+            x= []
+        x.append(1)
+        print (x)
+>>> something()
+[1]
+>>> something()
+[1]
+**************************************************************************************
+https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python-taking-union-o?rq=1
+
+How can I merge two Python dictionaries in a single expression?
+For dictionaries x and y, z becomes a shallowly merged dictionary with values from y replacing those from x.
+
+In Python 3.5 or greater:
+z = {**x, **y}
+In Python 2, (or 3.4 or lower) write a function:
+def merge_two_dicts(x, y):
+    z = x.copy()   # start with x's keys and values
+    z.update(y)    # modifies z with y's keys and values & returns None
+    return z
+and now:
+z = merge_two_dicts(x, y)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

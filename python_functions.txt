@@ -1,0 +1,716 @@
+I+
+n Python, a function is a group of related statements that performs a specific task.
+An optional return statement to return a value from the function.then the function will return the None object.
+Scope and Lifetime of variables
+Scope of a variable is the portion of a program where the variable is recognized. Parameters and variables defined inside a function are not visible from outside the function. Hence, they have a local scope.
+
+The lifetime of a variable is the period throughout which the variable exits in the memory. The lifetime of variables inside a function is as long as the function executes.
+
+They are destroyed once we return from the function. Hence, a function does not remember the value of a variable from its previous calls.
+On the other hand, variables outside of the function are visible from inside. They have a global scope.
+
+We can read these values from inside the function but cannot change (write) them. In order to modify the value of variables outside the function, they must be declared as global variables using the keyword global.
+
+non-default arguments cannot follow default arguments. For example, if we had defined the function header above as:
+
+def greet(msg = "Good morning!", name):
+We would get an error as:
+
+SyntaxError: non-default argument follows default argument
+we can mix positional arguments with keyword arguments during a function call. But we must keep in mind that keyword arguments must follow positional arguments.
+
+Having a positional argument after keyword arguments will result in errors. For example, the function call as follows:
+
+greet(name="Bruce","How do you do?")
+Will result in an error:
+
+SyntaxError: non-keyword arg after keyword arg
+
+Python Recursive Function
+In Python, we know that a function can call other functions. It is even possible for the function to call itself. These types of construct are termed as recursive functions.
+factorial(3)          # 1st call with 3
+3 * factorial(2)      # 2nd call with 2
+3 * 2 * factorial(1)  # 3rd call with 1
+3 * 2 * 1             # return from 3rd call as number=1
+3 * 2                 # return from 2nd call
+6                     # return from 1st call
+
+
+Every recursive function must have a base condition that stops the recursion or else the function calls itself infinitely.
+
+The Python interpreter limits the depths of recursion to help avoid infinite recursions, resulting in stack overflows.
+
+By default, the maximum depth of recursion is 1000. If the limit is crossed, it results in RecursionError
+
+Advantages of Recursion
+Recursive functions make the code look clean and elegant.
+A complex task can be broken down into simpler sub-problems using recursion.
+Sequence generation is easier with recursion than using some nested iteration.
+Disadvantages of Recursion
+Sometimes the logic behind recursion is hard to follow through.
+Recursive calls are expensive (inefficient) as they take up a lot of memory and time.
+Recursive functions are hard to debug.
+
+In Python, an anonymous function is a function that is defined without a name.
+While normal functions are defined using the def keyword in Python, anonymous functions are defined using the lambda keyword.
+Hence, anonymous functions are also called lambda functions.
+Syntax of Lambda Function in python
+lambda arguments: expression
+Lambda functions can have any number of arguments but only one expression. The expression is evaluated and returned. Lambda functions can be used wherever function objects are required.
+
+double = lambda x: x * 2
+is nearly the same as:
+def double(x):
+   return x * 2
+We use lambda functions when we require a nameless function for a short period of time.
+In Python, we generally use it as an argument to a higher-order function (a function that takes in other functions as arguments). Lambda functions are used along with built-in functions like filter(), map() etc.
+Example use with filter()
+The filter() function in Python takes in a function and a list as arguments.
+The function is called with all the items in the list and a new list is returned which contains items for which the function evaluates to True
+Example use with map()
+The map() function in Python takes in a function and a list.
+
+The function is called with all the items in the list and a new list is returned which contains items returned by that function for each item.
+Here is an example use of map() function to double all the items in a list.
+# Program to double each item in a list using map()
+my_list = [1, 5, 4, 6, 8, 11, 3, 12]
+new_list = list(map(lambda x: x * 2 , my_list))
+print(new_list)
+Python Global, Local and Nonlocal variables
+In Python, a variable declared outside of the function or in global scope is known as a global variable. This means that a global variable can be accessed inside or outside of the function.
+What if you want to change the value of x inside a function?
+x = "global"
+def foo():
+    x = x * 2
+    print(x)
+foo()
+UnboundLocalError: local variable 'x' referenced before assignment
+The output shows an error because Python treats x as a local variable and x is also not defined inside foo().
+To make this work, we use the global keyword.
+Local Variables
+A variable declared inside the function's body or in the local scope is known as a local variable.Accessing local variable outside the scope,u get the 
+error,
+NameError: name 'y' is not defined
+The output shows an error because we are trying to access a local variable y in a global scope whereas the local variable only works inside foo() or local scope.
+Here, we will show how to use global variables and local variables in the same code.
+x = "global "
+def foo():
+    global x
+    y = "local"
+    x = x * 2
+    print(x)
+    print(y)
+foo()
+Global variable and Local variable with same name
+x = 5
+def foo():
+    x = 10
+    print("local x:", x)
+foo()
+print("global x:", x)
+When we print the variable inside foo() it outputs local x: 10. This is called the local scope of the variable.
+Similarly, when we print the variable outside the foo(), it outputs global x: 5. This is called the global scope of the variable.
+Nonlocal Variables
+Nonlocal variables are used in nested functions whose local scope is not defined. 
+This means that the variable can be neither in the local nor the global scope.We use nonlocal keywords to create nonlocal variables.
+Create a nonlocal variable
+def outer():
+    x = "local"
+
+    def inner():
+        nonlocal x
+        x = "nonlocal"
+        print("inner:", x)
+
+    inner()
+    print("outer:", x)
+
+outer()
+Output
+inner: nonlocal
+outer: nonlocal
+
+
+Note : If we change the value of a nonlocal variable, the changes appear in the local variable.
+
+
+Argument Unpacking
+You can use the * operator to unpack the arguments out of a list or tuple when writing a function call:
+Let’s define a simple list x = [1,2,3,4,5]
+A common example of unpacking operator would be using print:the unpack operator takes all the elements in the list and passes them as a parameter,
+print(*x) // Result: 1 2 3 4 5
+This Python trick is used quite often in functions, to ‘pack’ all the arguments that the method call receives into one single variable.
+def func(*args):
+    print("in the function func unpacking the elements ",*args)
+    print(args)
+
+func(2,3)
+func('a','b','c')
+In a similar way, dictionaries can deliver keyword arguments with the ** operator.
+
+Use of min() and max() in Python :-
+
+it gives the lexicographically largest value and lexicographically smallest value respectively, when we passed string or list of strings as arguments.notice that output comes according to lexicographical order. but we can also find output according to length of string or as our requirement by simply passing functon name or lambda expression.
+
+Syntax: max(x1, x2, ..., xn, key=function_name)
+here x1, x2, x3.., xn passed arguments
+function_name : denotes which type of operaton you want to perform on these arguments. Let function_name=len, so now output gives according to length of x1, x2.., xn.
+Return value: It returns a maximum or minimum of list according to the passed parameter.
+
+# Python code explaning min() and max() 
+l = ["ab", "abc", "bc", "c"] 
+print(max(l, key = len)) 
+print(min(l, key = len)) 
+In the above program, max() function takes two arguments: l(list) and key = len(function_name).this key = len(function_name) function transforms each element before comparing, it takes the value and returns 1 value which is then used within max() or min() instead of the original value.Here key convert each element of the list to its length and then compare each element according to its length.
+
+initally l = [“ab”, “abc”, “bc”, “c”]
+when we passed key=len as arguments then it works like
+l=[2,3,2,1]
+
+python closures
+In Python, these non-local variables are read-only by default and we must declare them explicitly as non-local (using nonlocal keyword) in order to modify them.
+technique by which some data ("Hello in this case) gets attached to the code is called closure in Python.the returned function still works even when the original function was deleted.
+we have a closure in Python when a nested function references a value in its enclosing scope.
+
+The criteria that must be met to create closure in Python are summarized in the following points.
+
+We must have a nested function (function inside a function).
+The nested function must refer to a value definesd in the enclosing function.
+The enclosing function must return the nested function.
+On a concluding note, it is good to point out that the values that get enclosed in the closure function can be found out.
+All function objects have a __closure__ attribute that returns a tuple of cell objects if it is a closure function. 
+A Closure is a function object that remembers values in enclosing scopes even if they are not present in memory.
+As observed from above code, closures help to invoke function outside their scope.
+The function innerFunction has its scope only inside the outerFunction. But with the use of closures we can easily extend its scope to invoke a function outside its scope.
+When and why to use Closures:
+As closures are used as callback functions, they provide some sort of data hiding. This helps us to reduce the use of global variables.
+When we have few functions in our code, closures prove to be efficient way. But if we need to have many functions, then go for class (OOP).
+
+
+Sorted() function in Python
+Sorted() sorts any sequence (list, tuple) and always returns a list with the elements in sorted manner, without modifying the original sequence.
+Sort using key
+We can also provide a third argument to the Python sorted function. It can help us change the way the default function works.
+Similarly, the sorted() function sorts a dict by its “key” field. With the sorted-key option, we can make it sort based on the “value” field.
+For example, by default, it sorts a string based on the ASCII values. We can alter it to sort based on the length of the literal
+Syntax : sorted(iterable, key, reverse)
+
+Parameters : sorted takes three parameters from which two are optional.
+
+Iterable : sequence (list, tuple, string) or collection (dictionary, set, frozenset) or any other iterator that needs to be sorted.
+Key(optional) : which takes a function as its value. This key function transforms each element before sorting, it takes the value and returns 1 value which is then used within sort instead of the original value.For example, if we pass a list of strings in sorted(), it gets sorted alphabetically . But if we specify key = len, then the strings would be passed to len, and the value it returns, i.e. the length of strings will be sorted. Which means that the strings would be sorted based on their lengths instead
+
+
+Reverse(optional) : If set true, then the iterable would be sorted in reverse (descending) order, by default it is set as false.
+# Sort a list of integers based on 
+# their remainder on dividing from 7 
+def func(x): 
+	return x % 7
+L = [15, 3, 11, 7] 
+print ("Normal sort :", sorted(L))   [3, 7, 11, 15]
+
+print ("Sorted with key:", sorted(L, key = func))  [7, 15, 3, 11] 
+Sorted() function on mixed data types
+We’ve earlier told you that the sorted() function doesn’t support the sorting of mixed types.
+
+
+
+Sorted() vs. list sort()
+There are some obvious differences between the two sort functions:
+
+The sorted() function is richer in functionality as it can sort iterable of any type given as input. The sort method is strictly for the list.
+If you need the reversed list itself, use the Python built-in function sorted(iterable, *, key=None, reverse=False)
+Python sorted() function creates a new range object with the elements of the original list in the sorted order. The List.sort() method does an in-place sorting and modifies the source list.
+Comprehensions in Python
+Comprehensions in Python provide us with a short and concise way to construct new sequences (such as lists, set, dictionary etc.) using sequences which have been already defined. Python supports the following 4 types of comprehensions:
+
+List Comprehensions
+Dictionary Comprehensions
+Set Comprehensions
+Generator Comprehensions
+
+
+The minimal syntax for dictionary comprehension is:
+dictionary = {key: value for vars in iterable}
+We can further customize dictionary comprehension by adding conditions to it.
+original_dict = {'jack': 38, 'michael': 48, 'guido': 57, 'john': 33}
+even_dict = {k: v for (k, v) in original_dict.items() if v % 2 == 0}
+Multiple if Conditional Dictionary Comprehension
+They are equivalent to and operation where both conditions have to be true
+if-else Conditional Dictionary Comprehension
+new_dict_1 = {k: ('old' if v > 40 else 'young')   for (k, v) in original_dict.items()}
+Nested Dictionary with Two Dictionary Comprehensions
+dictionary = {
+    k1: {k2: k1 * k2 for k2 in range(1, 6)} for k1 in range(2, 5)
+}
+Whenever nested dictionary comprehension is used, Python first starts from the outer loop and then goes to the inner one.
+
+So, the above code would be equivalent to:
+
+dictionary = dict()
+for k1 in range(2, 5):
+    dictionary[k1] = {k2: k1*k2 for k2 in range(1, 6)}
+print(dictionary)
+It can further be unfolded:
+
+dictionary = dict()
+for k1 in range(11, 16):
+    dictionary[k1] = dict()
+    for k2 in range(1, 6):
+        dictionary[k1][k2] = k1*k2
+print(dictionary)
+# Python code to demonstrate dictionary 
+# comprehension 
+# Lists to represent keys and values 
+keys = ['a','b','c','d','e'] 
+values = [1,2,3,4,5] 
+# but this line shows dict comprehension here 
+myDict = { k:v for (k,v) in zip(keys, values)} 
+# We can use below too 
+# myDict = dict(zip(keys, values)) 
+print (myDict) 
+sDict = {x.upper(): x*3 for x in 'coding '} 
+print (sDict) 
+
+Syntax of List Comprehension
+[expression for item in list]
+h_letters = [ letter for letter in 'human' ] ;  print( h_letters)
+If you noticed, human is a string, not a list. This is the power of list comprehension. It can identify when it receives a string or a tuple and work on it like a list.
+Note that list comprehension may or may not contain an if condition. List comprehensions can contain multiple for (nested list comprehensions).
+List Comprehensions vs Lambda functions
+List comprehensions aren’t the only way to work on lists. Various built-in functions and lambda functions can create and modify lists in less lines of code.
+Using Lambda functions inside List
+letters = list(map(lambda x: x, 'human'))
+print(letters) ==> ['h','u','m','a','n']
+Nested IF with List Comprehension
+num_list = [y for y in range(100) if y % 2 == 0 if y % 5 == 0]
+print(num_list)
+Here, list comprehension checks:
+Is y divisible by 2 or not?
+Is y divisible by 5 or not?
+If y satisfies both conditions, y is appended to num_list
+if...else With List Comprehension
+obj = ["Even" if i%2==0 else "Odd" for i in range(10)]
+print(obj)
+Nested Loops in List Comprehension
+Key Points to Remember
+List comprehension is an elegant way to define and create lists based on existing lists.
+List comprehension is generally more compact and faster than normal functions and loops for creating list.
+However, we should avoid writing very long list comprehensions in one line to ensure that code is user-friendly.
+Remember, every list comprehension can be rewritten in for loop, but every for loop can’t be rewritten in the form of list comprehension.
+A list comprehension can optionally contain more for or if statements. An optional if statement can filter out items for the new list.
+
+Iterators in Python
+Technically speaking, a Python iterator object must implement two special methods, __iter__() and __next__(), collectively called the iterator protocol.
+An object is called iterable if we can get an iterator from it. Most built-in containers in Python like: list, tuple, string etc. are iterables.
+The iter() function (which in turn calls the __iter__() method) returns an iterator from them.
+We use the next() function to manually iterate through all the items of an iterator. When we reach the end and there is no more data to be returned, it will raise the StopIteration Exception. 
+my_list = [4, 7, 0, 3]
+# get an iterator using iter()
+my_iter = iter(my_list)
+# iterate through it using next()
+# Output: 4
+print(next(my_iter))
+A more elegant way of automatically iterating is by using the for loop. Using this, we can iterate over any object that can return an iterator, for example list, string, file etc.In fact the for loop can iterate over any iterable. Let's take a closer look at how the for loop is actually implemented in Python.
+for element in iterable:
+    # do something with element
+Is actually implemented as.
+
+# create an iterator object from that iterable
+iter_obj = iter(iterable)
+
+# infinite loop
+while True:
+    try:
+        # get the next item
+        element = next(iter_obj)
+		
+        # do something with element
+    except StopIteration:
+        # if StopIteration is raised, break from loop
+        break
+So internally, the for loop creates an iterator object, iter_obj by calling iter() on the iterable.
+Ironically, this for loop is actually an infinite while loop.
+Inside the loop, it calls next() to get the next element and executes the body of the for loop with this value. After all the items exhaust, StopIteration is raised which is internally caught and the loop ends. Note that any other kind of exception will pass through.
+Building Custom Iterators
+Building an iterator from scratch is easy in Python. We just have to implement the __iter__() and the __next__() methods.
+The __iter__() method returns the iterator object itself. If required, some initialization can be performed.
+The __next__() method must return the next item in the sequence. On reaching the end, and in subsequent calls, it must raise StopIteration
+Python Infinite Iterators
+infinite iterators (which never ends)
+The built-in function iter() function can be called with two arguments where the first argument must be a callable object (function) and second is the sentinel. The iterator calls this function until the returned value is equal to the sentinel.
+inf = iter(int,1)
+next(inf)  ==>0
+next(inf)	===>0
+We can see that the int() function always returns 0. So passing it as iter(int,1) will return an iterator that calls int() until the returned value equals 1. This never happens and we get an infinite iterator.
+The advantage of using iterators is that they save resources. Like shown above, we could get all the odd numbers without storing the entire number system in memory. We can have infinite items (theoretically) in finite memory.
+
+Get a list as input from user
+
+
+# try block to handle the exception 
+try: 
+	my_list = [] 
+	
+	while True: 
+		my_list.append(int(input())) 
+		
+# if the input is not-integer, just print the list 
+except: 
+	print(my_list) 
+
+usig map()
+# number of elements 
+n = int(input("Enter number of elements : ")) 
+
+# Below line read inputs from user using map() function 
+a = list(map(int,input("\nEnter the numbers : ").strip().split()))[:n] 
+
+print("\nList is - ", a) 
+
+# Python code to demonstrate that a function 
+# can easily return multiple values. 
+def multi_return(*arr): 
+	k1 = arr[0] 
+	k2 = arr[1] 
+	return k1,k2 
+	
+a,b = multi_return(11,22) 
+print(a,' ',b) 
+
+a,b = multi_return(55,66,77,88,99) 
+print(a,' ',b) 
+**************************************************************************************
+Syntax :
+map(fun, iter) ==> NOTE : You can pass one or more iterable to the map() function.
+NOTE : The returned value from map() (map object) then can be passed to functions like list() (to create a list), set() (to create a set)
+result = map(lambda x, y: x + y, list1, list2)
+List Comprehension is a substitute for the lambda function, map(), filter() and reduce(). It follows the form of the mathematical set-builder notation. It provide a concise way to create lists.
+Syntax:
+
+[ expression for item in list if conditional ] 
+Map VS List Comprehension
+List comprehension is more concise and easier to read as compared to map.
+List comprehension allows filtering. In map, we have no such facility. For example, to print all even numbers in range of 100, we can write
+ [n for n in range(100) if n%2 == 0]. There is no alternate for it in map
+List comprehension are used when a list of results is required as map only returns a map object and does not return any list.
+List comprehension is faster than map when we need to evaluate expressions that are too long or complicated to express
+Map is faster in case of calling an already defined function (as no lambda is required).
+Map VS List Comprehension
+List comprehension is more concise and easier to read as compared to map.
+List comprehension allows filtering. In map, we have no such facility. For example, to print all even numbers in range of 100, we can write [n for n in range(100) if n%2 == 0]. There is no alternate for it in map
+List comprehension are used when a list of results is required as map only returns a map object and does not return any list.
+List comprehension is faster than map when we need to evaluate expressions that are too long or complicated to express
+Map is faster in case of calling an already defined function (as no lambda is required).
+
+
+How yield affects a function
+Any function that includes the yield keyword is automatically converted to a generator. What it returns (the generator) is a generator iterator.
+def func():
+    print("> Why doesn't this line print?")
+    exit() # Within this function, nothing should matter after this point.  The program should exit
+    yield "> The exit line above will exit ONLY if you comment out this line."
+
+x = func()
+print(x)
+When x = func() is executed, we are not actually executing any of the code within func(). Rather, since func() is a generator, a generator iterator is returned,
+we would use to generate values yielded by the generator.
+So how do we actually "call" a generator? By calling next() on a generator iterator.
+Luckily, for loops support iteration over generator iterators.
+
+
+
+ZIP FUNCTION  ===> ZIP()   
+The zip() function takes iterables (can be zero or more), aggregates them in a tuple, and return it.
+The zip() function takes iterables (can be zero or more), aggregates them in a tuple, and return it.
+
+The syntax of the zip() function is:    zip(*iterables)
+
+zip() Parameters can be built-in iterables (like: list, string, dict), or user-defined iterables
+The zip()function returns an iterator of tuples based on the iterable objects.
+
+If we do not pass any parameter, zip() returns an empty iterator
+If a single iterable is passed, zip() returns an iterator of tuples with each tuple having only one element.
+If multiple iterables are passed, zip() returns an iterator of tuples with each tuple having elements from all the iterables.
+The * operator can be used in conjunction with zip() to unzip the list.
+
+zip(*zippedList)
+
+# using zip() to map values where name, roll_no, marks are list check ex in geeks
+mapped = zip(name, roll_no, marks)
+# unzipping values 
+namz, roll_noz, marksz = zip(*mapped) 
+# printing players and scores using zip both r lists
+for pl, sc in zip(players, scores): 
+    print ("Player :  %s     Score : %d" %(pl, sc)) 
+			  
+Map, Filter, and Reduce are paradigms of functional programming. They allow the programmer (you) to write simpler, shorter code, without neccessarily needing to bother about intricacies like loops and branching.
+
+Essentially, these three functions allow you to apply a function across a number of iterables,
+Map
+The map() function in python has the following syntax:
+
+map(func, *iterables)
+Where func is the function on which each element in iterables (as many as they are) would be applied on
+So, if the function you're passing requires two, or three, or n arguments, then you need to pass in two, three or n iterables to it.
+What if I pass in an iterable less than or more than the length of the first iterable?
+Nothing" happens in the sense that the map() function will not raise any exception, it will simply iterate over the elements until it can't find a second argument to the function, at which point it simply stops and returns the result.
+The zip() function is a function that takes a number of iterables and then creates a tuple containing each of the elements in the iterables. Like map(), in Python 3, it returns a generator object, which can be easily converted to a list by calling the built-in list function on it
+
+
+results = list(zip(['a', 'b', 'c', 'd', 'e'], [1,2,3,4,5]))    ===>[('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
+results = list(map(lambda x, y: (x, y), my_strings, my_numbers))  ===>[('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
+
+Filter
+While map() passes each element in the iterable through a function and returns the result of all elements having passed through the function, filter(), first of all, requires the function to return boolean values (true or false) and then passes each element in the iterable through the function, "filtering" away those that are false. It has the following syntax:
+
+filter(func, iterable)
+
+The following points are to be noted regarding filter():
+
+Unlike map(), only one iterable is required.
+The func argument is required to return a boolean type. If it doesn't, filter simply returns the iterable passed to it. Also, as only one iterable is required, it's implicit that func must only take one argument.
+filter passes each element in the iterable through func and returns only the ones that evaluate to true.
+example will be a palindrome detector. A "palindrome" is a word, phrase, or sequence that reads the same backwards as forwards. Let's filter out words that are palindromes from a tuple (iterable) of suspected palindromes.
+dromes = ("demigod", "rewire", "madam", "freer", "anutforajaroftuna", "kiosk")
+palindromes = list(filter(lambda word: word == word[::-1], dromes))
+print(palindromes)
+
+Reduce
+
+
+reduce applies a function of two arguments cumulatively to the elements of an iterable, optionally starting with an initial argument. It has the following syntax:
+
+reduce(func, iterable[, initial])
+Working : 
+
+At first step, first two elements of sequence are picked and the result is obtained.
+Next step is to apply the same function to the previously attained result and the number just succeeding the second element and the result is again stored.
+This process continues till no more elements are left in the container.
+The final returned result is returned and printed on console.
+The following should be noted about reduce(): 1. func requires two arguments, the first of which is the first element in iterable (if initial is not supplied) and the second the second element in iterable. If initial is supplied, then it becomes the first argument to func and the first element in iterable becomes the second element. 2. reduce "reduces" (I know, forgive me) iterable into a single value.
+# using reduce to compute sum of list 
+print ("The sum of the list elements is : ",end="") 
+print (functools.reduce(lambda a,b : a+b,lis)) 
+# using reduce to compute maximum element from list 
+print ("The maximum element of the list is : ",end="") 
+print (functools.reduce(lambda a,b : a if a > b else b,lis)) 
+# using reduce to compute sum of list # using operator functions 
+print (functools.reduce(operator.add,lis)) 
+# using reduce to compute product # using operator functions 
+print (functools.reduce(operator.mul,lis)) 
+# using reduce to concatenate string 
+print (functools.reduce(operator.add,["geeks","for","geeks"])) 
+reduce() vs accumulate() 
+
+Both reduce() and accumulate() can be used to calculate the summation of a sequence elements. But there are differences in the implementation aspects in both of these.
+reduce() is defined in “functools” module, accumulate() in “itertools” module.
+reduce() stores the intermediate result and only returns the final summation value. Whereas, accumulate() returns a iterator containing the intermediate results. The last number of the iterator returned is summation value of the list.
+reduce(fun,seq) takes function as 1st and sequence as 2nd argument. In contrast accumulate(seq,fun) takes sequence as 1st argument and function as 2nd argument.
+# priting summation using accumulate() lis = [ 1, 3, 4, 10, 4 ] 
+print (list(itertools.accumulate(lis,lambda x,y : x+y))) 
+# priting summation using reduce() 
+print (functools.reduce(lambda x,y:x+y,lis)) 
+
+Generators in Python
+There is a lot of work in building an iterator in Python. We have to implement a class with __iter__() and __next__() method, keep track of internal states, and raise StopIteration when there are no values to be returned.Python generators are a simple way of creating iterators.
+Simply speaking, a generator is a function that returns an object (iterator) which we can iterate over (one value at a time).
+
+
+Create Generators in Python but with a yield statement instead of a return statement.
+
+If a function contains at least one yield statement (it may contain other yield or return statements), it becomes a generator function. Both yield and return will return some value from a function.
+
+The difference is that while a return statement terminates a function entirely, yield statement pauses the function saving all its states and later continues from there on successive calls.
+Differences between Generator function and Normal function
+Generator function contains one or more yield statements.
+the value of variable n is remembered between each call.
+
+Unlike normal functions, the local variables are not destroyed when the function yields. Furthermore, the generator object can be iterated only once.
+When called, it returns an object (iterator) but does not start execution immediately.
+Methods like __iter__() and __next__() are implemented automatically. So we can iterate through the items using next().
+Once the function yields, the function is paused and the control is transferred to the caller.
+Local variables and their states are remembered between successive calls.
+
+Finally, when the function terminates, StopIteration is raised automatically on further calls.
+
+One final thing to note is that we can use generators with for loops directly.
+
+This is because a for loop takes an iterator and iterates over it using next() function. It automatically ends when StopIteration
+Normally, generator functions are implemented with a loop having a suitable terminating condition.
+Python Generator Expression
+Similar to the lambda functions which create anonymous functions, generator expressions create anonymous generator functions.
+
+The syntax for generator expression is similar to that of a list comprehension in Python. But the square brackets are replaced with round parentheses.
+
+The major difference between a list comprehension and a generator expression is that a list comprehension produces the entire list while the generator expression produces one item at a time.
+
+They have lazy execution ( producing items only when asked for ). For this reason, a generator expression is much more memory efficient than an equivalent list comprehension.
+# Initialize the list
+my_list = [1, 3, 6, 10]
+
+# square each term using list comprehension
+list_ = [x**2 for x in my_list]
+
+# same thing can be done using a generator expression
+# generator expressions are surrounded by parenthesis ()
+generator = (x**2 for x in my_list)
+
+print(list_)
+print(generator)
+We can see above that the generator expression did not produce the required result immediately. Instead, it returned a generator object, which produces items only on demand.
+Generator expressions can be used as function arguments. When used in such a way, the round parentheses can be dropped.
+sum(x**2 for x in my_list)
+146
+
+max(x**2 for x in my_list)
+100
+Generators are very easy to implement, but a bit difficult to understand.
+
+Generators are used to create iterators, but with a different approach. Generators are simple functions which return an iterable set of items, one at a time, in a special way.
+
+When an iteration over a set of item starts using the for statement, the generator is run. Once the generator's function code reaches a "yield" statement, the generator yields its execution back to the for loop, returning a new value from the set. The generator function can generate as many values (possibly infinite) as it wants, yielding each one in its turn.
+
+PYTHON Closures
+A Python3 closure is when some data gets attached to the code. So, this value is remembered even when the variable goes out of scope, or the function is removed from the namespace. If we delete outerfunc, myfunc still gives us 7.
+we have Python closure when a nested function references a value in its enclosing scope. These three conditions must be met:
+
+We must have a nested function.
+This nested function must refer to a variable nonlocal to it(a variable in the scope enclosing it).
+The enclosing scope must return this function.
+Benefits of Python Closure
+With Python closure, we don’t need to use global values. This is because they let us refer to nonlocal variables. A closure then provides some form of data hiding.
+When we have only a few Python methods (usually, only one), we may use a Python3 closure instead of implementing a class for that. This makes it easier on the programmer.
+A closure, lets us implement a Python decorator.
+A closure lets us invoke Python function outside its scope
+
+Python Built-In Functions
+we have 67 of those in Python 3.6 with their Python Syntax and examples.
+1. abs()
+2. all()
+The all() function takes a container as an argument. This Built in Functions returns True if all values in a python iterable have a Boolean value of True. An empty value has a Boolean value of False.  >>> all({'*','',''})
+3. any()
+Like all(), it takes one argument and returns True if, even one value in the iterable has a Boolean value of True.
+>>> any((1,0,0))
+4.  ascii()
+
+It is important Python built-in functions, returns a printable representation of a python object (like a string or a Python list). Let’s take a Romanian character.
+>>> ascii('ș')
+5. bin()
+bin() converts an integer to a binary string. We have seen this and other functions in our article on Python Numbers.We can’t apply it on floats, though.
+6. bool()
+bool() converts a value to Boolean.
+7. bytearray    (bytearray() returns a python array of a given byte size.
+7. bytearray()  bytearray() returns a python array of a given byte size.
+9. callable()  callable() tells us if an object can be called.
+9. callable()
+callable() tells us if an object can be called.  
+10. chr()
+chr() Built In function returns the character in python for an ASCII value.  >>> chr(65)  ‘A’
+
+
+11. classmethod()
+classmethod() returns a class method for a given method
+12. compile()
+compile() returns a Python code object. We use Python in built function to convert a string code into object code.
+>>> exec(compile('a=5\nb=7\nprint(a+b)','','exec'))
+Here, ‘exec’ is the mode. The parameter before that is the filename for the file form which the code is read. Finally, we execute it using exec()
+13. complex() complex() function creates a complex number.>>> complex(3) (3+0j)
+14. delattr()
+delattr() takes two arguments- a class, and an attribute in it. It deletes the attribute.
+>>> class fruit:
+                size=7  
+>>> orange=fruit()
+>>> orange.size
+7
+>>> delattr(fruit,'size')
+>>> orange.size
+15. dict() , as we have seen it, creates a python dictionary.
+>>> dict()
+{}
+>>> dict([(1,2),(3,4)])
+{1: 2, 3: 4}
+16. dir() dir() returns an object’s attributes.
+>>> class fruit:
+                size=7
+                shape='round'
+>>> orange=fruit()
+>>> dir(orange)
+divmod()
+divmod() in Python built-in functions, takes two parameters, and returns a tuple of their quotient and remainder. In other words, it returns the floor division and the modulus of the two numbers.
+18. enumerate()
+This Python Built In function returns an enumerate object. In other words, it adds a counter to the iterable.
+>>> for i in enumerate(['a','b','c']):
+                print(i)
+19. eval()
+This Function takes a string as an argument, which is parsed as an expression.
+>>> x=7
+>>> eval('x+7')==>14
+exec()
+exec() runs Python code dynamically.
+>>> exec('a=2;b=3;print(a+b)')
+Using exec() in Python
+We use exec() to dynamically execute Python code- this can be a string or some object code. When it is a string, Python parses it as a set of statements and executes it if there is no syntax error. When it is object code, Python executes it. But exec() doesn’t return a value; it returns None. Hence, we cannot use return and yield statements outside function definitions.
+21. filter()
+>>> list(filter(lambda x:x%2==0,[1,2,0,False]))  ===>[2, 0, False]
+22.float()
+This Python Built In function converts an int or a compatible value into a float.
+23. format()
+We have seen this Python built-in function, one in our lesson on Python Strings.
+>>> a,b=2,3
+>>> print("a={0} and b={1}".format(a,b))
+24. frozenset()
+frozenset() returns an immutable frozenset object.
+
+>>> frozenset((3,2,4))
+frozenset({2, 3, 4})
+25. getattr()
+getattr() returns the value of an object’s attribute.
+26. globals()
+This Python built-in functions, returns a dictionary of the current global symbol table.
+>>> globals()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+repr() returns a string that holds a printable representation of an object. For most types in Python, this will give you a string that yields an object with the same value as when we pass it to eval(). For a few other types, it returns a string delimited in angle brackets. This holds the type of object and other information like the name and address of that object.
+this is the repr() function. To Python, this is a class that controls what it returns for its instances via the __repr__() magic method.
+
+ str() vs repr() in Python
+The __str__() and __repr__() methods both give us strings in return. So what sets them apart?
+
+The goal of __repr__ is to be unambiguous and that of __str__ is to be readable.
+__repr__ is kind of official and __str__ is somewhat informal.
+Take an example to ensure you understand the difference:
+
+>>> s='Hello'
+>>> print(str(s))
+Hello
+
+>>> print(repr(s))
+‘Hello’
+
+The print statement and str() function make a call to __str__, but repr() makes on to __repr__.
+Any string at the interpreter prompt makes a call to __str__(), but an object at the prompt makes a call to __repr__().
+Conclusion – Python repr
+The interactive interpreter uses repr() too in giving you the output of your expression:
+
+result=expr; if result is not None: print repr(result)
+

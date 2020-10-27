@@ -1,0 +1,21 @@
+Python Collections Module – Python Counter, DefaultDict, OrderedDict, NamedTuple
+The ‘collections’ module in Python that implements special container datatypes. 
+These provide alternatives to Python’s general-purpose built-in containers.
+Like we said, all three of these are subclasses of Python class ‘dict’.
+from collections import Counter,defaultdict,OrderedDict,namedtuple
+issubclass(Counter,dict) and issubclass(defaultdict,dict) and issubclass(OrderedDict,dict)
+Python Collections Counter
+Python counter is a container that keeps count of the number of occurrences of any value in the container
+It counts hashable objects.To define a Python counter, we use the Counter() factory function. To it, we can pass a container like Python list or a tuple, or even a string or a dictionary. We may also use keyword arguments.
+To declare an empty counter in python, and then populate it, we use the update() method.
+>>> c=Counter()
+>>> c.update('bfg')
+>>> c
+Accessing Counts in python
+To get a value’s count, we pass it as an index to the counter we defined.>>> c['f']
+As you can see, it does not raise a KeyError, if you give any unknown value as index.
+The elements() method returns a python iterator for the values in the container.
+The elements() method returns a python iterator for the values in the container.
+for i in c.elements():
+                print(f"{i}: {c[i]}")
+Python DefaultDict collection, lets us provide a default value for keys. We define it using the defaultdict() factory function, which takes another function as an argument. This function returns a default value for it.

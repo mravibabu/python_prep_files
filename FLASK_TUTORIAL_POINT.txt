@@ -1,0 +1,548 @@
+What is Flask?
+Flask is a web application framework written in Python. It is developed by Armin Ronacher, who leads an international group of Python enthusiasts named Pocco. Flask is based on the Werkzeug WSGI toolkit and Jinja2 template engine. Both are Pocco projects.
+WSGI, THEN 
+Web Server Gateway Interface (WSGI) has been adopted as a standard for Python web application development. WSGI is a specification for a universal interface between the web server and the web applications.
+Werkzeug
+It is a WSGI toolkit, which implements requests, response objects, and other utility functions. This enables building a web framework on top of it. The Flask framework uses Werkzeug as one of its bases.
+Jinja2
+Jinja2 is a popular templating engine for Python. A web templating system combines a template with a certain data source to render dynamic web pages.
+Flask is often referred to as a micro framework. It aims to keep the core of an application simple yet extensible. Flask does not have built-in abstraction layer for database handling, nor does it have form a validation support. Instead, Flask supports the extensions to add such functionality to the application. 
+Python 2.6 or higher is usually required for installation of Flask. Although Flask and its dependencies work well with Python 3 (Python 3.3 onwards
+
+virtualenv is a virtual Python environment builder. It helps a user to create multiple Python environments side-by-side. Thereby, it can avoid compatibility issues between the different versions of the libraries.
+
+FIRST INSTALL  virtualenv  and then create project folder for development environment,then ACTIVATE it afterward INSTALL FLASK.
+
+In order to test Flask installation, type the following code in the editor as Hello.py
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+   return 'Hello World’
+
+if __name__ == '__main__':
+   app.run()
+Importing flask module in the project is mandatory. An object of Flask class is our WSGI application.
+
+Flask constructor takes the name of current module (__name__) as argument.
+
+The route() function of the Flask class is a decorator, which tells the application which URL should call the associated function.   
+
+Modern web frameworks use the routing technique,It is useful to access the desired page directly without having to navigate from the home page.
+
+Flask – URL Building
+The url_for() function is very useful for dynamically building a URL for a specific function. The function accepts the name of a function as first argument, and one or more keyword arguments, each corresponding to the variable part of URL.
+Since the server has received data by POST method, value of ‘nm’ parameter obtained from the form data is obtained by −
+
+user = request.form['nm']
+The data received on server is by the GET method. The value of ‘nm’ parameter is now obtained by −
+
+User = request.args.get(‘nm’)
+Here, args is dictionary object containing a list of pairs of form parameter and its corresponding value
+Flask – Templates
+The term ‘web templating system’ refers to designing an HTML script in which the variable data can be inserted dynamically.
+The jinja2 template engine uses the following delimiters for escaping from HTML.
+
+{% ... %} for Statements
+{{ ... }} for Expressions to print to the template output
+{# ... #} for Comments not included in the template output
+# ... ## for Line Statements
+
+Note that the conditional statements if-else and endif are enclosed in delimiter {%..%}.
+ <table border = 1>
+         {% for key, value in result.items() %}
+            <tr>
+               <th> {{ key }} </th>
+               <td> {{ value }} </td>
+            </tr>
+         {% endfor %}
+      </table>
+Here, again the Python statements corresponding to the For loop are enclosed in {%..%} whereas, the expressions key and value are put inside {{ }}.
+Flask – Static Files
+A web application often requires a static file such as a javascript file or a CSS file supporting the display of a web page. Usually, the web server is configured to serve them for you, but during the development, these files are served from static folder in your package or next to your module and it will be available at /static on the application.
+
+A special endpoint ‘static’ is used to generate URL for static files.
+
+
+
+Flask – Request Object
+The data from a client’s web page is sent to the server as a global request object. In order to process the request data, it should be imported from the Flask module.
+Important attributes of request object are listed below −
+
+Form − It is a dictionary object containing key and value pairs of form parameters and their values.
+
+args − parsed contents of query string which is part of URL after question mark (?).
+
+Cookies − dictionary object holding Cookie names and values.
+
+files − data pertaining to uploaded file.
+
+method − current request method.
+
+We have already seen that the http method can be specified in URL rule. The Form data received by the triggered function can collect it in the form of a dictionary object and forward it to a template to render it on a corresponding web page.
+
+Flask – Cookies
+A cookie is stored on a client’s computer in the form of a text file. Its purpose is to remember and track data pertaining to a client’s usage for better visitor experience and site statistics.
+A Request object contains a cookie’s attribute. It is a dictionary object of all the cookie variables and their corresponding values, a client has transmitted. In addition to it, a cookie also stores its expiry time, path and domain name of the site.
+In Flask, cookies are set on response object. Use make_response() function to get response object from return value of a view function. After that, use the set_cookie() function of response object to store a cookie.
+
+Reading back a cookie is easy. The get() method of request.cookies attribute is used to read a cookie.
+
+Flask – Sessions
+Like Cookie, Session data is stored on client. Session is the time interval when a client logs into a server and logs out of it. The data, which is needed to be held across this session, is stored in the client browser.
+A session with each client is assigned a Session ID. The Session data is stored on top of cookies and the server signs them cryptographically. For this encryption, a Flask application needs a defined SECRET_KEY
+Session object is also a dictionary object containing key-value pairs of session variables and associated values.
+
+Flask – Redirect & Errors
+
+Flask class has a redirect() function. When called, it returns a response object and redirects the user to another target location with specified status code.
+Flask.redirect(location, statuscode, response)
+In the above function −
+
+location parameter is the URL where response should be redirected.
+
+statuscode sent to browser’s header, defaults to 302.
+
+response parameter is used to instantiate response.
+The default status code is 302, which is for ‘found’.
+Flask class has abort() function with an error code.
+
+Flask.abort(code)
+The Code parameter takes one of following values −
+
+400 − for Bad Request
+
+401 − for Unauthenticated
+
+403 − for Forbidden
+
+404 − for Not Found
+
+406 − for Not Acceptable
+
+415 − for Unsupported Media Type
+
+429 − Too Many Requests
+
+Flask – Message Flashing
+
+Flashing system of Flask framework makes it possible to create a message in one view and render it in a view function called next.
+
+A Flask module contains flash() method. It passes a message to the next request, which generally is a template.
+
+flash(message, category)
+Here,
+
+message parameter is the actual message to be flashed.
+
+category parameter is optional. It can be either ‘error’, ‘info’ or ‘warning’.
+
+In order to remove message from session, template calls get_flashed_messages().
+
+get_flashed_messages(with_categories, category_filter)
+
+Both parameters are optional. The first parameter is a tuple if received messages are having category. The second parameter is useful to display only specific messages.
+The following flashes received messages in a template.
+
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+
+Flask – File Uploading
+Handling file upload in Flask is very easy. It needs an HTML form with its enctype attribute set to ‘multipart/form-data’, posting the file to a URL. The URL handler fetches file from request.files[] object and saves it to the desired location.
+
+Each uploaded file is first saved in a temporary location on the server, before it is actually saved to its ultimate location.
+
+There are a large number of Flask extensions available. A Flask extension is a Python module, which adds specific type of support to the Flask application. Flask Extension Registry is a directory of extensions available. The required extension can be downloaded by pip utility. Flask extensions give extensibility to Flask framework.
+Flask is often referred to as a micro framework, because a core functionality includes WSGI and routing based on Werkzeug and template engine based on Jinja2. In addition, Flask framework has support for cookie and sessions as well as web helpers like JSON, static files etc. Obviously, this is not enough for the development of a full-fledged web application. This is where the Flask extensions come in picture.
+
+In this tutorial, we will discuss the following important Flask extensions −
+
+Flask Mail − provides SMTP interface to Flask application
+
+Flask WTF − adds rendering and validation of WTForms
+
+Flask SQLAlchemy − adds SQLAlchemy support to Flask application
+
+Flask Sijax − Interface for Sijax - Python/jQuery library that makes AJAX easy to use in web applications
+
+
+Each type of extension usually provides extensive documentation about its usage. Since an extension is a Python module, it needs to be imported for it to be used. Flask extensions are generally named as flask-foo. 
+
+To import,
+
+from flask_foo import [class, function]
+For versions of Flask later than 0.7, you can also use the syntax −
+
+from flask.ext import foo
+For this usage, a compatibility module needs to be activated. It can be installed by running flaskext_compat.py
+
+import flaskext_compat
+flaskext_compat.activate()
+from flask.ext import foo
+
+
+Flask – Mail
+
+
+Flask – WTF
+Data entered by a user is submitted in the form of Http request message to the server side script by either GET or POST method.
+
+The Server side script has to recreate the form elements from http request data. So in effect, form elements have to be defined twice – once in HTML and again in the server side script.
+
+Another disadvantage of using HTML form is that it is difficult (if not impossible) to render the form elements dynamically. HTML itself provides no way to validate a user’s input.
+
+This is where WTForms, a flexible form, rendering and validation library comes handy. Flask-WTF extension provides a simple interface with this WTForms library.
+
+Using Flask-WTF, we can define the form fields in our Python script and render them using an HTML template. It is also possible to apply validation to the WTF field.The installed package contains a Form class, which has to be used as a parent for user- defined form
+
+WTforms package contains definitions of various form fields
+In addition to the ‘name’ field, a hidden field for CSRF token is created automatically. This is to prevent Cross Site Request Forgery attack
+
+<input id = "csrf_token" name = "csrf_token" type = "hidden" />
+
+A user-defined form class is used in a Flask application and the form is rendered using a template.
+WTForms package also contains validator class. It is useful in applying validation to form fields.
+
+
+The validate() function of form object validates the form data and throws the validation errors if validation fails. The Error messages are sent to the template. In the HTML template, error messages are rendered dynamically.
+
+Flask – SQLite
+Python has an in-built support for SQlite. SQlite3 module is shipped with Python distribution.
+
+
+Flask – SQLAlchemy
+
+SQLAlchemy, a Python toolkit is a powerful OR Mapper that gives application developers the full power and flexibility of SQL. Flask-SQLAlchemy is the Flask extension that adds support for SQLAlchemy to your Flask application.
+
+What is ORM (Object Relation Mapping)
+Object relation mapping is a technique of mapping object parameters to the underlying RDBMS table structure. An ORM API provides methods to perform CRUD operations without having to write raw SQL statements.
+
+
+
+Flask – Sijax
+
+Sijax stands for ‘Simple Ajax’ and it is a Python/jQuery library designed to help you easily bring Ajax to your application. It uses jQuery.ajax to make AJAX requests.
+Installation of Flask-Sijax is easy.
+
+pip install flask-sijax
+Configuration
+SIJAX_STATIC_PATH − the static path where you want the Sijax javascript files to be mirrored. The default location is static/js/sijax. In this folder, sijax.js and json2.js files are kept.
+
+SIJAX_JSON_URI − the URI to load the json2.js static file from
+
+Sijax uses JSON to pass the data between the browser and the server. This means that the browsers need either to support JSON natively or get JSON support from the json2.js file.
+
+Functions registered that way cannot provide Sijax functionality, because they cannot be accessed using a POST method by default (and Sijax uses POST requests).
+
+To make a View function capable of handling Sijax requests, make it accessible via POST using @app.route('/url', methods = ['GET', 'POST']) or use the @flask_sijax.route helper decorator like this −
+
+@flask_sijax.route(app, '/hello')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,301 @@
+The range(start, stop) not include stop number in the output because the index (i) always starts with 0 in Python. If you want to include the last number in the output i.e., If you want an inclusive range then set stop argument value as stop+step . Inclusive range() example.
+A Python module is a . py file with function(s) and/or class(es) that you can reuse in your code. You can also create your own. A Python package is a directory of such modules. A package often holds modules of a kind together, along with an __init__.py file.
+Enumerate() in Python
+Enumerate() method adds a counter to an iterable and returns it in a form of enumerate object. This enumerate object can then be used directly in for loops or be converted into a list of tuples using list() method.
+Slicing in Python is a feature that enables accessing parts of sequences like strings, tuples, and lists. You can also use them to modify or delete the items of mutable sequences such as lists. Slices can also be applied on third-party objects like NumPy arrays, as well as Pandas series and data frames.
+Python print end keyword
+The end key of print function will set the string that needs to be appended when printing is done. By default the end key is set by newline character. So after finishing printing all the variables, a newline character is appended.
+what is __main__ in python?
+PYTHON MAIN FUNCTION is a starting point of any program. When the program is run, the python interpreter runs the code sequentially. Main function is executed only when it is run as a Python program. It will not run the main function if it imported as a module
+The __name__ variable (two underscores before and after) is a special Python variable. It gets its value depending on how we execute the containing script. Sometimes you write a script with functions that might be useful in other scripts as well. In Python, you can import that script as a module in another script.
+"__init__" is a reseved method in python classes. It is known as a constructor in object oriented concepts. This method called when an object is created from the class and it allow the class to initialize the attributes of a class.
+WHAT IS LAMBDA STANDS FOR?
+Related to LAMBDA: Greek alphabet, Lambda programming, Lambda expressions. Acronym. Definition. LAMBDA. Legacy Archive for Microwave Background Data Analysis.
+Yield. Yield is a keyword that is used like return , except the function will return a generator. ... The first time the for calls the generator object created from your function, it will run the code in your function from the beginning until it hits yield , then it'll return the first value of the loop.
+yield is a keyword in Python that is used to return from a function without destroying the states of its local variable and when the function is called, the execution starts from the last yield statement. Any function that contains a yield keyword is termed as generator. Hence, yield is what makes a generator.
+For loops are always inclusive in Python: they always run PYover all elements of the iterator (other than exceptions such as break , etc.). What probably has you confused is the range syntax. range(1,1) will create a range object with one element.
+iS A LIST ITERABLE IN PYTHON?
+An object is called iterable if we can get an iterator from it. Most of built-in containers in Python like: list, tuple, string etc. are iterables.
+WHAT IS __ITER__ IN PYTHON?
+The __iter__() function returns an iterator for the given object (array, set, tuple etc. or custom objects). It creates an object that can be accessed one element at a time using __next__() function, which generally comes in handy when dealing with loops.
+IS LIST AN ITERATOR IN PYTHON?
+Iterator in python is any python type that can be used with a 'for in loop'. Python lists, tuples, dicts and sets are all examples of inbuilt iterators. These types are iterators because they implement following methods. In fact, any object that wants to be an iterator must implement following methods.
+HOW MANY RETURN STATEMENTS ARE ALLOWED IN PYTHON FUNCTION?
+Python can have 0 to N return statements in a function (or method). If a function does not have a return statement, the returned value will be None (null, void). A return function can return any 
+WHAT IS STR() IN PYTHON?
+STR() would be an attempt to invoke some function or instantiate some class that was named “STR” (all-caps). str() (lower-case) is a built-in function which instantiates string objects. In the process it will also attempt to convert objects of any type into strings (implicitly by attempting to dispatch to its 
+Python slice() Function
+The slice() function returns a slice object. A slice object is used to specify how to slice a sequence. You can specify where to start the slicing, and where to end. You can also specify the step, which allows you to e.g. slice only every other item.
+split() method returns a list of strings after breaking the given string by the specified separator.
+Python string supports slicing to create substring. Note that Python string is immutable, slicing creates a new substring from the source string and original string remains unchanged.
+END KEYWORD
+It's a keyword argument for the print() function, which was introduced in Python 3. The end= keyword argument dictates what should be printed after all of the arguments have been printed: 
+WHAT DOES __INIT__  MEAN IN PYTHON?
+By using the “self” keyword we can access the attributes and methods of the class in python. It binds the attributes with the given arguments. self is parameter in function and user can use another parameter name in place of it. But it is advisable to use self because it increase the readability of code.
+The %d and %s string formatting "commands" are used to format strings. The %d is for numbers, and %s is for strings. ... They are used when you want to include the value of your Python expressions into strings, with a specific format enforced.
+IS __INIT__ NECESSARY IN PYTHON?
+No, it is not necessary to use the init in a class. It's a object constructor that define default values upon calling the class. 
+WHAT IS MAIN() IN PYTHON?
+The main function in Python acts as the point of execution for any program. Defining the main function in Python programming is a necessity to start the execution of the program as it gets executed only when the program is run directly and not executed when imported as a module.
+ARE DICTIONARIES FASTER THEN LIST IN PYTHON?
+Dictionaries. Membership testing is faster in dict than in list. Python dictionaries use hash tables, this means that a lookup operation (e.g., if x in y) is O(1). A lookup operation in a list means that the entire list needs to be iterated, resulting in O(n) for a list of length n.
+an iterator is an object that enables a programmer to traverse a container, particularly lists
+WHAT DATA TYPES ARE ITERABLE IN PYTHON?
+Examples of iterables include all sequence types (such as list , str , and tuple ) and some non-sequence types like dict , file objects, and objects of any classes you define with an __iter__() method or with a __getitem__() method that implements Sequence semantics.
+WHAT IS THE PURPOSE OF THE ITERATOR?
+The primary purpose of an iterator is to allow a user to process every element of a container while isolating the user from the internal structure of the container. ... Usually, the container provides the methods for creating iterators. A loop counter is sometimes also referred to as a loop iterator.
+DOES PYTHON3 SUPPORT THE REDUCE FUNCTION?
+Moved reduce()
+In Python 2, the function reduce() was built in. In Python 3, in an effort to reduce the number of builtins, it was moved to the functools module. The recommended fixer will add this import automatically.
+WHAT IS MAP AND FILTER IN PYTHON?
+While map() passes each element in the iterable through a function and returns the result of all elements having passed through the function, filter() , first of all, requires the function to return boolean values (true or false) and then passes each element in the iterable through the function, "filtering" away those 
+WAT DOES FUNCTIONAL PRG MEANS?
+Functional programming (often abbreviated FP) is the process of building software by composing pure functions, avoiding shared state, mutable data, and side-effects. Functional programming is declarative rather than imperative, and application state flows through pure functions.
+WHAT IS ZIP FUNCTION IN PYTHON?
+Definition and Usage. The zip() function returns a zip object, which is an iterator of tuples where the first item in each passed iterator is paired together, and then the second item in each passed iterator are paired together etc.
+IS PYTHON2 DEAD
+"The CPython core developer community is retiring the Python 2 series after nearly 20 years of development," the Python Foundation said in a statement last month. "The last major version 2.7 will be released in April 2020, and then all development will cease for Python 2."
+WHY WAS PYTHON3 IS CREATED?
+Python 3.0 (also called "Python 3000" or "Py3K") was released on December 3, 2008. It was designed to rectify fundamental design flaws in the language—the changes required could not be implemented while retaining full backwards compatibility with the 2. x series, which necessitated a new major version number.
+WHAT IS STRING SLICE?
+The slice() method extracts parts of a string and returns the extracted parts in a new string. Use the start and end parameters to specify the part of the string you want to extract. The first character has the position 0, the second has position 1, and so on.
+Python String split() Method
+The split() method splits a string into a list. You can specify the separator, default separator is any whitespace. Note: When maxsplit is specified, the list will contain the specified number of elements plus one
+Python slice() Function
+The slice() function returns a slice object. A slice object is used to specify how to slice a sequence. You can specify where to start the slicing, and where to end. You can also specify the step, which allows you to e.g. slice only every other item.
+Python sorted() Function
+The sorted() function returns a sorted list of the specified iterable object. You can specify ascending or descending order. Strings are sorted alphabetically, and numbers are sorted numerically. Note: You cannot sort a list that contains BOTH string values AND numeric values.
+HOW IS PYTHON DIFFERENT?
+Python programs are generally expected to run slower than Java programs, but they also take much less time to develop. Python programs are typically 3-5 times shorter than equivalent Java programs. This difference can be attributed to Python's built-in high-level data types and its dynamic typing.
+In Python strings, the backslash "\" is a special character, also called the "escape" character. It is used in representing certain whitespace characters: "\t" is a tab, "\n" is a newline, and "\r" is a carriage return. ... This is called "escaping". For example, "\'" is the single quote character.
+The self parameter is a reference to the current instance of the class, and is used to access variables that belongs to the class.
+WHAT ARE MethodS IN PYTHON
+A method is a function that “belongs to” an object. (In Python, the term method is not unique to class instances: other object types can have methods as well. For example, list objects have methods called append, insert, remove, sort, and so on.
+WAT IS INSTANCE OF A CLASS?
+In object-oriented programming (OOP), an instance is a concrete occurrence of any object, existing usually during the runtime of a computer program. ... An object is an instance of a class, and may be called a class instance or class object; instantiation is then also known as construction.
+In Python strings, the backslash "\" is a special character, also called the "escape" character. It iss used in representing certain whitespace characters: "\t" is a tab, "\n" is a newline, and "\r" is a carriage return.
+Unlike sequences, which are indexed by a range of numbers, dictionaries are indexed by keys, which can be any immutable type; strings and numbers can always be keys.
+The list() function creates a list object. A list object is a collection which is ordered and changeable.
+Python's efficient key/value hash table structure is called a "dict". ... The "empty dict" is just an empty pair of curly braces {}. Looking up or setting a value in a dict uses square brackets, e.g. dict['foo'] looks up the value under the key 'foo'. Strings, numbers, and tuples work as keys, and any type can be a value
+how many types of loops are there in python?
+There are two types of loops in Python, for and while.
+Repeated execution of a set of statements is called iteration.
+is python a open source?
+Python is an open source programming language that was made to be easy-to-read and powerful. ... Python is an interpreted language. Interpreted languages do not need to be compiled to run. A program called an interpreter runs Python code on almost any kind of computer.
+is list hashtable python?
+All of Python's immutable built-in objects are hashable, while no mutable containers (such as lists or dictionaries) are. Objects which are instances of user-defined classes are hashable by default; they all compare unequal, and their hash value is their id().
+how do dict works in python?
+Dictionaries work by computing a hash code for each key stored in the dictionary using the hash() built-in function. The hash code varies widely depending on the key;
+The None keyword is used to define a null value, or no value at all. None is not the same as 0, False, or an empty string. None is a datatype of its own (NoneType) and only None can be None.
+The pass statement is used as a placeholder for future code. When the pass statement is executed, nothing happens, but you avoid getting an error when empty code is not allowed. Empty code is not allowed in loops, function definitions, class definitions, or in if statements
+Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel.
+An iterator is an object that contains a countable number of values. An iterator is an object that can be iterated upon, meaning that you can traverse throughall the values. Technically, in Python, an iterator is an object which implements the iterator protocol, which consist of the methods __iter__() and __next__() 
+Python object() Function
+The object() function returns an empty object. ... This object is the base for all classes, it holds the built-in properties and methods which are default for all classes.
+Multiple inheritance is a feature of some object-oriented computer programming languages in which an object or class can inherit characteristics and features from more than one parent object or parent class.
+A subclass inherits all the members (fields, methods, and nested classes) from its superclass. Constructors are not members, so they are not inherited by subclasses, but the constructor of the superclass can be invoked from the subclass.
+The center() method will center align the string, using a specified character (space is default) as the fill character.
+The assert keyword is used when debugging code. The assert keyword lets you test if a condition in your code returns True, if not, the program will raise an AssertionError. You can write a message to be written if the code returns False, check the example below.
+Are dictionaries global in python?
+And while most of the data types we've worked with in introductory Python are immutable (including integers, floats, strings, Booleans, and tuples), lists and dictionaries are mutable. That means a global list or dictionary can be changed even when it's used inside of a function, just like we saw in the examples above.
+how do python packages work?
+They are simply directories, but with a twist. Each package in Python is a directory which MUST contain a special file called __init__.py . This file can be empty, and it indicates that the directory it contains is a Python package, so it can be imported the same way a module can be imported.
+wat are hte data structures in python?
+There are four built-in data structures in Python - list, tuple, dictionary and set.
+wat is the hashtable in datastructure ?
+In computing, a hash table (hash map) is a data structure that implements an associative array abstract data type, a structure that can map keys to values. A hash table uses a hash function to compute an index, also called a hash code, into an array of buckets or slots, from which the desired value can be found.
+can a dictionary keys can be list python?
+The builtin list type should not be used as a dictionary key. Note that since tuples are immutable, they do not run into the troubles of lists - they can be hashed by their contents without worries about modification. Thus, in Python, they provide a valid __hash__ method, and are thus usable as dictionary keys.
+what is dict in python?
+Python's efficient key/value hash table structure is called a "dict". ... The "empty dict" is just an empty pair of curly braces {}. Looking up or setting a value in a dict uses square brackets, e.g. dict['foo'] looks up the value under the key 'foo'. Strings, numbers, and tuples work as keys, and any type can be a value.
+There are four collection data types in the Python programming language:
+List is a collection which is ordered and changeable. ...
+Tuple is a collection which is ordered and unchangeable. ...
+Set is a collection which is unordered and unindexed. ...
+Dictionary is a collection which is unordered, changeable and indexed.
+wat r three types of numbers in python?
+There are three distinct numeric types: integers, floating point numbers, and complex numbers. In addition, Booleans are a subtype of integers.
+what is hashed value?
+A hash value is a numeric value of a fixed length that uniquely identifies data. Hash values represent large amounts of data as much smaller numeric values, so they are used with digital signatures. You can sign a hash value more efficiently than signing the larger value.
+how do you make a class hashable in python?
+An object hash is an integer number representing the value of the object and can be obtained using the hash() function if the object is hashable. To make a class hashable, it has to implement both the __hash__(self) method and the aforementioned __eq__(self, other) method. As with equality, the inherited object.
+how is python used in health care?
+Python was used to create a deep neural network (DNN) using Pytorch and Scikit-Learn in order to predict death dates for patients with terminal illnesses. Each patient's EHR was put into the DNN, including current diagnosis, medical procedures and prescriptions.
+what is python explain?
+Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. ... Python's simple, easy to learn syntax emphasizes readability and therefore reduces the cost of program maintenance. Python supports modules and packages, which encourages program modularity and code reuse.
+Are python strings are unicode?
+Python's string type uses the Unicode Standard for representing characters, which lets Python programs work with all these different possible characters. Unicode (https://www.unicode.org/) is a specification that aims to list every character used by human languages and give each character its own unique code.
+can i install 2 versions of python?
+By design, Python installs to a directory with the version number embedded, e.g. Python version 2.7 will install at C:\Python27\ , so that you can have multiple versions of Python on the same system without conflicts. Of course, only one interpreter can be the default application for Python file types.
+what is virtualenv i python?
+why sys module used in python?
+sys — System-specific parameters and functions. This module provides access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter. It is always available. ... A tuple of strings giving the names of all modules that are compiled into this Python interpreter.
+what does import mean in python?
+The import system. Python code in one module gains access to the code in another module by the process of importing it. ... The import statement combines two operations; it searches for the named module, then it binds the results of that search to a name in the local scope.
+what does python pip stands for?
+pip is a de facto standard package-management system used to install and manage software packages written in Python. Many packages can be found in the default source for packages and their dependencies — Python Package Index (PyPI). ... According to Bicking himself, the name is an acronym for "Pip Installs Packages"
+what is PyPy in python?
+pypy.org/ PyPy is an alternative implementation of the Python programming language to CPython (which is the standard implementation). PyPy often runs faster than CPython because PyPy is a just-in-time compiler while CPython is an interpreter.
+what is pycharm in python?
+PyCharm is an integrated development environment (IDE) used in computer programming, specifically for the Python language. It is developed by the Czech company JetBrains. ... PyCharm is cross-platform, with Windows, macOS and Linux versions.
+Python Memory Management
+Python allocates memory transparently, manages objects using a reference count system, and frees memory when an object’s reference count falls to zero.
+Do you need a int main() like you do in c++ here?
+There's no requirement to have a main function in Python, but there is the concept of a main module.
+by testing the __name__ in a Python file, you can find out whether the file is the one being run directly because it will have the value __main__. Otherwise, it will have another value.
+Python is used by Wikipedia, Google (where Van Rossum used to work), Yahoo!, CERN and NASA, among many other organisations.
+
+It’s often used as a “scripting language” for web applications. This means that it can automate specific series of tasks, making it more efficient. Consequently, Python (and languages like it) is often used in software applications, pages within a web browser, the shells of operating systems and some games.
+
+The language is used in scientific and mathematical computing, and even in AI projects. It’s been successfully embedded in numerous software products, including visual effects compositor Nuke, 3D modellers and animation packages,
+YouTube, Instagram and Quora are among the countless sites that use Python. Much of Dropbox’s code is Python (where Van Rossum works now), Python has been used extensively by digital special effects house ILM (whose work spans across all of the Star Wars and Marvel films) and it’s a favourite of electronics titan Philips.
+
+The filter() method constructs an iterator from elements of an iterable for which a function returns true.
+In simple words, the filter() method filters the given iterable with the help of a function that tests each element in the iterable to be true or not.
+
+iterable - iterable which is to be filtered, could be sets, lists, tuples, or containers of any iterators.
+
+Decorators in Python
+Python has an interesting feature called decorators to add functionality to an existing code.
+
+This is also called metaprogramming because a part of the program tries to modify another part of the program at compile time.
+Functions and methods are called callable as they can be called.
+
+In fact, any object which implements the special __call__() method is termed callable. So, in the most basic sense, a decorator is a callable that returns a callable.
+
+Basically, a decorator takes in a function, adds some functionality and returns it.
+We can use the @ symbol along with the name of the decorator function and place it above the definition of the function to be decorated. For example,
+
+@make_pretty
+def ordinary():
+    print("I am ordinary")
+is equivalent to
+
+def ordinary():
+    print("I am ordinary")
+ordinary = make_pretty(ordinary)
+
+Single Function and Multiple Decorator
+@uppercase_decorator
+@reverse_decorator
+def say_hi(): 
+	return 'hi george'
+The above code is syntactically equivalent to
+uppercase_decorator(reverse_decorator(say_hi()))
+
+pip is the standard package manager for Python. We can use pip to install additional packages that are not available in the Python standard library.
+Apart from the standard Python library, the Python community contributes to an extensive number of packages tailored for various development frameworks, tools, and libraries.
+
+Most of these packages are officially hosted and published to the Python Package Index(PyPI). pip allows us to download and install these packages.
+
+Iterator in Python is simply an object that can be iterated upon. An object which will return data, one element at a time.	
+
+Technically speaking, a Python iterator object must implement two special methods, __iter__() and __next__(), collectively called the iterator protocol.
+
+An object is called iterable if we can get an iterator from it. Most built-in containers in Python like: list, tuple, string etc. are iterables.
+
+The iter() function (which in turn calls the __iter__() method) returns an iterator from them.
+We use the next() function to manually iterate through all the items of an iterator. When we reach the end and there is no more data to be returned, it will raise the StopIteration Exception. 
+# define a list
+my_list = [4, 7, 0, 3]
+
+# get an iterator using iter()
+my_iter = iter(my_list)
+
+# iterate through it using next()
+
+# Output: 4
+print(next(my_iter))
+
+# Output: 7
+print(next(my_iter))
+
+# next(obj) is same as obj.__next__()
+
+# Output: 0
+print(my_iter.__next__())
+
+# Output: 3
+print(my_iter.__next__())
+
+# This will raise error, no items left
+next(my_iter)
+A more elegant way of automatically iterating is by using the for loop. 
+So internally, the for loop creates an iterator object, iter_obj by calling iter() on the iterable.
+
+Ironically, this for loop is actually an infinite while loop.
+
+Inside the loop, it calls next() to get the next element and executes the body of the for loop with this value. After all the items exhaust, StopIteration is raised which is internally caught and the loop ends. Note that any other kind of exception will pass through.
+
+
+
+
+
+
+
+
+**************************************
+expression list1 += [1, 2, 3, 4] modifies the list in-place, means it extends the list such that “list1” and “list2” still have the reference to the same list.
+expression list1 = list1 + [1, 2, 3, 4] creates a new list and changes “list1” reference to that new list and “list2” still refer to the old list.
+
+A set in Python is similar to a list (in that it’s changeable (“mutable”) and unordered), but it can only contain unique items.
+A TypeError occurs when an operation or function is applied to an object of inappropriate type. A ValueError occurs when a built-in operation or function receives an argument that has the right type but an inappropriate value, and the situation is not described by a more precise exception such as IndexError 
+In Python everything is an object, which means every entity has some metadata (called attributes) and associated functionality (called methods).
+In Python, by contrast, variables are best thought of not as containers but as pointers. Python is dynamically-typed: variable names can point to objects of any type.For example, let's create and modify a list:
+x = [1, 2, 3]
+y = x   (when we print y , we see [1,2,3])
+x.append(4) # append 4 to the list pointed to by x
+print(y) # y's list is modified as well! [1, 2, 3, 4]
+But if you're correctly thinking of variables as pointers to objects, then this behavior makes sense.
+Note also that if we use "=" to assign another value to x, this will not affect the value of y – assignment is simply a change of what object the variable points to: 
+x = 'something else'
+print(y)  # y is unchanged [1, 2, 3, 4]
+Again, this makes perfect sense if you think of x and y as pointers, and the "=" operator as an operation that changes what the name points to.
+x = 10
+y = x
+x += 5  # add 5 to x's value, and assign it to x
+print("x =", x) ==> x = 15
+print("y =", y) ==> y = 10
+When we call x += 5, we are not modifying the value of the 10 object pointed to by x; we are rather changing the variable x so that it points to a new integer object with value 15. For this reason, the value of y is not affected by the operation.
+Python Iterators
+
+Python – Reverse Sort a String
+due to fact that not all the containers in Python mutable, such as string, sort function doesn’t work as it inplace tries to sort and immutability stops this. Let’s discuss certain ways in which a string can be sorted in reverse way.
+
+Method #1 : join() + sorted() + reverse key
+This task is performed in 2 steps in which in first step we get the reverse sorted list of characters and then we join the result to get the resultant sorted string.
+
+You can chain comparison
+Conditions may contain more than one comparison at once. You can have a condition that checks whether a value is greater than another and lesser than yet another all at once.  >>> 1<2>1.3<4
+String literals concatenate together
+If you type in string literals separated by a space, Python concatenates them together. So, ‘Hello’ ‘World’ becomes ‘HelloWorld’.
+for- and while- loops can have else statements
+The else statement is not limited to if and try statements. If you add an else block after a for- or while- loop, the statements inside the else block are executed only after the loop completes normally. If the loop raises an exception or reaches a break statement, the code under else does not execute. This can be good for search operations.
+ _ gets the value of the last expression
+Many people use the IDLE as a calculator. To get the value/result of the last expression, use an underscore.
+Use a backward slash
+>>> print("Hi\
+how are you?")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

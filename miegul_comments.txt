@@ -1,0 +1,728 @@
+hello world part 1
+*****************************************************************************************************************************************************
+@ikukuVision: The tests.py module goes in the top-level directory, it is not part of the app package.
+
+Is there a reason why you didnt just do app.run() in microblog.py which then would make it unnecessary to do $ export FLASK_APP=microblog.py
+@Ben: The app.run() method of starting the server is not compatible with the Flask reloader, so it is not recommended anymore.
+
+@Alexandre: I have actually developed this tutorial and the code that comes with it so that it works on the three major platforms. If you want a recommendation for Linux, then Ubuntu 16.04 is a good distribution to learn as there is a lot of information about it out there. But any platform with a Python interpreter would work for this tutorial.
+
+@VS: there is some overlap, but they are not the same. This tutorial covers several topics that are not strictly related to Flask, but more to web development in general. The book is more focused on Flask and goes deeper than the tutorial on its coverage of the framework.
+
+I ran into a problem when I tried to activate the virtual environment on Windows. How do you execute $ venv\Scripts\activate? Is this supposed to be from the command prompt or Powershell?  I have used Visual Studio as my IDE. It creates for you a VS solution that has a basic flask app to start with. In the process of creating the app it asks you to create a virtual environment.  It creates that virtual environment in a directory similar to the one you show in the tutorial. \venv\Scripts exits but it does not have a file or executable called activate. 
+
+@barka: all the examples for Windows that I provide are for the command prompt. I do not use PowerShell. I recommend that you create your virtual environment following the instructions on this tutorial, instead of relying on the IDE's own idea of how you should structure your application. Once you have the project and the virtualenv created, you can import it into your IDE and configure location of the Python interpreter to be the one in your virtualenv.
+
+The server works fine ...
+... but I am wondering why the index page does not update when I change the routes.py to:
+
+@David: not sure, could be that your browser is caching the page instead of asking the server for a new copy. The following page gives you instructions for all platforms and all web browsers on how to refresh the page bypassing the cache: https://en.wikipedia.org/wiki/Wikipedia:Bypass_your_cache. Give that a try, hopefully that'll fix the problem.
+
+Instead of "set FLASK_APP=microblog.py," I had to consult Stack Overflow for an alternative answer.
+
+
+The following code was able to correctly set the FLASK_APP variable:
+
+
+$env:FLASK_APP = "microblog.py"
+
+
+#85 Miguel Grinberg said 3 years ago
+
+@Christian: That is because you are using the PowerShell, which I explicitly decided not to cover in this tutorial. My Windows instructions are for the standard command prompt
+
+
+I came up with an error 
+
+
+"Value Error: source code string cannot contain null bytes"
+
+
+I'm using Windows 8.1, Python 3. I bet this error is somehow related to the python interpreter or the venv. 
+
+@extreeme: you need to look at the line of code that produced this error. This is likely an import line. The module that is being imported is probably corrupted. My suggestion is that you reinstall Python and your virtual environment.
+
+@Yitao: The way you import your modules or how you structure your application are not a concern of Flask, you can use what works best for you. What a lot of people do not understand is that this is Flask's greatest strength, by not forcing you to follow a specific way of development it is able to fit in well in pretty much any type of project or organization.
+
+Why did we use the command line interface instead of the run() function of app? 
+@Ryan: the app.run() method of running the application has been replaced with the CLI. This is not something I fully agree with, I think it was more convenient to have a single script that you run, but that had some issues that the CLI resolves. The Flask documentation includes some info on setting up PyCharm: http://flask.pocoo.org/docs/dev/cli/#pycharm-integration.
+
+you have said:
+
+
+'putting one of the reciprocal imports at the bottom avoids the error that results from the mutual references between these two files'.
+
+
+In this case is init.py from import routes, models, errors and routes.py from app import app.
+
+
+Can you elaborate why putting imports at end will avoid errors? It is still a circular import for me.
+@Joel: It is still circular, but the error is avoided, because the circular dependency is delayed until the end of init.py, so at that point when those other modules try to import back from init.py the import succeeds.
+
+ any reason you prefer an absolute import 'from app import routes' to a relative import 'from . import routes'?
+
+
+@Vlad: 
+2) No reason. I'm fine either way.
+
+ Note that every code snippet presented in this tutorial has a header that indicates the path of the file, relative to the top-level folder. For this file, the path is "microblog.py", not "app/microblog.py". Also there is a file structure diagram that shows that microblog.py is at the same level as the app directory.
+
+@David: the "flask run" command does not work with configuration. There is the app.run() method of running the application, which does accept host and port arguments to set the configuration for the web server.
+
+@Steve: moving the import to the bottom is not really a Flask convention, it is a way to prevent circular dependency errors that would occur if you have that import at the top. I suggest you try it to see how the application fails.
+
+
+@Kari: Most of the time I use vim, which is a text editor. I also like Visual Studio Code and PyCharm a lot.
+
+The New And Improved Flask Mega-Tutorial'. I have been learning a lot from both. I would like to ask you if you have any suggestions on how to implement role-based access control to the blog page. 
+
+@Sam: The basic implementation requires that you store the role for each user in the user table. After you have that, you can check that the role is adequate at the beginning of each route. If you want to make the role access easier to use, you can write a custom decorator similar to login_required that checks for roles.
+@Kawika: the app.run() call is equivalent to running the "flask run" command from the command line. If you prefer to use app.run() you still can, that continues to work, but in general the preferred way to start the server is via flask run.
+ from dotenv import find_dotenv, load_dotenv
+The question is - what is the best practice - adding this to: microblog.py or creating config file and then loading config file from microblog.py
+
+@pekotski: if you are using Flask 1.0 or newer, the .flaskenv file is automatically imported when python-dotenv is installed. You do not need to manually import any dotenv functions. Maybe you are using an old version of Flask that does not have this feature?
+
+Code:
+    xml_file = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+    return redirect(xml_file)
+@Franz: you are redirecting to an XML file, which is not a file that is supposed to be presented to users. If you find a similar URL that has the information in HTML format you should have no problem redirecting.
+
+t does the app instance that we created in the init.py file, contain decorators app.route() out of the box?  if I changed the variable in init.py from app to application, do I also need to change route to have @application instead of @app?
+
+The answer is yes, the application instance provides the route decorator, so if you call it "application", then your decorator should be "@application.route".
+
+
+@j0nr: I recommend that you should develop locally, not on a remote server. You can expose your remote server by running "flask run --host 0.0.0.0", but if you are doing this on a server that is connected to the internet that is a really bad idea, since the flask server is not robust or secure enough to be used in production or on the open internet.
+
+@Alok: if you want the application to start when running microblog.py, you need to add an app.run() call at the bottom of the script, as required in older versions of Flask. Since current versions of Flask offer the "flask run" command, this isn't required anymore, but still works if you prefer to do it that way.
+
+In your experience will it be a better idea to provide url with '/' for each route, i.e.
+
+
+@app.route('/index')
+@app.route('/index/')
+def index():
+
+@AR: A slash at the end of a URL suggests a folder, so in general I avoid it for URLs that refer to a single thing. But if you want to support both the slash and non-slash versions of a URL, you just need to use the slash-ending URL, Flask handles the support of the same route without the ending slash.
+
+If I set FLASK_APP=microblog.py in the terminal, all is good.
+
+
+When I try to set the variable using .flaskenv or .env the I get: "flask.cli.NoAppException: Could not import "C"."
+
+
+I know .flaskenv is being read because I can change the environmental variable to production or development.
+
+
+when I "flask run" trying to use .flaskenv the terminal displays: " * Serving Flask app "C:\Users\Andy\python_development\microblog\microblog.py" (lazy loading)"
+
+
+When I set the FLASK_APP=microblog.py in the terminal and run "flask run" the terminal displays:" * Serving Flask app "microblog.by" (lazy loading). "
+
+@Andrew: do you need to set the full path in your .flaskenv file? The problem is that the colon is used as a separator between the module and the app name, it seems Flask does not support a Windows absolute path because of that.
+
+@Maki: the .flaskenv is loaded automatically if python-dotenv is installed in your virtualenv.
+
+Do you have any posts about sending files? I manage to send one excel file, but what about multiple files? I've been looking for resources about this topic but cannot find a way. A zip file in this case would not be a solution.
+
+
+I've implemented the code below that works fine for sending 1 file. Is it possible to send more than one?
+
+
+@app.route('/returnfile', methods=["POST"])
+def returnfile():
+
+
+........... # some code that populates df_data and df_data2
+
+
+# CREATE MEMORY FILE    #create an output stream
+output = BytesIO()
+writer = pd.ExcelWriter(output, engine='xlsxwriter')
+
+df_data.to_excel(writer, index = False, startrow = 0, merge_cells = False, sheet_name = 'data1')
+df_data2.to_excel(writer, 'data2')
+
+writer.save()
+#the writer has done its job
+writer.close()
+#go back to the beginning of the stream
+output.seek(0)
+#finally return the file
+return send_file(output, attachment_filename="testing"+"_g1_"+".xlsx", as_attachment=True)
+
+
+@amnocas: the HTTP protocol is document based, you can't really include more than one file in a given response unless you do something like a zip file. Have you seen any web site that does what you want to do?
+
+I wonder if there are any special reason not to make the microblog.py with a shebang such as:  #!/usr/bin/env python
+
+
+It seems to work well, and it seems like you don't have to set any environment variables then.
+
+
+#235 Miguel Grinberg said 2 years ago
+
+@pelle: you also need to add the app.run() call if you want to execute the script directly. The only disadvantage with this approach is that the reloader doesn't work as reliably as when using the "flask run" command. Other than that there's no difference.
+
+
+@AR: you can't have a module and a package with the same name in the same directory. Python would not know which one you are referring to. Rename the application folder, or the application.py module to another name.
+
+@Melvyn: The name "app" is more a convention than anything else. You can call your Flask instance anything you want.
+
+@Aditya: The proper way to deploy a Flask app on production is covered later in the tutorial. The quick & dirty way to do it is by running "flask run -h 0.0.0.0". But this is almost always a bad idea.
+
+@Ran: the name is the same, .flaskenv. It should be in the microblog folder, like you do it for Linux and Mac.
+
+Should we run "venv\Scripts\activate" every time we open new terminal?
+@Raj: yes, the venv activation is bound to each terminal session, so it needs to be done each time you start a new terminal.
+
+When i start the virtual server in my venv with flask run what is the home directory for this server? i build a small app to give users access to certain files in a folder but the virtual server does not see my regular root directory. Where should i save my files to make it work in the venv for testing purposes
+
+The Flask server is not primarily made to serve static files, in the way other web servers are, so it isn't a great server for this purpose. See the following question in Stack Overflow for one way to do it: https://stackoverflow.com/questions/20646822/how-to-serve-static-files-in-flask.
+
+@Ka: I have written a few articles about REST, you can find them in their own category in this blog (see the categories on the right sidebar). I have also spoken about REST at PyCon conferences, you can find those talks on YouTube.
+
+@Robert: the microblog.py and the "app" directory need to be at the same level
+
+ I am using PyCharm and Python v 3.6 on Windows 10.  Your demonstration is very helpful thus far but I was unable to run the microblog.py application without adding if name == 'main':
+    app.run()
+
+@Brian: The method of running the application that I'm using in this tutorial involves running "flask run", not running the microblog.py script. If you want to match my method, you need to set up your PyCharm project to run the "flask run" command. The method that you are using will work mostly in the same way, so if you are comfortable running that way you can use that too.
+
+(venv) C:\Users\Travis\microblog>flask run
+'flask' is not recognized as an internal or external command,
+operable program or batch file.
+@Travis: this is a fairly recent Flask issue. See https://github.com/pallets/flask/issues/3327 for a workaround until the bug is fixed.
+
+
+@not quite: there is currently one known problem. What does not work is running in debug mode on Windows. This is a bug in Werkzeug. Other problems I'm not aware of, my guess is that the problem is on your side, maybe missing or misconfigured FLASK_APP variable.
+
+@von Paulus: the Flask Web Development book is not the same as this tutorial, they are different. If you have the 2014 edition of the book it is not a bit outdated, there's been a new edition of the book that came out in 2018. This tutorial is also up to date with recent releases of Flask.
+
+@Steven: all recent versions of Flask are compatible with this tutorial, including the current 1.1.1.
+
+To people getting "Could not import "microblog" or "failed to find Flask application or factory in module "microblog", see the official guide on how to structure your application as a module
+https://flask.palletsprojects.com/en/1.1.x/patterns/packages/
+
+
+@Tal: I have blogged about configuring Flask projects for PyCharm. See https://blog.miguelgrinberg.com/post/setting-up-a-flask-application-in-pycharm.
+
+Is pip install flask the same the same as pip install Flask? Does lowercase or uppercase matter when using pip install?
+
+@Kenneth: Doesn't matter, pip installs are not case sensitive.
+
+To activate debug mode, stop the application, and then set the following environment variable:
+
+
+***********************************************************************************************************************************************************
+the-flask-mega-tutorial-part-ii-templates
+*******************************************************************************************************************************************************
+@Nodnarb: Flask applications do not really fit the MVC pattern that well. The model layer will be introduced in a couple of chapters when database concepts are introduced. Views and controllers are really not that well defined. You could say that your view functions (routes.py) are the controllers, and your templates (app/templates) are your views, but I don't think the distinction is that clear.
+
+I would use Mako and Flask-Mako but I have an error : " ImportError: No module named 'flask.ext' "
+
+@thomas: Flask-Mako is a very old extension that has not been updated for newer releases of Flask. You can try to replace "from flask.ext.mako import ..." with "from flask_mako import ..." and maybe that will work. If that does not work, then you are out of luck, you will need to fix that extension to work with newer versions of Flask, or else downgrade your Flask version.
+
+@John: there shouldn't be any issues with replacing SQLAlchemy with MongoDB, but obviously you database structure will need to be different, in particular due to not having an efficient way to query relationships or do joins. Other than those differences microblog should work fine with a MongoDB backend.
+
+I am wondering if I can color Jinja statements and variables to improve readability in my code (my own code, a bit more complex than this chapter). I am using BBEdit (free)
+@Steve: You can use the HTML coloring scheme to get basic coloring. There are many editors that have specialized Jinja2 coloring. Vim has a plugin for that, PyCharm too.
+
+@AR: The documentation is your friend, as always: http://jinja.pocoo.org/docs/2.10/templates/#if-expression.
+
+ I want to ask if I can render(update) a specific variable dynamically without reload page? Does any function for the need?
+Returning render_template needs to set all variables and cause the page reload, which is not I expected. 
+@程鈺涵: dynamic updates to a web page need to be done in JavaScript. If you need to get data from the server, the JavaScript needs to send an asynchronous request to get the data, and then insert it in the correct place in the page.
+
+*****************************************************************************************************************************************************************
+the-flask-mega-tutorial-part-iii-web-forms
+
+***************************************************************************************************************************************************************
+
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+Wont it be better if its written like this
+SECRET_KEY = os.environ.get('SECRET_KEY', 'you-will-never-guess')
+Because the get method of dictionaries has a second argument which is the default value if a key is not found
+
+@Jjagwe: I prefer the "or" method, as that also works if the environment variable is set to an empty string.
+
+because you can have an empty environment variable set in your environment. With the  default inside the get method you will get an empty string. With the or operator, the empty string will equate to False and then you'll get your default.
+
+If you are using Python 36, any reason why you are not using f-strings instead of the .format? or is it just a matter of preference?
+@Abraham: only to stay compatible with 3.5 and 2.7.
+
+using action="", as the POST will be sent to the '/login' route.  Any thoughts on the best approach?
+@Patrick: an empty action submits the form to the URL that is on the address bar, so it is effectively the same as adding the /login URL. Both approaches are equivalent, I prefer the empty string because it is one less thing that you can make a mistake on.
+
+How can i change the messages of warnings by validators pass to me? Or are there any chance i can use another language like Chinese to display those messages? Thank you your tutorials.
+@alfredzhou: You can provide your own error message as a "message" argument to each validator, but note that wtforms already provides translated messages for most languages including Chinese. You will get to how to work with translations later in the tutorial.
+
+@Frank: the current version of Flask does not provide any way to persist the FLASK_APP variable, so if you want to do it, you need to do it in a way that your operating system supports. So for example, if you are using bash, you can add the variable to your .bashrc file. Some people modify the activate script from the virtual environment to add this variable, but I don't like that practice because I tend to refresh my virtualenvs fairly often. The master branch of Flask supports writing this variable in a .flaskenv file, so when that is released the situation is going to be a little better.
+
+How would you deal with complex forms with relationships in flask-wtf? For example, I just built an add customer form, which also allowed the user to add addresses, phone numbers, multiple sub-contact information as well as the customer details. 
+ I had to manually map all the data from the form to the corresponding sqlalchemy models, and vice versa on the update
+
+@Sean: for this type of form where you can have lists of sub-entities (phone numbers, addresses, etc.) I would probably not use the type of solution presented in this chapter. I would instead build the form in JavaScript, and then when the form is submitted send all the data in one big payload to the server. Then in the server, your POST request handler can take that data apart and create all the relationships as needed. I think when you separate things in this way you end up with a much cleaner implementation for the server. The JavaScript side is not going to be trivial, but I don't see a way to avoid that if you want to provide a good user experience to your users.
+
+One quick question I haven't been able to answer: How do I easily view the methods and attributes available on an instance of WTForms? Is there a way to load routes.py into IPython and call dir() or vars() on an instance of LoginForm?
+
+
+I've read through the documentation for WTForms (https://wtforms.readthedocs.io/en/latest/fields.html) and I realize everything you've done here can be found there, but it would be nice to be able to run a quick Python command to verify it too.
+
+@Daniel: You can create a scratch instance of the form you are interested in, directly in your IPython shell. The form instances can be created outside of a route, they are just normal Python objects.
+
+@Jones: validate_on_submit is evaluated after the user press the submit button and the browser sends the POST request, not before. Some validators generate pre-validation code for the browser, I suspect this is the source of your confusion.
+
+@YuvalG: this is explained in the article, the secret key is used to generate cryptographic tokens or signatures. It has a purpose in making your application secure. Specifically for the topic of this article, the secret key is used to generate a token for each form, that prevents CSRF attacks.
+
+I am building a blog engine by using parts of your tutorials that are required.
+I want to implement comment form for each page and list of comments for particular page on each particular page.
+Can you hint me how is it done with displaying and accepting comment like on your blog engine
+
+@Raja: the easy option is to use Disqus or similar. If you want to implement it yourself, then each comment needs a relationship to the blog post it belongs, and with this you can then query for the comments that belong to a given blog post, separate from the rest.
+
+@idiotzavant: the validate_on_submit() function is going to return False when the request uses GET, which happens when the browser is requesting the page for the first time. The form is going to be submitted as a POST request (in most cases, at least).
+
+Hi Miguel, this is a great blog and your Flask Web Development book was also excellent. 
+
+
+I'm trying to include inline radio buttons within a form that will be rendered using flask-bootstrap's {{ wtf.quick_form(form) }} macro.
+
+
+is there any way to specify classes for form elements prior to rendering so that I can mark these as .radio-inline?
+
+@Adam: You have a couple of options. You can wrap your quick_form code with a  that uses your own custom class, and then use that in your CSS styles to duplicate the effect that the Bootstrap radio-inline class does. You can use a selector such as "div.my-form-class .input[type=radio]" and then copy the definition of radio-inline in this entry. Another option is to make your own copy of the quick_form macro from flask-bootstrap and modify it to add the class to radio fields. Ultimately, I think if you are going to need customizations for form fields, then the quick_form macro starts to be less useful, and instead you may be better off using your own form rendering logic.
+Sometimes I see different imports for WTF. What's the actual difference between:
+1. from flask_wtf import FlaskForm
+2. from flask.ext.wtf import FlaskForm
+
+@Vitalii: Your #1 is the correct format. #2 is a legacy format that was used in older version of Flask. It still works, but it is deprecated.
+
+Why are you able to call the functions url_for() and get_flashed_messages() directly in the jinja templates? All variables in the jinja templates need to be passed in through render_template(). Why not the functions as well?
+
+
+#52 Miguel Grinberg said 3 years ago
+
+@Logan: There are a few commonly used functions that Flask makes available to all templates. The documentation shows what symbols are included: http://flask.pocoo.org/docs/0.12/templating/#standard-context. You can also add your own things to the list of pre-populated variables and functions made available to templates: http://flask.pocoo.org/docs/0.12/templating/#context-processors.
+
+ I don’t ever see the app.db file get created. I’ve done some troubleshooting and have come down to this. I’ve noticed that in the console window logs a message says: Neither sqlalchemy_database_uri nor sqlalchemy_binds is set. Defaulting sqlalchmey_database_uri to “SQLite:///:memory:"
+
+@Jeeves: Did you set the SQLALCHEMY_DATABASE_URI variable in your configuration? The error suggests that you didn't.
+
+@Alexandr: extends is for template inheritance, while include just insert a template into another. 
+
+
+I'm having trouble wrapping my head around the line app.config.from_object(Config)
+
+
+Does it create a Config instance and invoke the from_object method with the Config class as a parameter? Is from_object a method of the base class object? I don't see it when I run dir(object) in the interpreter.
+
+
+Is there perhaps an alternate way to achieve the same result that's a little friendlier for beginners, or is a strong understanding of this something you'd consider important? 
+
+
+I'm kind of banging my head against the wall. 
+
+@Tom: it's much easier. The Config class is a plain class that I"m only using as a container for configuration variables. I never create an instance of this class. The from_object() method is part of Flask's configuration object (you can find it in the official documentation: http://flask.pocoo.org/docs/0.12/api/#flask.Config.from_object). This methods takes a class or module, walks all the attributes it contains and imports them into the configuration.
+
+Is it worth warning the user if the default key is used in production mode (FLASK_DEBUG=0)?
+Is this something that the server admin might forget or is it common knowledge? Or perhaps the user should be allowed to do what they please.
+
+@Kevin: This is really up to you. If you want, you can set a default value for SECRET_KEY if DEBUG=1, that way you will be forced to set a value on the production deployment.
+
+I have a question regarding the usage of redirect and url_for to replace the functionality of render_template. In this link, the index method in routes.py, uses a render_template call, is there a way to replace this call by redirect and url_for ?
+
+
+#83 Miguel Grinberg said 2018-05-02T05:17:22Z
+
+@Animesh: not sure I understand what you are trying to do. A redirect() call cannot replace a render_template() call, they do different things. A redirect basically tells the browser to read a different URL. But that new URL must be implemented with a render_template().
+
+I don't understand the way the config module has imported . how this (  from config import Config ) work while config modules placed on the parent directory of init.py .
+
+
+#93 Miguel Grinberg said 2018-05-18T17:26:41Z
+
+The "config" module is in your current directory (the top-level microblog directory), so you can import it directly because the current directory is in the import path. 
+
+
+When i run the app i get the following error
+@app.route('/login',  methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+@sudheer: view functions must always return a response to send to the client. Your login view function does not return a response, you are missing a render_template() call that provides the HTML content of the login page.
+
+Thanks for this excellent tutorial. In another course, I learned that web apps should be designed to avoid the "browser must resend data" alert. If I leave login fields blank, I get the error message correctly; but, if I try to reload page, I get the "resend" alert window from Firefox. Isn't there a way to build this so that flash message disappears on reload? BTW I don't get that alert if I click on the "Login" link in navigation bar, i.e. flash message disappears as intended.
+
+Hey Miguel,
+
+
+I'm having issues with displaying the red errors (i.e. for error in form.username.errors etc).
+
+
+I seem to be following your instructions as closely as possible, but I am not seeing any new behavior with the addition of these lines to the base.html. I still get the generic warnings. I find it strange that it doesn't work yet doesn't throw an error.
+
+
+Any thoughts? Thanks!
+Paul Ryan
+
+
+#106 Miguel Grinberg said 2 years ago
+
+@Paul: There is a recent change that was made to the WTForms package that changes the behavior for some validators, which now get error messages generated by the browser instead of by the server. This is currently being discussed with the maintainer of WTForms. Depending on how this discussion ends I will update the article and the screenshot. If you want to see the original behavior presented in this article, install the previous version with "pip install wtforms==2.1".
+
+Hi Miguel, thank you for the tutorial. I've followed the instructions so far but when I tried to import flask_wtf it says "[pylint] E0401:unable to import 'flask_wtf'. I already installed it and I can't seem to find the problem. I hope you can help me. Thank you!
+
+
+#129 Miguel Grinberg said 2 years ago
+
+@John: the error that you get is from a linter (pylint). Instead of relying on a linter (which sometimes get things wrong), try running the application and only trust errors from Python. One possible reason why the linter is giving you this error is because you have pylint installed in a different virtualenv.
+
+@Mandeep: You are incorrect. The hidden_tag() method renders all hidden fields in the form, including the csrf token.
+
+Great tutorial! I was wondering how to integrate WTForm's validation functionalities with the latest version of Flask-Bootstrap (Bootstrap4). I have a simple file upload form where the validators to submit are that the user needs to upload a file and the file extension is a .csv. If neither criteria is met, the corresponding error message (either "file required" or ".csv files only!") should appear. This worked with regular flask-bootstrap as per tutorial 11. However, I updated my Bootstrap to v4 and neither of the validation messages appear like they did before. Also, do you know of any good resources that talks about how to easily apply CSS styles to wtforms. I have tried researching online, but there doesn't seem to be much around. 
+
+
+Thanks in advance
+
+
+#154 Miguel Grinberg said 2 years ago
+
+@Michael: Flask-Bootstrap4 is not made by the same developer as Flask-Bootstrap, so things may be different or incompatible. You may need to submit an issue on their repo about your validation problem. Adding custom styles to fields is easy with Flask-WTF alone, but it gets harder if you render your fields through Flask-Bootstrap. For Flask-WTF standalone, just add class_="your css class" argument in the statement that renders the field in the template. With Flask-Bootstrap I found it is easier to add my CSS styles from the other side, with selectors that explicitly refer to each form field.
+
+
+@Csaba: you need to tell Flask where the config class is. This is the app.config.from_object() call issued after the Flask app instance is created. 
+
+
+I don't really understand how the route function can read the form data after a POST submission when we've got the following as the first line of the login() function:
+    form = LoginForm()
+Doesn't that re-instantiate the form object every time the login() route function is called, i.e. re-instantiate right after the browser has sent a POST request?
+When we open the /login page in the browser, it's a GET, form is instantiated, form.validate_on_submit() returns False, so we end up rendering login.html. Clear.
+But in the browser, when I submit the form, I'm sending a POST to /login. How can form.validate_on_submit() return True is form has just been re-instantiated to a new object?
+***********************************
+@trotsky: the FlaskForm class checks request.form and if data is stored there it loads all those form fields into itself.
+
+
+After a web page of my website remain idle for a long time, say around 30 minutes, then if I submit a form on that page by clicking the submit button, then the form does not get submit and control returns back to the page. If I click on submit button again immediately then form gets submitted.
+I have tested this and can repeat this behavior on any page with form on my website. 
+
+@AR: the tokens that are generated by Flask-WTF have an expiration. If you request a form and then submit it a long time later, then the CSRF validation is going to fail due to the expired CSRF token.
+
+@Yotam: your venv is tied to a particular version of the Python interpreter. If you made a venv of Python3, then that's the only version it will work with. Make another venv for Python 2, install the dependencies on it and then you should be fine.
+
+Hello Miguel. Thank you very much for your excellent articles. I have a small question, though. I'm having a problem with the forms in one of my apps. Basically, I have multi-step forms. The user must fill in information at each step and at the end if everything is valid, and only on this condition, I save them in my database. I have a different url for each form (@ app.route ('/ step1'), @ app.route ('/ step2'), etc.). The problem is how to temporarily store this data during the filling process, before sending it to my database? Is there a particular way to accomplish this task in Flask? Thank you
+
+
+#187 Miguel Grinberg said 2 years ago
+
+@Jordi: If you don't want to write partial information on your database, you can consider writing these intermediate forms to the user session, which will be preserved from one request to the next.
+
+@Filippo: this is mentioned in the article. You need to add a "novalidate" attribute to the HTML form element so that the browser's own validation does not interfere. This feature of the browser used to be disabled, but in recent versions of the WTforms package it is enabled, so the browser catches the error first and does not allow the server to validate. If you add the "novalidate" attribute as shown above the browser will not do validation.
+
+How can i display a variable with flash message?
+@AR: use python expressions for this. For example: flash("New article name is: ' + str(VariableName)).
+
+
+I can’t found way how to organize form with few buttons.
+In blog, for example, it could be page with detailed information about post with 3 buttons: Ok,  Edit, Delete. Or something like this.
+So how in my view function I can get which button user click?
+
+
+#223 Miguel Grinberg said 2 years ago
+
+@ mitry: There is a stack overflow question about this: https://stackoverflow.com/questions/35774060/determine-which-wtforms-button-was-pressed-in-a-flask-view
+
+about "StringField", I want to show some information in put-in box of this field at initial, and when user put in some information in it, the initial information would disappear; how shall I set for this?
+@frank_cap: that is called the "placeholder". You can add a placeholder text as follows:
+
+
+{{ form.username(size=32, placeholder="enter your username") }}
+
+
+If you are writing your form fields in plain HTML, then add a placeholder attribute to your  element.
+
+@Wang: the import rules are different between Python 2 and 3, so maybe you are getting confused by thinking in terms of Python 2. Relative imports (using "from .. import something") only work when you go from a child package to the parent package. Going from a first-level package such as "app" in this project to the top-level directory does not work because the top-level directory is not a Python package. On the other side, the top-level directory is in the Python path because it is the current directory when you start the application, so you can import anything that is in that top-level directory without having to specify a path.
+
+
+The second problem is also related. Importing a module that is in a package from another module in the same package can be done as a relative import: "from .forms import LoginForm" or can also be done as an absolute import: "from app.forms import LoginForm". Both work. What you cannot do is "from forms import LoginForm". This only works in Python 2, but in 3 it is not allowed.
+
+This problem occurs even if the web page remains idle for lesser time, around 5-6 minutes. This is a significant issue when end users are using the site and can not successfully submit a form. How can the time for CSRF token expiration be increased, so that a user can submit a form atleast after 15 minutes of requesting a page. 
+@AR: Did you check the Flask-WTF documentation? You can change the CSRF token expiration or even disable it: https://flask-wtf.readthedocs.io/en/stable/config.html#configuration
+
+Sometimes  a form require longer answer and user has to invest time in typing all  those. Page remains idle during that time. Only to not get submit at the end.
+
+I have explicitly mentioned WTF_CSRF_TIME_LIMIT = 3600 in config.py under class Config, but the problem still exist. 
+@AR: 3600 is the default, so you aren't changing anything. That should give you tokens that last for one hour.
+
+@CarlosR: with the structure that I created for this tutorial, config.py goes in the top-level folder, not inside app. Note that this is entirely a choice, if you wanted to have config.py inside app, then you would import the Config class as follows:
+
+
+from app.config import Config
+
+
+Apparently the novalidate tag in the login.html will prevent the form.validate_on_submit to evaluating to True in the routes.py. 
+W3 School on novalidate:
+"When present, it specifies that the form-data (input) should not be validated when submitted."
+When I removed novalidate, I got the code running properly.
+
+
+Miguel wrote:
+"The novalidate attribute is used to tell the web browser to not apply validation to the fields in this form, which effectively leaves this task to the Flask application running in the server. Using novalidate is entirely optional, but for this first form it is important that you set it because this will allow you to test server-side validation later in this chapter."
+This would indicate that it should work with novalidate. Can someone clarify with further details?
+
+
+#254 Miguel Grinberg said a year ago
+
+@Teemu: No, you are not interpreting the documentation correctly. There are two places where validation can happen: in the client, and in the server. What you read in the W3 School site applies to the client only. The field validation shown in this article is all done on the server and has no relation to the novalidate tag.
+
+In the routes.py file the section of code:
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+
+It seems to indicate that a new LoginForm() object is created every time login() is executed.  How does the LoginForm data from the POST submission get referenced?  Is there some magic happening in the background to replace a new LoginForm() with the one coming from the POST request?
+
+
+#256 Miguel Grinberg said a year ago
+
+@Mike: The LoginForm() object is different every time, you got that part correct. Recall that the LoginForm class has FlaskForm as a base class. That is where the somewhat magic behavior happens. This class knows how to go look in the Flask request object for the POST data and populate the form fields with it.
+
+
+I've found out that the form data sent to the server includes csrf_token. So it's the server that can't work it out properly. It looks like the page doesn't get the data from the form.
+
+
+#269 Miguel Grinberg said a year ago
+
+@Paberu: Could it be that the server decides the CSRF token sent by the client is invalid? This could happen if the server regenerates the token after each request. The token is stored in the user session, if the user session is being reset for any reason that would prevent CSRF validation from working.
+
+@Jakub: I'm not sure I understand the problem. You can pass multiple arguments to a render call. Also note that you should use "class_" (trailing underscore) when setting the CSS class, since the keyboard "class" is reserved in Python
+
+hey miguel,i want to ask a question:in base.html {% with messages = get_flashed_messages() %},why use with?
+@like: you can't write regular Python inside a template, the options that you have are more limited. If you want to create a variable you have two options, either "set" or "with". Using a with block makes more sense in my opinion because your variable does not stay defined for the entire template, it just exists inside the with block.
+
+I however have a quick question: I'm using wtf.form_field to render the fields with the option value="..." to pre-populate the fields, which works well for text fields, but this doesn't work for a SelectField. Would you know how I could tell wtf.form_field which option I want to pre-select? 
+
+@Tremeur: I'm not sure I understand your question, but the correct way to preassign a value or selection to a field is to set the field.data attribute to the value that you want. So for example:
+
+
+fom.my_text_field.data = 'this text goes in the field'
+form.my_select_field.data = 'option1'
+
+There is also another option, which is to set a default value for the field in the field.default attribute. I haven't used this myself, always preferred to set the data attribute. Either way, there is no need to mess with HTML attributes for this. Hope it helps!
+
+
+Is it possible to add fields to the form, either dynamically or after the form class is created?
+Thank you in advance.
+
+
+#286 Miguel Grinberg said a year ago
+
+@Pablo: you can, but it is a bit obscure. You will need to use the setattr() function to add those new fields after the form has been created.
+
+Hey! I wanted to implement a csrf token authentication with the login and registration forms that you have demonstrated here
+@Shreyas: Flask-WTF adds CSRF protection to all forms by default. You are already protected against CSRF. Look in the HTML code for the login form page and you'll find the CSRF token as a hidden field.
+
+Please tell me why I need to use WTF for create my form ? The standard Form with only HTML code work very well. So, Why ? 
+
+@samir: you don't "need" to use WTF. If you want to write your forms directly with HTML code and you are happy with that, then do it, nothing wrong with it.
+
+Is it possible to style the options in a SelectField? For example, I'd like small png images for each choice (Giraffe, Monkey, Dog), or even just have different colors for each choice.
+
+@Ron: the forms fields are standard HTML, you can apply any styling that you like.
+
+@Jeff: we can have different favorite reasons why POST is better to submit forms than GET. The fact is that it is perfectly valid and legal to submit with both, regardless of how state changes or doesn't change in the server. From my point of view, the main reason to submit forms with POST is that the data travels in the body instead of the URL as I say in the article, so the user does not see it. Duplicate submissions are in fact a big problem for forms in general, even those submitted via POST request, so I wouldn't say that using a POST requests prevents this problem.
+
+@Florent: See https://flask-wtf.readthedocs.io/en/stable/quickstart.html#creating-forms.
+
+I encountered an error of saying "block 'content' defined twice" after I execute "flask run" at the terminal.
+I have checked there is only one {% block content %} inside  tag from the base.html ( i named it as layout.html).
+
+@Wendy are you using Flask-Bootstrap? This extensions defines a block named content, so you need to change yours to something else to avoid the collision.
+
+For SECRET_KEY, why not use something like os.urandom(12)?   Then its always guaranteed to be relatively secure and not require the user to create a key.
+
+
+#318 Miguel Grinberg said 10 months ago
+
+@Ryan: because each time you start the server you'll get a different secret key. Any user sessions that are out there would be invalidated with a server restart. You can certainly generate a secret key by running a Python expression that generates a random string, but once you have a key generated you have to keep using it every time.
+
+AttributeError: module 'app' has no attribute 'config'
+@Matas: you are importing the app package, not the app instance. If you say 'import app" you will be importing the app package. What you need to do is "from microblog import app", which imports the variable named app, which is the Flask instance.
+
+I have a problem with CSRF expiration. The default expiration time is 3600. I received the error message, CSRF token is expired, after I sent the form an hour ago. I know I can set WTF_CSRF_TIME_LIMIT to None to solve that problem. But I still wonder if there is a better solution. (Get a new token.)
+
+@Chi-Hui: you need to find a balance between convenience and security. If you disable the time limit then your forms are more at risk of suffering a CSRF attack, because once the token is leaked the attacker would have all the time in the world to submit forms. If one hour is too short, then make it 6 or 24 or something like that, but I recommend you do not disable the expiration completely.
+@Chi-Hui: Really the question that I have is why your forms stay up for so long that the tokens expire. That is not the idea. in any case, all you need to do to renew the token is refresh the page. Add an auto-refresh if you don't want to do it manually.
+@Daniel: select fields work in a fairly similar way to text fields. The only difference is that you have to set the "choices" attribute to the contents you want to appear in the dropdown.
+@Piyush: Your current directory must be microblog when you start the application. If you start from another directory, then config.py will not be found and you will get this error.
+
+What I want is to implement a Form such as:
+class InputRecordForm(FlaskForm):
+    id = IntegerField('Record ID')
+    result = SelectField('Result', coerce=str)
+    particular = TextAreaField('Particular')
+
+
+The form field shall repeat in each row of  a table, where for each row of the table some column made up of records from a database table. and some column is the item of the a.m. form and pre-populated with data from the database table if the relevant record not None, the row number of the table is not fixed since they are records from database.
+When fill-in or update the data of the form field for each row and finally submit, the software shall record all inputed data.
+My problem is I did not know how to make this form field repeatable in each row of a table and then get the input data via a for loop in the view when form submitted.
+(in a word: What I need it not only update 1 database table record a time but  batch records with 1 submit.)
+
+ @Jian: okay, I think I understand now. Take a look at the FieldList field type in WTForms: https://wtforms.readthedocs.io/en/stable/fields.html#wtforms.fields.FieldList
+
+By doing "app.config.from_object(Config)"
+you pass a class (not an object) to the method "app.config.from_object".  You don't create an object of the class Config. But it works! I don't understand that.
+Question 2:
+In the config.py you define the class Config like this:
+"class Config(object)". This implies that creating an object of that class requires an argument. But you are not using that argument within the class definition. In the class-definition you have only one statement:
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'. 
+There is no variable with the name "object" in this statement. 
+
+@nico:
+
+
+1) the documentation explains this well: https://flask.palletsprojects.com/en/1.1.x/api/#flask.Config.from_object.
+An object in this context can be a module or a class as well.
+
+
+2) The "object" argument to the Config class is not a creation argument. It is the base class. Creation arguments are given in the init() method.
+
+ why you need both render_template() and redirect() functions and just wanted to clarify. 
+
+@Daniel: One of the reasons is close to the one you mention. The redirect causes the URL in the browser to change to the redirected page. If you return the template, then browser would not know it is showing a different page. Another reason is the so called "post/redirect/get" pattern, which you will learn later in this tutorial.
+
+
+I'm implementing my frontend using Angular and my backend using Flask, so the question is: Non of these WTF applies to my project, right? Because I'm understanding that WTF is used to create an Object that will be rendered as a valid HTML Form element. Basically I'm using Flask to create a RestAPI so, no render nothing at all. Am I wrong? Can I still use WTF for any other API related stuff? Thanks.
+
+@Mauricio: if you don't use web forms that are handled by the server then this is not going to be directly applicable to your project, correct.
+
+ I want to add a simple button to the index page, that calls a function in a python script.
+
+
+python script:
+
+
+def somefunc(val):
+     print(val+' World')
+     return datetime.now()
+
+
+In order to do this "by the book" (yours), I wanted to create a class in the forms.py
+
+
+class TestButton(FlaskForm):
+    submit = SubmitField('actionbutton')
+
+
+But i wondered if that is possible here, because actually I am not submitting a field, just wanting to call an external function. I tried googling and reading stackoverflow (Flask - Calling python function on button OnClick event) but I am not sure how the forms.py and the routes.py would need to be updated. 
+
+
+I tried for the routes.py:
+
+
+from app.forms import TestButton
+from somefile import somefunc
+
+
+@app.route('/test', methods=['POST'])
+def test():
+    form = TestButton()
+    tmp = somefunc('hello')
+    return render_template('index.html', message={tmp}, form=form)
+
+
+My goal is to give the return value of somefunc back to the gui to display for a simple example when the button was clicked (i want to achieve this by calling the external python func, not with intern HTML methods). 
+
+
+I added the button like this:
+BUTTON
+
+
+#382 Miguel Grinberg said 5 months ago
+
+@raphael: Yes, you can have a form that is just a submit button, that works just fine. In fact, there is going to be a hidden field in your form that is the CSRF token, so it won't even be an empty form.
+
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms/page/16#comments
+
+
+@nw: the browser would only submit a single form, so if you want to use a standard form submission your only choice is to put everything in the same form. If you were to use JavaScript to submit the form, then you can do pretty much anything you want. You would hook up a listener to the submit button of your choice, and then in your handler you can send a custom request with any data that you want.
+
+
+Hi, i am trying to do an expert system with flask and i made my knowledge base  with a lot of txt files. Could you tell me please in wich folder should i put it : templates, static ? or could you send or do some tutorial about this topic. Thank you very much.
+
+
+#397 Miguel Grinberg said 4 months ago
+
+@Maria: your text files should go in the static folder. Maybe create a sub-directory inside static for them, so that they do not get mixed with other static files that you have.
+
+when we make a get request a new 'form' variable is initialized by:
+form= LoginForm() (in the login view) , and this form is attached and the login template is rendered.
+
+
+But when we make a post request,  how does the form variable(in the login view) contain all the submitted information, we never assigned these values to it?
+
+@Akhil: The Flask-WTF extension looks in the request object for submitted data and if found it populates the form with it. This all happens when the form object created.
+@Dmytro: no problems with f-strings. I wanted the tutorial to work on Python 3.5 as well, and that is why I haven't used them myself.
+
+In  base.html we did not have to import url_for function from the flask module, but in routes we did. Can you tell me why that is?
+Another one that I have is about the object 'form' in the 'login' route. This stores the username and password submitted by the user but what if multiple users send their info? Will that all be stored in this single object.
+@Praveen: the url_for function is automatically registered to be available in all templates by Flask. If multiple users submit data at the same time you will have two threads or processes, each handling a single request. So for each thread/process the values in the form object are going to be different.
+How can I point the url_for() method to a 'users/<username>' endpoint? This way I could redirect to the user home page once signed in...
+
+
+#423 Miguel Grinberg said 2 months ago
+
+@rene: You can do url_for('user', username=your_username).
+
+@Cookie: most browsers accept forms without an action and send the request to the same URL, but given that this isn't clearly specified in the standard it is best to be explicit and include the action.
+
+
+********************************************************************************************
+the-flask-mega-tutorial-part-ix-pagination
+*******************************************************************************************
+
+I got a problem where // post = Post(body=form.post.data, author=current_user) //. This is located in routes/index. The problems seems to be that models/Post doesnt have a author attribute but you didnt specifie that it should in your models.py file. Any idéa? 
+
+
+#2 Miguel Grinberg said 2018-02-08T13:52:14Z
+
+@Daniel: The Post models does have a "author" attribute. This is specified in the User model's relationship construct. The "backref" argument there defines the other side of the relationship, from posts to users. Go back to chapter 4 to see this.
+
+@Anthony: The Home page has the form, the Explore page does not. Sounds like the "Older Posts" link in the Explore page is incorrectly linking to the Home page. Check the pagination links in the Explore view function and make sure they are correct.
+
+How app.config['POSTS_PER_PAGE'] works? Shouldn't it be like app.config.POSTS_PER_PAGE because it is a class variable and not a dictionary. 
+
+
+@Vishal: No. You are confusing the Config class (which has the configuration given as class variables) with the app.config object, which is Flask's configuration object. The app.config object uses dictionary syntax for configuration variables, regardless of how those were imported into the application.
+
+You say "Calling all() on this query triggers its execution". By mistake, I left all() out, for example "posts = current_user.followed_posts()" instead of "posts = current_user.followed_posts().all()". And it seems to work just the same. 
+
+
+Without the all(), I can see that a "flask_sqlalchemy.BaseQuery object" is returned. With the all(), I get a simple list of posts. Both the BaseQuery object and the list are iterable and yield the same posts when I iterate over them. 
+
+
+To exclude cacheing effects, I manually inserted a post in the database, circumventing my app and SQLAlchemy. Even that turned up when running the query without all(). 
+
+
+So, what's happening here? Obviously, SQLAlchemy accesses the DB even if I don't add all(). What's it for, then?
+@Bernd: You are correct. The query object is an iterable, so instead of calling all() on it you can also do list(query), or just loop over the results with something like "for result in query". Either of these will execute the query and return the results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+http://inventwithpython.com/appendixc.html
+http://inventwithpython.com/appendixc.html
+https://www.idigitalhealth.com/news/advancing-opportunities-in-healthcare-with-pythonbased-machine-learning
+http://deeplearning.net/software/theano_versions/dev/tutorial/python-memory-management.html
+http://deeplearning.net/software/theano_versions/dev/tutorial/python-memory-management.html
+https://wiki.python.org/moin/Asking%20for%20Help/Do%20you%20need%20a%20int%20main%28%29%20like%20you%20do%20in%20c++s
+https://towardsdatascience.com/speeding-up-python-code-fast-filtering-and-slow-loops-8e11a09a9c2f
+https://codeinstitute.net/learn-to-code/
+https://www.geeksforgeeks.org/iterators-in-python/
+https://talkpython.fm/episodes/show/12/deep-dive-into-modules-and-packages
+******************************************************************************************************************
+https://jakevdp.github.io/WhirlwindTourOfPython/02-basic-python-syntax.html
+https://www.geeksforgeeks.org/python-best-suited-competitive-coding/?ref=rp			for python revision
+https://learntocodewith.me/posts/code-for-free/
+https://python.swaroopch.com/what_next.html
+http://dev.fyicenter.com/Interview-Questions/Python/Why_can_t_I_use_an_assignment_in_an_expression_.html
+what matters is you have enough skills for building logic for the solution to your problem, you being capable enough to optimize your code in best possible way and make it efficient that can beat others in terms of memory used and time complexities(at least).
+If your goal is to get a job, competitive programming is probably not a very good investment of your time, you would rather spend time on careercup/glassdoor etc to start learning the problems that are commonly asked followed by leetcode/interviewbit etc to get some handson practice of the same.
+http://www.gainlo.co/?utm_source=blog&utm_medium=hellobar%20fullscreen&utm_campaign=blog#!/
+https://www.spoj.com/register/
+https://www.forbes.com/sites/laurencebradford/2016/10/24/helpful-sites-for-finding-your-next-tech-job/#6ee6b436b9d6
+http://www.rebellionrider.com/category/python-programming/					for python revision must
+https://insights.dice.com/2015/06/11/learning-enough-python-to-land-a-job/
+https://docs.python-guide.org/writing/tests/
+https://yasoob.me/2013/09/01/best-python-resources/bha
+http://inventwithpython.com/hacking/chapters/
+https://learnxinyminutes.com/docs/python/
+https://sahandsaba.com/thirty-python-language-features-and-tricks-you-may-not-know.html
+https://diveintopython3.net/index.html
+https://pythonpyqt.com/
+https://pythonbasics.org/
+https://automatetheboringstuff.com/
+https://jakevdp.github.io/WhirlwindTourOfPython/02-basic-python-syntax.html
+https://www.toptal.com/python/interview-questions
+
+https://www.youtube.com/watch?v=tfZNrJjv5N4
+https://www.csestack.org/most-useful-python-libraries-jobs/
+https://www.csestack.org/python/
+https://www.csestack.org/python-vs-shell-scripting/
+https://www.csestack.org/python-vs-shell-scripting/
+https://docs.python.org/3/tutorial/venv.html
+
+PENDING TASKS
+https://www.geeksforgeeks.org/python-decorators-a-complete-guide/?ref=rp
+https://www.geeksforgeeks.org/intermediate-coding-problems-in-python/?ref=rp
+https://www.geeksforgeeks.org/python-best-suited-competitive-coding/?ref=rp
+https://www.geeksforgeeks.org/python-tricks-competitive-coding/?ref=rp
+https://sahandsaba.com/thirty-python-language-features-and-tricks-you-may-not-know.html
+http://dev.fyicenter.com/Interview-Questions/Python/How_do_you_make_a_higher_order_function_in_Pytho.html
+https://realpython.com/python-itertools/
+https://www.w3resource.com/python-exercises/
+https://www.edureka.co/blog/interview-questions/python-interview-questions/
+https://www.quora.com/What-are-good-Python-interview-questions
+https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/
+https://dbader.org/thank-you/
+https://dbader.org/switching-to-python
+https://www.codementor.io/@sheena/essential-python-interview-questions-du107ozr6
+
+https://www.quora.com/What-are-good-Python-interview-questions
+
+https://www.geekyprep.com/interviewexperiences?
+https://data-flair.training/blogs/python-programming-interview-questions/
+https://data-flair.training/blogs/top-python-interview-questions-answer/
+https://learning.naukri.com/articles/python-interview-questions-answers/
+https://resources.workable.com/python-developer-interview-questions
+https://www.learnpython.org/en/Map,_Filter,_Reduce
+
+https://www.quora.com/profile/Tony-Flury
+https://www.quora.com/q/pythonmaterials
+https://www.quora.com/profile/Sakina-Mirza-2
+
+https://data-flair.training/blogs/python-itertools-tutorial/
+
+
+python developer
+Web frameworks (such as Django)
+
+Object-relational mappers
+
+Understanding of multi-process architecture
+
+
+
+Understanding of how to use RESTful APIs
+
+Should know how to build Python applicatio

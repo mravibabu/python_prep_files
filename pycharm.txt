@@ -1,0 +1,6 @@
+refactor   to replace at a time in a code
+control f to search in a code
+
+alt shift c   ----> to list all changes you have done to code
+
+control d ----> duplicate the entire line 

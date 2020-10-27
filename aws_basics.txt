@@ -1,0 +1,406 @@
+What is Cloud Computing?
+Cloud computing is a term referred to storing and accessing data over the internet. It doesn't store any data on the hard disk of your personal computer. In cloud computing, you can access data from a remote server.
+Cloud computing is an internet-based computing service in which large groups of remote servers are networked to allow centralized data storage, and online access to computer services or resources.
+Amazon Web Services (AWS) is Amazon’s cloud web hosting platform that offers flexible, reliable, scalable, easy-to-use, and cost-effective solutions.
+In 2006, Amazon Web Services (AWS) started to offer IT services to the market in the form of web services, which is nowadays known as cloud computing.
+ these services can instantly spin up hundreds or thousands of servers in minutes and deliver results faster. We pay only for what we use with no up-front expenses and no long-term commitments, which makes AWS cost efficient.
+
+Cloud computing is a model that enables the following features.
+
+Users can provision and release resources on-demand.
+
+Resources can be scaled up or down automatically, depending on the load.
+
+Resources are accessible over a network with proper security.
+
+Cloud service providers can enable a pay-as-you-go model, where customers are charged based on the type of resources and per usage.
+
+Types of Clouds
+There are three types of clouds − Public, Private, and Hybrid cloud.
+IaaS stands for Infrastructure as a Service.
+PaaS stands for Platform as a Service.
+SaaS stands for Software as a Service.
+
+Advantages of Cloud Computing
+Here is a list of some of the most important advantages that Cloud Computing has to offer −
+
+Cost-Efficient − Building our own servers and tools is time-consuming as well as expensive as we need to order, pay for, install, and configure expensive hardware, long before we need it. However, using cloud computing, we only pay for the amount we use and when we use the computing resources. In this manner, cloud computing is cost efficient.
+
+Reliability − A cloud computing platform provides much more managed, reliable and consistent service than an in-house IT infrastructure. It guarantees 24x7 and 365 days of service. If any of the server fails, then hosted applications and services can easily be transited to any of the available servers.
+
+Unlimited Storage − Cloud computing provides almost unlimited storage capacity, i.e., we need not worry about running out of storage space or increasing our current storage space availability. We can access as much or as little as we need.
+
+Backup & Recovery − Storing data in the cloud, backing it up and restoring the same is relatively easier than storing it on a physical device. The cloud service providers also have enough technology to recover our data, so there is the convenience of recovering our data anytime.
+
+Easy Access to Information − Once you register yourself in cloud, you can access your account from anywhere in the world provided there is internet connection at that point. There are various storage and security facilities that vary with the account type chosen.
+
+Disadvantages of Cloud Computing
+Although Cloud Computing provides a wonderful set of advantages, it has some drawbacks as well that often raise questions about its efficiency.
+
+Security issues storing data and important files on external service providers always bears a risk.
+
+Technical issues
+As cloud service providers offer services to number of clients each day, sometimes the system can have some serious issues leading to business processes temporarily being suspended.
+Not easy to switch service providers
+Cloud service providers promises vendors that the cloud will be flexible to use and integrate, however switching cloud services is not easy. Most organizations may find it difficult to host and integrate current cloud applications on another platform. Interoperability and support issues may arise such as applications developed on Linux platform may not work properly on Microsoft Development Framework (.Net).
+
+
+virtual COMPUTING
+not physically existing as such but made by software to appear to do so.
+Although virtual can be used to describe anything that exists in effect, but not in fact
+A virtual image is defined as the opposite of a real image, therefore an image that cannot be obtained on a screen is referred to as a virtual image.
+
+This is the basic structure of AWS EC2, where EC2 stands for Elastic Compute Cloud. EC2 allow users to use virtual machines of different configurations as per their requirement. It allows various configuration options, mapping of individual server, various pricing options, etc. 
+
+_____________________________________________________________________________________________________________________________________________
+5 Most Demanded AWS Certifications in the IT Industry
+AWS Certified Security – Specialty. ...
+AWS Certified SysOps Administrator – Associate. ...
+AWS Certified Solutions Architect – Associate. ...
+AWS Certified Solutions Architect – Professional. ...
+AWS Certified Developer – Associate.
+
+The AWS Cloud Practitioner certification gives you a high-level introduction to AWS. It doesn't go deep on any particular services, instead providing a general overview of how AWS is structured. We recommend our AWS Certified Cloud Practitioner course as the best place to start for anyone who's new to cloud computing.
+
+How can I learn AWS fast?
+So go follow those links and stay put.
+#1 Understand what is Cloud computing. ...
+#2 Understand what is AWS. ...
+#3 Don't scratch your head over IaaS, PaaS, SaaS, XaaS. ...
+#4 Familiarize yourself with core AWS services. ...
+#5 Watch re:Invent videos for a greater insight.
+
+
+Which cloud certification is best?
+Here are the top six best cloud certifications:
+AWS Certified Solutions Architect – Professional. ...
+CompTIA Cloud+ Certification. ...
+Cisco CCNA Cloud. ...
+Microsoft Certified Azure Solutions Architect Expert. ...
+Certified Cloud Security Professional (CCSP) ...
+Google Cloud Certified – Professional Cloud Architect.
+
+What is AWS automation?
+Automation. AWS helps you use automation so you can build faster and more efficiently. Using AWS services, you can automate manual tasks or processes such as deployments, development & test workflows, container management, and configuration management.
+
+Which cloud is best for jobs?
+"Indeed data tells us that AWS job postings want candidates skilled in Linux, Azure jobs are looking for SQL talent and Google Cloud needs Google Cloud Platform expertise." Speaking to the power of the No. 1 platform, AWS, its skills are valued No. 1 not only by AWS itself, but also, surprisingly, by GCP, too
+Does AWS Solution Architect require coding?
+Programming skills are not required for becoming an AWS solution architect. A good understanding of customer requirement is enough to produce a solution with the available list of comprehensive AWS services.
+
+Which language is best for AWS Lambda?
+Runtimes. It is well known that Node and Python are the leading languages for Lambda, but it's interesting to dig even deeper and get the exact numbers for each version used. Node 8.10 is the clear winner with 51.7 percent of functions using it.
+
+What is AWS Lambda written in?
+AWS Lambda natively supports Java, Go, PowerShell, Node. js, C#, Python, and Ruby code, and provides a Runtime API which allows you to use any additional programming languages to author your functions.
+
+Which is the best IT certification?
+10 top IT certifications
+Project Management Professional (PMP)
+Certified Scrum Master (CSM)
+AWS Certified Solutions Architect – Associate.
+AWS Certified Developer – Associate.
+Certified Information Security Manager (CISM)
+Certified Ethical Hacker (CEH)
+Certified Information Systems Security Professional (CISSP)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+____________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

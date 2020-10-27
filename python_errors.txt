@@ -1,0 +1,42 @@
+float('3s')
+Traceback (most recent call last):
+
+File “<pyshell#136>”, line 1, in <module>
+
+float(‘3s’)
+
+ValueError: could not convert string to float: ‘3s’
+
+A when we try to refer to a deleted object, it raises NameError.
+
+bin() converts an integer to a binary string.
+>>> bin(7.0)
+Traceback (most recent call last):
+
+File “<pyshell#20>”, line 1, in <module>
+
+bin(7.0)
+
+TypeError: ‘float’ object cannot be interpreted as an integer
+
+exec(c)
+TypeError: exec() arg 1 must be a string, bytes or code object
+
+Python namedtuple is immutable. So, you can’t reassign a value directly.
+AttributeError: can’t set attribute
+
+>>> import numpy
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    import numpy
+ModuleNotFoundError: No module named 'numpy'
+
+
+werkzeug.routing.BuildError: Could not build url for endpoint 'login'. Did you mean 'index' instead?
+
+when you did not mention the def function in the routes.py this error will come.
+========================================================================
+from .. import config
+ImportError: attempted relative import with no known parent package
+
+

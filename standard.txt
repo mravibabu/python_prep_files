@@ -1,0 +1,251 @@
+relational databases are a better match for applications that have structured data such as lists of users, blog posts, etc., while NoSQL databases tend to be better for data that has a less defined structure.
+Object Relational Mapper or ORM. ORMs allow applications to manage a database using high-level entities such as classes, objects and methods instead of tables and SQL. The job of the ORM is to translate the high-level operations into database commands.
+Alembic (the migration framework used by Flask-Migrate) will make these schema changes in a way that does not require the database to be recreated from scratch.
+Chronological order is a way of arranging actions, events or things according to the time they occurred. It is demonstrated by showing what happened first, what went on next
+The timestamp field is going to be indexed, which is useful if you want to retrieve posts in chronological order.
+
+===============================================================================================
+to know the port nos are in use and running
+
+C:\Windows\System32>netstat -an
+
+Active Connections
+
+  Proto  Local Address          Foreign Address        State
+  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:3306           0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:5040           0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:5700           0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:7070           0.0.0.0:0              LISTENING
+  TCP    0.0.0.0:17500          0.0.0.0:0              LISTENING
+
+
+
+
+to save output of the command prompt to text file
+C:\WINDOWS\system32>netstat -aon > d:\ravi\tcp_upd
+C:\WINDOWS\system32>netstat -aon >> d:\ravi\tcp_upd
+or
+another way at command prompt
+C:\WINDOWS\system32>netstat -aon | more
+or
+Alternatively you can even use resource monitor to stop any process that is running. To open resource monitor type resmon.exe in run. This will bring up the resource monitor window, where you can idenitfy process with pid
+
+
+There would be situations were some other process is running at port 80. To stop anything running in port 80 the following command can be used from command prompt.
+
+net stop http /y
+
+
+
+So what is a code "linter"?
+
+A code "linter" is a tool that performs static analysis on your code and reports coding style violations, possible design flaws, outright bugs, and code patterns known to be dangerous. Static analysis means that your code is analyzed but not executed, so there are no external dependencies and running a linter will never harm your environment. You can think of them as a poor-man's AI code reviewer.
+
+
+The linters you should use are:
+
+pylint
+pycodestyle
+pydocstyle
+
+
+Just pip install them and then run $ pycodestyle <some-module-or-package-or-file> and find out everything you've been doing wrong all this time!
+
+As one might expect, pycodestyle handles PEP-8 (the official Style Guide for Python Code) conformance while pydocstyle handles PEP-257 (the official Docstring Conventions for Python). The latter is awesomely strict. When and if you get your project to pass it without error (took me a day on the project in question) you'll never have to worry about someone forgetting to write a docstring (or forgetting how to write a docstring) again. It even checks for proper capitalization, punctuation, and prescriptive vs. descriptive comments. I am in love with its pedantry.
+
+
+
+different domains catered by python--webdevelopment,testing,webscrapping,machine learning,iot,dataanalysis,computer graphics,bigdata etc.
+
+
+
+cloud computing is oftern reffered to as cloud is a service that allows people to use online serveces generally available  thru any device internet connection,
+this means user does not need to be at certain location in order to acces certain data.
+security ,storage and networking resources data storage, every thing can be delivered in no time.
+No need to purchase machinery,software every thing is managed by cloud platforml.
+
+what is artificial intelligency?
+Artificial means anytthing that are made by human, things that are not natural,intelligency is the ability to understand think and learn.
+Ai makes machine seem like they have a human intelligence, the goal of ai is the mimic the human brain and create systems that can function intelligently and independentely.
+
+what is data science
+there is rapid increase of data , this has created an oppourtunity , to analyze and derive meaning full informaiton from all the data, this is where a datascience comes in to picture. Techinically data science is processes of extracting knoweldge from complext large set of data,using procesess like data cleaning and data visualization.
+
+
+Virtual Reality (VR) is the use of computer technology to create a simulated environment. Unlike traditional user interfaces, VR places the user inside an experience. Instead of viewing a screen in front of them, users are immersed and able to interact with 3D worlds.
+
+
+
+Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of services that are. Highly maintainable and testable. Loosely coupled. Independently deployable. Organized around business capabilities
+
+MICROSERVICE ARCHITECTURE is an architectural development style that allows building an application as a collection of small autonomous services developed for a business domain. Let's take an example of e-commerce application developed with microservice architecture
+
+When using microservices, you isolate software functionality into multiple independent modules that are individually responsible for performing precisely defined, standalone tasks. These modules communicate with each other through simple, universally accessible application programming interfaces (APIs)
+
+Microservices are an architectural style for web applications, where the functionality is divided up across small web services. ... whereas. APIs are the frameworks through which developers can interact with a web application.
+
+
+Normalization
+Retreiving data is tedious job if data is not organised properly.
+Normalization is the process of reducing the redundant data, and to improves the data integrity.
+It is the systamatic approach to decompose the tables to eliminate redundency,ie removing the duplicate data.
+2. it ensures the dependent on data have some logical sense.
+1st normal form
+we tackle the problem of automacity. ie values in the table cannot be divided further. In simple terms a single tell cannot hold the multiple values.
+1.removes repeating groups from the tables
+2.create seperate table for each set of releated data.
+3.Identify the each set of releated data with a primary key.
+2nd normal form
+Table also should not contain partial dependency. ie non prime attributets should completely depends on the candidate key, ie primary key.
+3rd Normal form
+There should not be transitive dependency for non-prime attributes. ie if c is depends on b and b is depends on a then indirectly c is depends on a. This should not happen. So all the non prime attributes must depend on only prime canditate.
+Boyces codd normal form
+It is also called 3.5 normal form.
+It will address certain anomalyes which not dealt with 3rd normal form.
+Every functional dependency A-->B,then A has to be super key of that particular table. Asuper key is a group of single key or multple key which identifies rows in a table.
+https://www.youtube.com/watch?v=ABwD8IYByfk
+
+
+Joins in sql
+INNER JOIN:- This type of join returns those records which have matching values in both tables.(intersection)
+
+select table1.col1,table1.col2,table2.col1....
+from table1
+INNER JOIN table2
+on table1.matching_col_name = table2.matching_col_name;
+
+LEFT JOIN:- The LEFT JOIIN or the LEFT OUTER JOIN returns all the records from the left table and also those records  
+which satisfy a condition from the right table. Also for the records having no matching values in the right table, 
+output or the result-set 	will contain the NULL values.
+
+select table1.col1,table.col2,table2.col1....
+from table1
+LEFT JOIN table2
+on table1.matching_col_name = table2.matching_col_name;
+
+RIGHT JOIN :- The right join or the right outer join returns all the records from the right table ,
+also those records which satisfy the condition from the left table.	Also for the records having no matching values in the left table,
+the output or the result-set  	will contain the NULL values.
+
+select table1.col1,table.col2,table2.col1....
+from table1
+RIGHT JOIN table2
+on table1.matching_col_name = table2.matching_col_name;
+
+FULL JOIN:- Full join or the Full outer join returns all those records which have a match in the left table1 or the right table2.
+
+as full join does not suport in the mysql. add the left join query with the right join query with the UNION keyword.
+select table1.col1,table.col2,table2.col1....
+from table1
+LEFT JOIN table2
+on table1.matching_col_name = table2.matching_col_name;
+UNION
+select table1.col1,table.col2,table2.col1....
+from table1
+RIGHT JOIN table2
+on 
+table1.matching_col_name = table2.matching_col_name;
+
+
+WHAT IS NATURAL JOIN.
+THE no of columns will be reduced to a maximum extent.repeated columns will not come.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

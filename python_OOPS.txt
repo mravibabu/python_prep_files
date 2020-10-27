@@ -1,0 +1,9 @@
+https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/
+
+classes are based on objects in the real world (like Customer or Product). 
+classes are a modeling technique; a way of thinking about programs. When you think about and implement your system in this way, you're said to be performing Object-Oriented Programming. "Classes" and "objects" are words that are often used interchangeably, but they're not really the same thing.
+Classes can be thought of as blueprints for creating objects. When I define a Customer class using the class keyword, I haven't actually created a customer. Instead, what I've created is a sort of instruction manual for constructing "customer" objects. Let's look at the following example code:
+
+self is the instance of the class that  is being called on. 
+Python allows us to extend the self pattern to when objects are constructed as well, even though it doesn't exactly fit. Just imagine that jeff = Customer('Jeff Knupp', 1000.0) is the same as calling jeff = Customer(jeff, 'Jeff Knupp', 1000.0); the jeff that's passed in is also made the result.
+

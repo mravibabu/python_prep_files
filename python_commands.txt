@@ -1,0 +1,58 @@
+To know the modules installed in the local
+give following command in python shell/prompt
+>>>help('modules')
+>>> help('pip')
+2.For example, the following lists all the attributes and methods defined in the int class.
+>>> dir(int)
+>>> dir(float)
+3.To get help on any module,first type help() command you will get the help prompt, there you will give a module name for which you need help or you can run directly at prompt like help(tuple)
+>>> help()
+help> tuple
+help> pip
+(	or)
+>>> help('pip')
+--------------------------------------------------------------------------------------------------------------------------------------
+D:\>pip list
+
+D:\>pip freeze
+To show what's installed in only the virtual environment (not global packages), use pip list --local.
+D:\>python -m pip freeze
+
+to see the pip commands  and 
+D:\>pip
+------------------------------------------------------------------------------------------
+to show the version of pip
+D:\>pip -V
+D:\>pip --version
+
+to display all modules
+D:\>python -m pydoc modules
+----------------------------------------------
+returns the names in the current scope
+>>> dir()
+below command returns  an alphabetized list of names comprising (some of) the attributes of the given object,for a module object: the module's attributes.
+for a class object:  its attributes, and recursively the attributes of its bases.
+>>> dir('list_tricks')
+>>> dir('list') ===>displays all methods  of list
+>>> import re
+>>> dir(re)
+------------------------------------------------------------------------------------------------------------
+pipreqs - Generate requirements.txt file for any project based on imports
+Why not pip freeze?
+pip freeze only saves the packages that are installed with pip install in your environment.
+pip freeze saves all packages in the environment including those that you don't use in your current project. (if you don't have virtualenv)
+and sometimes you just need to create requirements.txt for a new project without installing modules.
+-------------------------------------------------------------------------------------------------------
+to backpup the project packages 
+(venv) D:\RAVI\python-virtual-environments\microblog\venv\Scripts>python -m pip freeze >> backupfile1.txt	
+-------------------------------------------------------------------
+python -m pip show flask
+python -m pip show Werkzeug
+python -c "import platform;print(platform.python_version(), platform.architecture())"
+set FLASK_DEBUG=1 && python -m flask run
+
+flask --help
+
+
+
+python -m pip freeze >> requirements.txt

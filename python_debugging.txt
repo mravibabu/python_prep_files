@@ -1,0 +1,471 @@
+Python also allows developers to debug the programs using pdb module that comes with standard Python by default. We just need to import pdb module in the Python script. Using pdb module, we can set breakpoints in the program to check the current status. We can Change the flow of execution by using  jump,  continue statements.
+Debugging helps developers to analyze programs line by line. Developers see the every interpreted line by using debugging mode in programs. Python comes with by default debugger that is easy to import and use.
+Basic Commands to use Python Debugger 
+ list command to see entire program .(l)
+ list 3 , 6  to see the program lines from 3 to 5 only .
+  if we type ‘n’, it will execute until the next line in this function, or until it returns.
+  What if we had a variable ‘n’ in our code? Wouldn’t typing ‘n’ be considered a command, instead? For this, we’d do ‘p n’.
+  To add another breakpoint, we use the command ‘b’.
+  (Pdb) b 8
+break command to stop the program execution at particular line .(b)
+To clear all breaks, we type ‘cl’. And then when it asks for a confirmation, type ‘y’.
+(Pdb) cl
+We can also add a breakpoint at a function declaration:
+(Pdb) b power_of_itself
+When we type ‘c’, the command prompt starts execution, and keeps executing until it reaches the first breakpoint. 
+
+continue command to see the next step in the loop 
+jump command allows us to go on any particular line in the program 
+pp command to see variable value at the current position in the program 
+disable command to disable the current line output and we can use continue command to skip this line in program. We use  quit or  exit command to come outside the debugging mode .
+Let’s see some basics of debugging using built-in function breakpoint() and pdb module.
+Python comes with the latest built-in function breakpoint which do the same thing as pdb.set_trace() in Python 3.6 and below versions.
+
+Debugger finds the bug in the code line by line where we add the breakpoint, if a bug is found then program stops temporarily then you can remove the error and start to execute the code again.
+Python comes with the latest built-in function breakpoint which do the same thing as pdb.set_trace() in Python 3.6 and below versions.
+
+Debugger finds the bug in the code line by line where we add the breakpoint, if a bug is found then program stops temporarily then you can remove the error and start to execute the code again.
+Syntax:
+1) breakpoint()           # in Python 3.7 
+2) import pdb; pdb.set_trace()   # in Python 3.6 and below
+Method #1 : Using breakpoint() function
+In this method, we simply introduce the breakpoint where you have doubt or somewhere you want to check for bugs or errors.
+Commands for debugging :
+
+c -> continue execution
+q -> quit the debugger/execution
+n -> step to next line within the same function
+s -> step to next line in this function or a called function
+
+Code introspection in Python
+Introspection is an ability to determine the type of an object at runtime. Everything in python is an object
+By using introspection, we can dynamically examine python objects. Code Introspection is used for examining the classes, methods, objects, modules, keywords and get information about them so that we can utilize it. Introspection reveals useful information about your program’s objects.
+Python provides some built-in functions that are used for code introspection.They are:
+1.type() : This function returns the type of an object.
+2.dir() :This function return list of methods and attributes associated with that object.
+rk =[1, 2, 3, 4, 5] 
+  
+# print methods and attributes of rk 
+print(dir(rk))
+3.str() :This function converts everything into a string
+4.id() :This function returns a special id of an object
+Methods for Code Introspection
+FUNCTION	DESCRIPTION
+help()	It is used it to find what other functions do
+hasattr()	Checks if an object has an attribute
+getattr()	Returns the contents of an attribute if there are some.
+repr()	Return string representation of object
+callable()	Checks if an object is a callable object (a function)or not.
+issubclass()	Checks if a specific class is a derived class of another class.
+isinstance()	Checks if an objects is an instance of a specific class.
+sys()	Give access to system specific variables and functions
+__doc__	Return some documentation about an object
+__name__	Return the name of the object.
+
+
+ Passing Arguments
+When you pass a script name and additional arguments to the shell when invoking the Python interpreter, it turns these into a list of strings. Then, it assigns these to the variable argv in the sys module. The following command will give us a list of this-
+
+import sys
+Without a script or arguments, sys.argv[0] denotes an empty string
+
+Python interpreter exits with a zero exit status. You can use it in a REPL (Read-Evaluate-Print-Loop) fashion
+>>>
+When it shows this prompt, it means it prompts the developer for the next command. This is the REPL.
+How Does Python Interpreter Works?
+Well, internally, four things happen in a REPL:
+i. Lexing- The lexer breaks the line of code into tokens.
+ii. Parsing- The parser uses these tokens to generate a structure, here, an Abstract Syntax Tree, to depict the relationship between these tokens.
+iii. Compiling- The compiler turns this AST into code object(s).
+iv. Interpreting- The interpreter executes each code object.
+Function Objects & Code Objects
+When we talk of function objects, we mean to say that in Python, functions are first-class objects (functions indeed are objects). You can pass them around and talk about them without making a call to them.
+def bar(a):
+  x=3
+  return x+a
+>>> bar
+bar.__code__ returns a code object:
+we conclude that a code object is an attribute of a function object. The dir() function will tell us more about the function:
+This gives us the attributes of the code object. Values of some more attributes:
+
+>>> bar.__code__.co_varnames
+(‘a’, ’x’)
+>>> bar.__code__.co_consts
+The Bytecode
+The following command gives us the bytecode:
+
+>>> bar.__code__.co_code
+Disassembling the Bytecode
+We will use the dis() method from the dis module to understand what’s going on- this isn’t part of what the interpreter does.
+>>>import dis
+>>> dis.dis(bar.__code__)
+Conclusion
+Hence, we can say the compiler for Python generates bytecode for the interpreter. The Python interpreter uses this with the virtual machine. The same bytecode doesn’t always end up doing the same things. This is another thing that makes Python dynamic. Also, the default prompt for the interpreter is >>>.
+Talking about the internals of Python, the PVM (Python Virtual Machine) executes the intermediate code that results from your source code.
+Everytime we call a Python program, Python creates a compiled version with .pyc extension if it doesn’t already exist.
+To compile a Python program manually, you can do either of the following-
+1. Import the py_compile module with the interpreter:
+>>> import py_compile
+>>> py_compile.compile(‘test.py’)
+This will create a new subdirectory- ‘__pycache__’ with file ‘test.cpython-37.pyc’ in it.
+This is the byte code; it is the compiled result. You can also try using the compileall module to compile all Python files.”
+
+
+Python Compilers and Interpreters
+A compiler converts the .py source file into a .pyc bytecode for the Python virtual machine.
+A Python interpreter executes this bytecode on the virtual machine.
+CPython
+This is the default and most widely-used implementation of Python and is written in C.
+Design of CPython
+Each CPython interpreter for Python, the process uses a GIL(Global Interpreter Lock). This serves as a limitation as it disables concurrent Python threads for a process. Another problem is that to achieve concurrency, you must manage separate CPython interpreter processes with a multitasking OS. This also makes it harder for concurrent CPython processes to communicate.
+Jython
+Jython is JPython’s successor. It is an implementation of Python that runs on the Java platform. Here’s a brief-
+
+First Release- January 2001
+Stable Release- July 2017, version 2.7.1
+Written in- Python programming, Java
+Type- Python programming language interpreter
+Jython takes Python code and compiles it to Java bytecode. This means we can run Python on any machine that runs a JVM (Java Virtual Machine). Jython supports static and dynamic compilation and let’s extend Java classes.
+PyJS
+PyJS is an internet application framework that will let you use Python to develop client-side web and desktop applications. You can run such an application in a web browser and also as a standalone desktop application.
+Earlier, it was called Pyjamas. It translates your Python code into JavaScript to let it run in a browser. PyJS ships with an AJAX framework and a Widget Set API.
+
+How to Create a Virtual Environment in Python?
+To create a Python virtual environment and manage it, we use the module venv. Normally, it will install the latest version of Python for you, but you can choose that. 
+
+
+Absolute and Relative Imports in Python
+The import statement involves two operations, it searches for a module and it binds the result of the search to name in local scope. When a module is imported, Python runs all of the code in the module file and made available to the importer file.
+When a module is imported then interpreter first searches it in sys.modules , which is the cache of all modules which have been previously imported. If it is not found then it searches in all built-in modules with that name, if it is found then interpreter runs all of the code and made available to file. If the module is not found then it searches for a file with the same name in the list of directories given by the variable sys.path.
+sys.path is a variable containing a list of paths that contains python libraries, packages, and a directory containing the input script. For example a module named math is imported then interpreter search it in a built-in modules, if it is not found then it searches for a file named math.py in list of directories given by sys.path.
+The syntax of relative import depends on current location as well as a location of module or object to be imported. Relative imports use dot(.) notation to specify a location. Single dot specifies that the module is in the current directory, two dots indicate that module is in its parent directory of the current location and three dots indicate that it is in grandparent directory and so on.
+Let’s see we have the following directory structure:
+Consider the following directory structure for a package.
+
+python_project_name/packageA/moduleA1.py
+python_project_name/packageB/moduleB1.py
+Let's assume moduleB1 in the above package structure needs to import moduleA1. Then the import statement is:
+
+from ..packageA import moduleA1
+The two dots indicate that from the location of moduleB1, we have to move to the directory python_project_name and then go to packageA to get moduleA1.
+When you import a package, only the modules directly under it are imported.
+
+
+
+Structure of Python Packages
+ Python package must have an __init__.py file in the directory. You may leave it empty, or you may store initialization code in it. But if your directory does not have an __init__.py file, it isn’t a package; it is just a directory with a bunch of Python scripts. 
+ 
+ ********************************************************************************************************
+ 
+https://timothybramlett.com/How_to_create_a_Python_Package_with___init__py.html
+
+someFolder
+|-- string_func
+|   |-- __init__.py
+|   |-- stringToUpper.py
+|   |-- stringToLower.py
+|   `-- strengthLength.py
+`-- example1.py
+example1.py
+import string_func.stringLength
+Open your __init__.py file and make the following changes:
+
+Adding imports to init.py
+# __init__.py
+from .stringLength import stringLength
+Note that the . before the module name is neccessary as of Python 3 since it is more strict regarding relative imports
+example1.py
+import string_func
+print(string_func.stringLength(some_string))
+Now the syntax is a lot shorter and you can see that string_func is behaving like its own module.
+So, that is basically what __init__.py does! It allows you to treat a directory as if it was a python module.
+
+Imagine you had the following file structure:
+
+main_methods 
+    |- methods.py
+And methods.py contained this:
+
+def foo():
+    return 'foo'
+To use foo() you would need one of the following:
+
+from main_methods.methods import foo # Call with foo()
+from main_methods import methods # Call with methods.foo()
+import main_methods.methods # Call with main_methods.methods.foo()
+
+If you changed the name of methods.py to __init__.py then you could use foo() by just importing main_methods:
+
+import main_methods
+print(main_methods.foo()) # Prints 'foo'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Python os Module
+os.chdir('D:\\RAVI\\durga\\prac_examples')
+ link(src,dst)
+link() will create a hard link that points to an src named dst. You can do this when you want to create a copy of an existing file.
+
+os.listdir( path )
+open(file, flags[, mode])
+open() will open the file ‘file’,
+read(fd,n)
+read() Python os Module will let us read at most n bytes from the desciptor fd.
+remove(path)
+remove() removes the specified file path. If that path is a directory, it raises an OSError.
+removedirs(path)
+This Python os Module will remove directories recursively. And if we successfully remove the leaf directory, it attempts to successively remove every parent directory displayed in that path.
+rmdir(path)
+Python os Module rmdir() removes the directory path specified. If the directory isn’t empty, however, it raises an OSError.
+Changing Current Python Directory
+But remember that when using backward slashes, it is recommended to escape the backward slashes to avoid a problem.
+os.chdir('C:\\Users\\lifei')
+You can also use forward slashes for the path. This way, you don’t have to use backward slashes to escape.
+os.chdir('C:/Users/lifei')
+os.rename('Christmas Photos','Christmas 2017'
+Joining and Splitting Path
+We must use platform-independent file and directory in python paths, so our program runs on every platform. We use the submodule os.path for this.
+join() in python joins path components and returns a path as a string. It adds appropriate separators (\ for Windows and / for Unix)
+os.path.join('C:','Users','lifei','Desktop'
+Conversely, split() splits the path into components, removing the separator.
+>>> os.path.split('C:Users\\lifei\\Desktop')
+Checking if Python Directory Exists
+os.path.exists('C:\\Users\\lifei\\Desktop')
+Recursively Traversing a Directory in Python
+The walk() function lets us recursively traverse a directory. This means that it returns the roots, subdirectories, and files in a directory. You can traverse it using for loops in Python.
+>>> for roots,dirs,files in os.walk('C:\\Users\\lifei\\Desktop\\Papers'):
+                print(roots,len(dirs),len(files))
+>> for roots,dirs,files in os.walk('C:\\Users\\lifei\\Desktop\\Papers'):               
+                    print(roots,dirs,files)				
+Actually, these give us Python generator objects. This is why we can traverse on them.				
+>>> os.walk('C:\\Users\\lifei\\Desktop\\Papers')
+<generator object walk at 0x05E0CE10>	
+
+Why the Need for Virtual Environments?
+virtual environments to create and manage separate environments for your Python projects, each using different versions of Python for execution.
+most system packages are stored in a child directory of the path stored in sys.prefix.
+>>> import sys
+>>> sys.prefix
+
+third party packages installed using easy_install or pip are typically placed in one of the directories pointed to by site.getsitepackages:
+>>> import site
+>>> site.getsitepackages()
+t’s important to know this because, by default, every project on your system will use these same directories to store and retrieve site packages (third party libraries).system packages (packages that are part of the standard Python library),
+
+Consider the following scenario where you have two projects: ProjectA and ProjectB, both of which have a dependency on the same library, ProjectC. The problem becomes apparent when we start requiring different versions of ProjectC. Maybe ProjectA needs v1.0.0, while ProjectB requires the newer v2.0.0, for example.
+
+This is a real problem for Python since it can’t differentiate between versions in the site-packages directory. So both v1.0.0 and v2.0.0 would reside in the same directory with the same name:
+
+/System/Library/Frameworks/Python.framework/Versions/3.5/Extras/lib/python/ProjectC
+Since projects are stored according to just their name, there is no differentiation between versions. Thus, both projects, ProjectA and ProjectB, would be required to use the same version, which is unacceptable in many cases.
+
+This is where virtual environments and the virtualenv/venv tools come into play…
+This is a real problem for Python since it can’t differentiate between versions in the “site-packages” directory.
+What Is a Virtual Environment?
+At its core, the main purpose of Python virtual environments is to create an isolated environment for Python projects. This means that each project can have its own dependencies.The great thing about this is that there are no limits to the number of environments you can have since they’re just directories containing a few scripts. Plus, they’re easily created using the virtualenv or pyenv command line tools.
+Using Virtual Environments
+if you’re not using Python 3, you’ll want to install the virtualenv tool with pip:
+$ pip install virtualenv
+If you are using Python 3, then you should already have the venv module from the standard library installed.
+
+
+find out which version of Python we are using,give the below command at c prompt
+python –version
+let’s check if we have pip installed.
+C:\Users\lifei>pip –version
+
+
+Start by making a new directory to work with:
+
+$ mkdir python-virtual-environments && cd python-virtual-environments
+
+Create a new virtual environment inside the directory:
+
+# Python 2:
+$ virtualenv env
+
+# Python 3
+D:\RAVI\durga\python-virtual-environments\microblog>python -m venv helloweb
+$ python3 -m venv env
+Note: By default, this will not include any of your existing site packages.
+this command creates a directory called env, which contains,It also created subdirectories containing a copy of the Python interpreter, the standard library, and various supporting files.
+
+From Python 3.3 to 3.4, the recommended way to create a virtual environment was to use the pyvenv command-line tool that also comes included with your Python 3 installation by default. But on 3.6 and above, python3 -m venv is the way to go.
+
+we have a scripts folder created in env directory.
+These scripts are used to set up your shell to use the environment’s Python executable and its site-packages by default.
+In order to use this environment’s packages/resources in isolation, you need to “activate” it. To do this, just run the following:
+The pip command still points to the global environment. We need to explicitly activate the created virtual environment to configure the current shell session to use pip commands from the virtualenv folder and don’t end up installing packages in the global environment:
+
+$ source env/bin/activate
+Now, to activate the Python Virtual Environment, we will run the batch file activate.bat in the directory Scripts:
+
+go to scripts folder in env directory 
+C:\Users\lifei\Desktop>env\Scripts\activate.bat
+Now The Python interpreter as well would run the version from the virtual environment and not the global one. We can verify where the Python environment currently resides by below command:
+c:\>where python
+c:\>python		===>python prompt will come
+
+The virtual environment is an almost clean Python environment. Run pip list in the virtual env to see a list with packages installed:
+Now you can install dependencies related to the project in this virtual environment using pip command
+(venv_name)$ pip install Django==1.9
+Once you are done with the work, you can deactivate the virtual environment by the following command:
+
+ to go back to the “system” context by executing deactivate:
+
+(env) $ deactivate
+Now your shell session is back to normal, and the python command refers to the global Python install.
+
+
+
+
+
+
+
+
+
+How to find Python List Installed Modules and Version using pip?
+The main strength of the Python is, the wide range of external libraries are available.It is easy getting a Python list installed modules on the system. There are a couple of ways you can do that.
+1. Using help() function (without pip): 
+>>> help("modules")
+This list contains modules and packages that come pre-installed with your Python and all other you have installed explicitly.
+But this command does not give you any other information about the package.
+If you want to know the version of each installed modules, you can use pip program.
+2. Using pip to find Python list installed modules and their Versions:
+Run following commands on the command line (not on Python console). You get the complete list of installed Python modules with their versions.
+
+c:\>pip freeze
+or
+
+c:\>pip list
+
+For more detail about any specific module, run command.
+
+pip show getopt
+It returns the name of the module/package, version, author, author email, license, location of the installed module and requires.
+
+To check where the python and pip currently resides, type the below command in the terminal.
+C:\>where python
+C:\>where pip
+
+WHAT IS PIP 
+What is pip? pip is the standard package manager for Python. It allows you to install and manage additional packages that are not part of the Python standard library. That means it’s a tool that allows you to install and manage additional libraries and dependencies that are not distributed as part of the standard library.Package management is so important that pip has been included with the Python installer since versions 3.4 for Python 3 and 2.7.9 for Python 2,
+You can verify that pip is available by running the following command in your console: THAT IS AT C PROMPT NOT AT PYTHON PROMPT
+pip --version
+pip -v
+pip -V
+You can install, upgrade, and remove packages using a program called pip. By default pip will install packages from the Python Package Index, <https://pypi.org>. You can browse the Python Package Index by going to it in your web browser, or you can use pip’s limited search feature:
+the Python Package Index, also known as PyPI (pronounced Pie Pea Eye). PyPI hosts an extensive collection of packages that include development frameworks, tools, and libraries.
+Many of these packages simplify Python development by providing friendly interfaces to functionality that already exists in the standard library
+
+
+
+Where is Pip installing packages?
+By default, packages are installed to the running Python installation's site-packages directory. site-packages is by default part of the python search path and is the target directory of manually built python packages. Modules installed here can be imported easily afterwards.
+
+
+
+
+============================================================================================================================================
+Imports
+Importing the module doesn't waste anything; the module is always fully imported.so wether you use import sys or from sys import argv makes no odds.
+The only difference between the two statements is what name is bound; import sys binds the name sys to the module (so sys -> sys.modules['sys']), while from sys import argv binds a different name, argv, pointing straight at the attribute contained inside of the module (so argv -> sys.modules['sys'].argv). The rest of the sys module is still there, whether you use anything else from the module or not.
+There is also no performance difference between the two approaches. Yes, sys.argv has to look up two things; it has to look up sys in your global namespace (finds the module), then look up the attribute argv. And yes, by using from sys import argv you can skip the attribute lookup, since you already have a direct reference to the attribute.
+If you are importing something else altogether, then perhaps performance comes into play. But only if you use a specific name in a module many times over, in a critical loop for example. But then creating a local name (within a function) is going to be faster still:
+
+ import somemodule
+
+ def somefunction():
+      localname = somemodule.somefunctionorother
+      while test:
+          # huge, critical loop
+          foo = localname(bar)
+
+
+I use from imports whenever it improves readability.
+I prefer regular imports if I'm using lots of short names from a module:
+
+import sys
+sys.argv; sys.stderr; sys.exit()
+Or if a name is so generic that it doesn't make sense outside of its namespace:
+
+import json
+json.loads(foo)
+
+from json import loads
+loads(foo)  # potentially confusing
+
+from sys import agrv potential name conflicts. What if you had another module named argv? 
+Note you can also explicitly import the function and rename with from sys import argv as sys_argv, a convention that meets the explicit import and is less likely to gave name space collisions.
+
+
+There are two reasons in favor of using import module rather than from module import function.
+
+First is the namespace. Importing a function into the global namespace risks name collisions.
+
+Second isn't that relevant to standard modules, but significant for you own modules, especially during development. It's the option to reload() a module. Consider this:
+
+from module import func
+...
+reload(module)
+# func still points to the old code
+On the other hand
+
+import module
+...
+reload(module)
+# module.func points to the new code
+
+==================================================================================================
+Relative imports use a module's __name__ attribute to determine that module's position in the package hierarchy. If the module's name does not contain any package information (e.g. it is set to '__main__') then relative imports are resolved as if the module were a top level module, regardless of where the module is actually located on the file system.
+Acording to Nick Coghlan, the recommended alternative is to run the module inside the package using the -m switch.
+If the module is being directly run, then __name__ is set to __main__ and it doesn't contain any information about package structure. And, thats why python complains about the relative import in non-package error.
+So, by using the -m switch you provide the package structure information to python, through which it can resolve the relative imports successfully.
+			
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

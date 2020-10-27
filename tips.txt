@@ -1,0 +1,5 @@
+1. Filtering Lists with Python
+1. a) With the Filter() Function
+The filter() function takes two parameters: a function and an iterable item.
+
+

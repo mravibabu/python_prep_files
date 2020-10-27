@@ -1,0 +1,134 @@
+giants like Facebook, Google, Dropbox, and others use SQLite!
+What is a Database?
+A database is an organized collection of interrelated data stored in an electronic format.
+ is structured so as to provide easy access and manipulation of the stored data. Organizations use it to store any information that may be necessary for the decision-making process. The major advantages of databases over normal file storage systems are that it reduces data redundancy to a large extent, facilitates sharing of data among various users, and ensures the security of data which may be of immense importance to an organization.
+A Relational database breaks down different aspects of a problem into different tables so that storing them and manipulating them becomes an easy task. 
+Database Management System (DBMS) is a software that facilitates users and different applications to store, retrieve, and manipulate data in a database. Relational Database Management System or RDBMS is a DBMS for relational databases. 
+What is SQL?
+SQL stands for Structured Query Language. It is a querying language designed for accessing and manipulating information from RDBMS.
+Why Should you use SQLite?
+SQLite is a relational database management system based on SQL. It is designed for embedded devices that require fast and reliable data. It is serverless, lightweight, and requires zero-configuration. Also, it reads and writes directly to a disk file that can be easily copied and is platform-independent.
+
+SQLite stores data in variable-length records which requires less memory and makes it run faster. It is designed for improved performance, reduced cost, and optimized for concurrency.
+Connecting to an SQLite Database
+We can do this by using the connect() method that returns a Connection object. It accepts a path to the existing database. If no database exists, it will create a new database on the given path.
+import sqlite3
+
+# create new database
+conn = sqlite3.connect('.\sql_db\Demo_table.db')
+The next step is to generate a Cursor object using the cursor() method which allows you to execute queries against a database
+# create Cursor to execute queries
+cur = conn.cursor()
+After executeing queries you have to do two important things
+Commit/save the operations that we performed on the database using the commit() method. If we don’t commit our queries, then any changes we made to the database will not be saved automatically
+Close the connection to the database to prevent the SQLite database from getting locked. When an SQLite database is locked, it will not be accessible by other users and will give an error
+# save changes
+conn.commit()
+
+# close database connection
+conn.close()
+Inserting values in a SQL table
+execute()
+executescript()
+executemany()
+ if we want to write multiple Insert commands in a single go? We could use the executescript() method instead:
+
+# Execute multiple commands at once
+cur.executescript('''Insert Into CUSTOMER Values
+                (1005, 3, 'Clark Kent', 'Male', 36, 'Metropolis');
+                
+                Insert Into CUSTOMER Values
+                (1003, 4, 'Bruce Wayne', 'Male', 39, 'Gotham City');
+                
+                ''')
+
+Or just simply use the executemany() method without having to repeatedly write the Insert Into command every time! executemany() actually executes an SQL command using an iterator to yield the values:
+
+# Insert maultiple values into table at once
+customers = [(1004, 2, 'John Wick', 'Male', 32, 'New York'),
+         (1001, 1, 'Tony Stark', 'Male', 35, 'New York'),
+         (1002, 3, 'Gordon Ramsey', 'Male', 38, 'London')
+            ]
+cur.executemany('Insert Into CUSTOMER Values (?,?,?,?,?,?)', customers)
+
+These methods are not limited to the Insert Into command and can be used to execute any SQL statement.
+Fetching Records from a SQL table
+fetchone()
+fetchall()
+To fetch only a single record from the database, we can use the fetchone() method:
+
+# Fetch all rows of query result
+cur.execute('SELECT * FROM CUSTOMER;').fetchone()
+To fetch multiple rows, you can execute a SELECT statement and iterate over it directly using only a single call on the Cursor object:
+
+# iterate over the rows 
+for row in cur.execute('SELECT Name FROM CUSTOMER;'):
+    print(row)
+But a better way of retrieving multiple records would be to use the fetchall() method which returns all the records in a list format:
+
+# Fetch all rows of query result which returns a list
+cur.execute('SELECT * FROM CUSTOMER;').fetchall()
+Group By statement
+GROUP BY statement separates rows into different groups based on an attribute and can be used to apply an aggregate function (COUNT, MIN, MAX, SUM) on the resultant groups:
+Order By clause
+ORDER BY clause is used to sort the result into ascending or descending order using the keywords ASC or DESC respectively. By default, it sorts the records in ascending order:
+We can combine a bunch of clauses( Group By and Order By) to extract more precise information from the database.
+Having clause
+The HAVING clause is used to query on the results of another query run on the database. It applies a filter on the groups returned by a previous query. It should not be confused with the WHERE clause that applies the filter condition before grouping.
+
+HAVING is used to filter records after grouping. Hence, the HAVING clause is always used after the GROUP BY statement:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

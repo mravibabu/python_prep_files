@@ -1,0 +1,372 @@
+Q1. What is Python?
+Ans.  Python is a highly readable object-oriented programming language with automatic memory management. It is the language that can be written with English keywords, while other languages use punctuations.
+Python is easy to learn, portable and it is open-source. It is designed to solve simple as well as complicated operations. It also supports multiple languages such as C, C++, and Java.
+Q2. Explain the key features of Python?
+Ans.  Following are multiple features that make python different from other languages:
+Easy to learn: Python is a programmer-friendly language that it is easy to learn in just a few days. It uses fewer keywords as compared to other object-oriented languages and anyone can learn it
+Object-oriented: Python is both procedure-oriented and object-oriented programming language. In procedure-oriented languages, procedures can be used again. Python allows developers to use an object-oriented approach to develop applications.
+Open-source and free: Python is an Open-source language that means anyone can easily access the programming and development. There is an open forum online where the number of coders contributes to improving this language.
+High-level language: Python is defined as a high-level language because of this feature. You do not need to keep an eye on programming structure, memory management, and architecture of the code.
+Extendable & Scalable: Python is extendable as it can be extended by using different modules to its interpreters. It helps developers to modify the program. It also provides scalability to the large codes by providing support and good structure to it.
+Q3. What is PEP 8?
+Ans.  PEP 8 (Python Enhancement Proposal) is a Python guide used for the formatting of Python code. It helps to increase the readability and provide the functionality to the source code.
+Q4. Why is python different from other scripting languages?
+Ans.  Python is different from other programming languages in many ways:
+Python is easy to read and write
+It is free. Users can easily share, copy, and edit it.
+It can be used with multiple platforms, so the programmers do not have the platform issue.
+It is an object-oriented programming language and a piece of programming code can be reusable.
+Q5. Explain memory management in Python.
+Ans.  In Python, memory management has different components that are allocated to do various tasks like sharing, caching, and segmentation. Python memory is managed by a private heap space. It also has a garbage collector that removes unwanted memory and free the heap space.
+CHECK OUT OUR PYTHON COURSES
+Q6. What is pickling and unpickling?
+Ans.  Pickling: It is the process in which objects are serialized and unserialized before it can be saved to the disk. It converts python objects into byte codes.
+Unpickling: Unpickling is opposite to pickling as it converts byte code into python objects.
+Q7. What are the modules in Python? Name some built-in modules in Python?
+Ans.  Python modules are the files that contain Python statement and definitions such as –
+E.g., demo.py
+Here, the module name is “demo.”
+Python modules are used to break the large program into small segments that make the code manageable and organized.
+Q8. What are the basic data types in Python?
+Ans.  There are five basic data types in Python:
+Numbers
+String
+List
+Tuple
+Dictionary
+Q9. Mention the use of tuple in Python?
+Ans.  Tuple is a data type similar to a list. It is used in programs to group the related data equivalent to the directory.
+Example:
+list_val = [5, 4, 3, 2]
+tup_val = (5, 4, 3, 2)
+print(list_val)
+print(tup_val)
+Output:
+[5, 4, 3, 2]
+(5, 4, 3, 2)
+Q10. Explain local variables and global variables in Python.
+Ans.  Global variables are declared outside the function and it can be used both inside and outside the function. It has a global scope.
+Local variables are those which are declared inside the function or in the local scope which cannot be used outside the function.
+Example:
+A combination of global and local variable declaration
+def foo(x, y):
+global a
+a = 62
+x,y = y,x
+b = 22
+b = 15
+c = 100
+print(a,b,x,y)
+a, b, x, y = 1, 15, 2,3
+foo(17, 3)
+print(a, b, x, y)
+Output:
+62 15 3 15
+22 15 2 3
+Q11. What is the difference between Python Arrays and Lists?
+Ans.  Lists and arrays both are used to store data, but the difference is that the List can any hold any data type while arrays can hold a single data type.
+Example:
+import array as arr
+My_Array=arr.array(‘i’,[4,3,2,1])
+My_list=[5,’abc’,1.20]
+print(My_Array)
+print(My_list)
+Output:
+array(‘i’, [4, 3, 2, 1])
+[5, ‘abc’, 1.2]
+Q12. What is lambda in Python?
+Ans.   Lambda is a keyword used to declare any function and that function is called lambda function. It is a simple function listed as an argument.
+Example:
+# Python code to illustrate square of a number
+# showing difference between def() and lambda().
+def square(a):
+return a*a;
+g = lambda b: b*b
+print(g(3))
+print(square(5))
+Output:
+9
+25
+Q13. Briefly explain Functions in Python?
+Ans.   Functions are the small segment of code, which are reusable codes used to perform actions when it is called. “def” keyword is used to define any function in Python.
+Example:
+def printstar( q ):
+“This prints a passed string into this function”
+print q
+Return
+Q14. Is Python an Interpreted or a Compiled language?
+Ans.  Python is an interpreted language. It converts the source code that is written by the programmer into an intermediate language, which is again translated into machine language before being executed.
+Q15. Name the supported data types in Python?
+Ans.  There are five standard data types in Python —
+Numbers
+Strings
+List
+Tuple
+Dictionary
+Also Read>>Top Reasons to Learn Python and Hadoop
+Q16. What is a Dictionary in Python?
+Ans.  A Dictionary is an associative array (also known as hashes) and is like a built-in mapping.
+Q17. Are arguments passed by value or reference in Python?
+Ans.  In Python, arguments are always passed by value.
+Q18. What is Web Scraping? How do you achieve it in Python?
+Ans.  Web Scraping is a way of extracting the large amounts of information available on the web sites and saving it onto the local machine or the database tables. Python has few modules for scraping the web like urllib2, scrapy, pyquery, BeautifulSoap, etc.
+Q19. How do you copy an object in Python?
+Ans.  We can copy an object in Python by using the functions copy.copy() and copy.deepcopy()
+Q20. Name a few libraries in Python used for data analysis and scientific computations.
+Ans.  Some of the libraries used for data analysis and scientific computations are NumPy, SciPy, Pandas, SciKit, Matplotlib, Seaborn.
+Q21. Why should one use NumPy arrays instead of nested Python lists?
+Ans.  NumPy’s arrays are more compact than Python lists — a list of lists as you describe, in Python, would take at least 20 MB or so, while a NumPy 3D array with single-precision floats in the cells would fit in 4 MB.
+CHECK OUT OUR DATA SCIENCE COURSES
+Q22. What is a Python decorator?
+Ans.  A Python decorator is a specific change to the Python syntax that allows us to alter functions and methods more conveniently.
+Q23. What is Monkey Patching? How can you do it in Python?
+Ans.  Monkey Patching is the process of making changes to a module or class while the program is running. A Monkey Patch in Python is a piece of code that extends or modifies other code at runtime (typically at startup).
+Q24. What is a unittest in Python?
+Ans.  The unit testing framework of Python is known as unittest. It has similar features with unit testing frameworks in other languages.
+Unittest supports some important concepts of object-oriented Programming:
+Test fixture
+Test case
+Test suite
+Test runner
+Example:
+import unittest
+class ABC(unittest.TestCase):
+def xyz():
+…
+if __name__ == “__main__”:
+unittest.main()
+Q25. What is a negative index in Python?
+Ans.  Python sequences can be indexed as positive and negative numbers. A negative index accesses elements from the end of the list counting backward.
+Q26. What is the difference between Xrange() and range()?
+Ans.  Range() returns a list and Xrange() returns an Xrange object, which is kind of like an iterator and generates the numbers on demand.
+Q27. Define module and package.
+Ans.  A module is a Python object with arbitrarily named attributes that you can bind and reference.
+A Python package is simply a directory of Python module(s).
+Q28. Why don’t lambda forms have statements?
+Ans.  It is because a lambda form is used to make a new function object and then return at runtime. Also, the syntactic framework of Python is unable to handle statements nested inside expressions.
+Also Read>>The Best Way to Learn Python
+Q29. What is Flask?
+Ans.  Flask (source code) is a Python micro web framework and it does not require particular tools or libraries.
+Q30. How will you perform static analysis in a Python application or find bugs?
+Ans.  PyChecker can be helpful as a static analyzer to identify the bugs in the Python project. This also helps to find out the complexity related bugs. Pylint is another tool that helps check if the Python module is at par with the coding standards.
+Q31.When will you use the Python Decorator?
+Ans.  Python Decorator is used to adjust the functions in Python syntax quickly.
+Q32. Are Python strings immutable or mutable?
+Ans.  This is among the very commonly asked Python interview questions. Your reply should be –
+Python strings are immutable. Ironically, it is not a string, but a variable with a string value.
+Also Read>>5 Reasons to Learn Python!
+Q33. What is a pass in Python?
+Ans.  Pass stands for no-operation Python statement. It means that pass is a null operation; nothing happens when it is executed.
+You might come across some confusing Python interview questions, MCQ is one of them, but do not get stumped. You should be thorough with your study and be well prepared for the Python interview questions.
+Q34. Now, choose the right answer –When “else” in try-except-else is executed?
+In case of any exception
+When no exception is there
+When an exception occurs in the except block
+Always
+Ans.  c) when no exception occurs
+Q35. What is slicing?
+Ans.  Slicing is a computationally fast way to methodically access a range of items from sequence types like list, tuple, strings, etc.
+Q36. What is the output of the following code?
+list1 = [5,4,3,2,1]
+list2 = list1
+list2[0] = 0;
+print “list1= : “, list1
+Ans.
+Output:
+list1= :  [5,4,3,2,1]
+Q37. How is the last object from a list removed?
+Ans.  list.pop(obj=list[-1]) − Removes and returns last object from the list.
+Q38. What is docstring?
+Ans.  Python documentation strings (docstrings) provide an easy way to document Python functions, modules and classes.
+Q39. How to delete a file?
+Ans.  We can delete a file in Python by using a command os.remove (filename) or os.unlink(filename).
+Q40. What is the output of the following code?
+x = True
+y = False
+z = False
+if x or y and z:
+print “HELLOWORLD”
+else:
+print “helloworld”
+Ans.  Output:
+HELLOWORLD
+Reason: Here, in Python AND operator has a higher preference than OR operator. So, (y and z) are evaluated first.
+Q41. How many kinds of sequences does Python support? Name them.
+Ans.  Python supports seven sequence types –
+Str
+List
+Tuple
+Unicode
+byte array
+xrange
+buffer
+Q42. How will you reload a Python module?
+Ans.  reload() is used to reload a previously imported module.
+Q43. What is a set?
+Ans.  A set is an unordered collection of iterable and mutable data, and it has no duplicate elements.
+Q44. Name some standard Python errors.
+Ans.  Some standard errors in Python are –
+TypeError
+ValueError
+NameError
+IOError
+IndexError
+KeyError
+We can use dir(__builtin__) to list all the errors in Python.
+Q45. What is Tkinter?
+Ans.  Tkinter is the de-facto standard GUI (Graphical User Interface) package of Python.
+Q46. What is multithreading?
+Ans.  Multithreading stands for running a number of programs simultaneously by invoking multiple threads.
+These are some of the popular Python interview questions that are asked in a Python interview. Always be prepared to answer all types of questions — technical skills, interpersonal, leadership, or algorithms. If you are someone who has recently started your career in Python, you should always take up Python certification and have a good grasp on the programming language, and perform well with Python interview questions.
+Q47. How is a list reversed?
+Ans.  To reverse lists, one can use list.reverse()
+Q48. How to capitalize the first letter of string?
+Ans.  To capitalize the first letter of the string, capitalize() method is used. If the string is already capitalized then it will return the original value.
+Q49. Which python library is used for Machine learning?
+Ans.  Scikit-learn python Library is used for Machine learning.
+Q50. What is the role of len() in python?
+Ans.  len() is used to determine the length of an array, list and string in the program.
+Example:
+str1=’1234’
+len(str1)
+Q51. What is the output of the following code?
+class Demo:
+def __initl__(self, id):
+self.id = id
+id = 777
+acc = Acc(222)
+print acc.id
+Ans.  Output: 222
+Reason: “Demo” class automatically calls the method ”initl” and passes the object and “222” is assigned to the object called id. So, the value “777” cannot be called and the output will be “222”.
+Q52. How to delete a file in Python?
+Ans.  OS Module needs to be installed to delete any file in python. After installing the module, os.remove() function is used to delete a file.
+Q53. Write a code to test whether the number is in the defined range or not?
+Ans.
+def test_range(n1):
+if n1 in range(0, 555):
+print(”%s is in range”%str(n1))
+else:
+print(”%s is not in range”%str(n1))
+Output:
+test_range(555)
+555 is not in the range
+Q54. Write a code to convert a string into lowercase?
+Ans.  lower() is used to convert the string into lower case
+str=’XYZ’
+print(str.lower())
+Output: xyz
+Q55. What is the output of the following code?
+nameList = [‘Joe’, ‘Nick’, ‘Bob’, ‘Harry’]
+print nameList[1][-1]
+Ans.  Output:
+k
+Reason: [-1] shows the last element or character of the string. In the above code, ]1] represents the second string and [-1] represents the last character of the second string, i.e., “k.”
+Q56. Which databases are supported by Python?
+Ans.  MySQL (Structured) and MongoDB (Unstructured) are supported by Python. First, the modules should be imported to the library to interact with the database.
+Q57. What is the output of the following code?
+demoCodes = [1, 2, 3, 4]
+demoCodes.append([5,6,7,8])
+print len(demoCodes)
+Ans.  Output: 5
+Reason: ‘append’ method is used in the code, which has to append the existing object into the list. But the append method does not merge the list, which is added as an element. So, the output will be’5’.
+Q58. What is the use of the ‘#’ symbol in Python?
+Ans.  ‘#’ symbol is used to symbolize the comments
+print (“I am a quick learner”)
+#print (“I am a quick learner”)
+Q59. Suppose a list1 is [2, 44, 191, 86], what would be the output for list1[-1]
+Ans.  Output: 86
+List1[-1] shows the last integer of the list
+Q60. What is the maximum length of an identifier in python?
+Ans.  The maximum possible length of an identifier in python is 79 characters
+Q61. Can you tell me the generator functions in Python?
+Ans.  Generator functions help to declare a function that behaves like an iterator in a fast, easy, and neat way.
+Q62. Write a code to display the current time.
+Ans.  Here is the code to represent the current time:
+import datetime
+now = datetime.datetime.now()
+print (“Current date and time : “)
+print (now.stgftime(“%Y-%m-%d %H:%M:%S”))
+Q63. Is Python a case-sensitive programming language?
+Ans.  Yes, it is a case-sensitive language like other languages such as Java, C, and C++.
+Q64. Write a code to sort a numerical list in Python.
+Ans.  To sort a numerical list, use the following code:
+list = [“2”, “7”, “3”, “5”, “1”]
+list = [int(i) for i in list]
+list.sort()
+print (list)
+Q65. Write a code to display the contents of a file in reverse.
+Ans.  To reverse the content, use the following code:
+for line in reversed(list(open(filename.txt))):
+print(line.rstrip())
+Q66.How to add array elements in python programming?
+Ans. We can add elements to an array with the help of append(), insert (i,y) and extend() functions.
+Example:
+x=arr.array(‘d’, [1.2 , 2.2 ,3.2] )
+x.append(3.3)
+print(x)
+x.extend([4.5,6.2,6.3])
+print(x)
+x.insert(2,3.8)
+print(x)
+Output:
+array(‘d’, [1.2, 2.2, 3.2, 3.3])
+array(‘d’, [1.2, 2.2, 3.2, 3.3, 4.5, 6.2, 6.3])
+array(‘d’, [1.2, 2.2, 3.8, 3.2, 3.3, 4.5, 6.2, 6.3])
+Q67. Why is the split used in Python?
+Ans. The split() method is used to separate two strings in Python.
+Example:
+x=”Naukri python”
+print(x.split())
+Output:  [‘Naukri’, ‘python’]
+Q68. How to create classes in Python? 
+Ans. In Python, classes are user-defined which is defined with a class keyword
+Example:
+Class Student:
+def_init_(self, name) :
+self.name = name
+S1 = Student (“xyz”)
+print (S1.name)
+Output: xyz
+Q69. How do we create an empty class in Python?
+Ans. An empty class in Python is the blank class that does not have any code defined within its block. We can create an empty class using the pass keyword. 
+Example:
+Class x:
+&nbsp: pass
+obj=x()
+obj.name=”xyz”
+print (“Name = “,obj.name)
+Output: 
+Name = xyz
+Q70. Write a program in Python to check if a sequence is a Palindrome.
+Ans. To check a sequence whether it is palindrome or not:
+x=input (“enter sequence”)
+y=x[::-1]
+If x==y:
+&nbsp: print(“Palindrome”)
+else:
+&nbsp; print (“Not a Palindrome”)
+Output:
+enter sequence 323 Palindrome
+Q71. Mention the differences between Django, Pyramid, and Flask?
+Ans. Following are the difference between Django, Pyramid, and Flask:
+Flask is used to create small applications with simpler necessities. It requires external libraries to built applications, and you are ready to use it.
+The Pyramid is used to create large applications. It is heavy configurable and requires a database, templating style, URL structure, and other elements to build an application. It also provides flexibility to choose the right tools for development.
+Django is also used for large applications that is similar to the Pyramid. It consists of an ORM.
+Q72. Explain the difference between a shallow copy and a deep copy?
+Ans. Shallow copy is used at the time of new instance creation, and it stores the copied values whereas in deep copy, the copying process executes in looping, and copy of an object is copied in other object. A shallow copy has faster program execution than a deep copy.
+Q73. Which statement can we use in Python if the statement is required syntactically, but no action is needed for the program?
+Ans. Pass statement is used if the statement is required syntactically, but no action is required for the program
+Example:
+If(x>20)
+print(“Naukri”)
+else
+pass
+Q74. What are the tools required to unit test your Python code?
+Ans. To test units or classes, we can use the “unittest” python standard library. It is the easiest way to test code, and features required are similar to the other unit testing tools like TestNG, JUnit.
+Q75. How to get indices of N maximum values in a NumPy array?
+Ans. With the help of below code, we can get the  N maximum values in a NumPy array :
+Import numpy as nm
+arr=nm.array([1, 6, 2, 4, 7])
+print (arr.argsort() [-3:] [::-1])
+Output:
+[ 4 6 1 ]

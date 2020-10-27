@@ -1,0 +1,1227 @@
+1) What are the features of Flask Python?
+Flask Python is one of the newest frameworks of Python and is used for designing web applications for the following features:
+
+Flask comes with built-in development server as well as fast debugger
+It also contains the integrated support required for unit testing
+It has the feature of restful request dispatching
+Comes with Jinja2 templating technique
+Flask supports secure cookies i.e. client-side sessions
+Also has the WSGI 1.0 compliant feature.
+It is based on Unicode.
+Python Flask is extensively documented.
+2) What are the advantages of Flask Python?
+Flask Python comes with all the advantages of Python and some additional pros of it are:
+
+Flasks design is lightweight and modular. Therefore, it is easy to transform it into the web applications or framework when one needs very few extensions without weighing much.
+Flask is ORM-agnostic: i.e. user can plug in their favorite ORM like SqlAlchemy
+The basic foundation of API is very nicely shaped and made coherent.
+Documentation of flask is very comprehensive, filled with lots of examples and are well structured. Users can even try out some sample applications to really get the real feel of Flask.
+It is very easy to deploy Flask in production as Flask comes with 100% WSGI 1.0 compliant
+Flask can handle HTTP request easily with help of its functionalities
+It is highly flexible. Its configuration is even more flexible than that of Django, which gives its users plenty of solutions for every product they need.
+
+ 
+3) What is Flask-WTF and what are their features?
+Flask-WTF is featured to offer simple integration with WTForms. The Features include for Flask WTF are:
+
+Provides Integration with web forms
+Is very secure form as it comes with CSRF token
+Provides global CSRF protection
+Comes with internationalization integration
+Also features Recaptcha supporting
+Contains File upload that closely works with Flask Uploads
+ 
+
+4) How long can an identifier be in Flask Python?
+In Flask Python, an identifier can be of any length. Also, there are certain rules that the users must follow to name an identifier
+
+It should begin with a character or an underscore or from A-Z or a-z.
+The rest of the name of identifier can contain anything from the following: A-Z or a-z or 0-9 or _.
+Flask Python is case-sensitive so it will treat upper case and lower case letters differently.
+
+There are certain words, which are reserved in Python called keywords and they cannot be used as identifiers.Some of them are listed below:
+
+and, def, false, import, not, true, as, del, finally, in, or, try, assert, elseif, for, is, pass, while, break, else, from, lambda, print, with, class, except, global, none, raise, yield, continue, exec, if, nonlocal, return
+
+5) What are the HTTP methods provided by Python Flask?
+HTTP methods are used to retrieve data from an URL:
+
+GET: The GET is the method that sends data to the server unencrypted.
+HEAD:  HEAD is similar to GET, but that it has no response body.
+POST: The POST server does not cache the HTML form data that it sends
+PUT: It is the method in which the uploaded content replaces current data representations of the target resources.
+DELETE: This method removes the current representations of the target resource that is suggested by a URL.
+6) What do you mean by template engines in Flask Python?
+When users built a website they often face the problem to keep the style of the website consistent. Sometimes the users have had to write multiple times the same text when they ever try to change the style of such websites. If the website contains only a few pages, changing its style will take the users only some time which is doable. However, if they have a lot of pages (for example the list of items sold in a mall), this task becomes monotonous and hectic.
+
+Using templates the users may set a basic layout for all their pages and provide which element needs to be changed frequently. Using this way the users can define their header once and keep it consistent in all the pages of their website, and if they need to change their header, they will only have to update it at one place. Making use a template engine will save the users a whole lot of time not only while they create their application but also when they are updating and maintaining it.
+
+7) What are the major differences between Pyramid and Flask?
+Flask can be stated as a micro framework, which is solely built for a small application, which has simpler requirements. In flask, the users have to use external libraries. Flask is always ready to use.
+
+Pyramid, on the other hand, is built for larger application as it provides flexibility and allows the developer use the right features for their project. The developer can choose the database, templating style URL structure and more. Pyramid is therefore heavy configurable.
+
+8) Explain how can one-request database connections in Flask?
+Flask framework allows to its users to request database in three ways. They are as follows:
+
+before_request()-These connections are called before making a request and no arguments are passed
+after_request() : These connections are called after making a request and response is passed that will be sent to the client.
+teardown_request(): These connections are called in a situation where an exception is raised and the response are not sure to get. They are also called after the construction of response. These are not allowed to change the request, and their values can be ignored.
+9) Explain can a request context be created in Flask Python?
+ A request profile in Flask Python can be created in two ways:
+
+On its own or auto when the application receives a request from the system
+Manually that is by calling app.test_request_context 
+10) Mention how one can enable debugging in Flask Python ?
+There are two ways by which users can enable debugging in Flask. They are as follows:
+
+By setting the flag on the applications object
+By passing the flag as a parameter to run. If the user is enabling to debug support, the server will reload it when the code will change and the user doesn’t have to restart after each change made in the code.
+11) What do you mean by the Thread-Local object in Flask Python?
+Flask Python makes use of thread local objects internally so that the user doesn’t have to pass objects around from one function to another function within a request so as to stay thread safe. This approach is quite useful, but it requires a pure request context for dependency injection or while attempting to reuse code, which uses a value indulged in the requests.
+
+Flask Python supports all kinds of database-powered applications like RDBS. Such systems require creating of a schema, which further requires connecting the schema.sql file to a sqlite3 command. So users need to install sqlite3 command if they want to create or start the database in Flask Python.
+
+12) How can one-access sessions in Flask Python? State whether Flask Python is an MVC model.
+A session in Flask Python is a feature that allows one to remember the information from one request to another. In a flask program, it makes use of a signed cookie so that the user can look at the contents of the session and modify them. The user can also modify the sessions if and only if it has the secret key called the Flask.secret_key. Flask is a small form of Python framework, which behaves the same as the MVC framework. So MVC is a perfect match for Flask.
+
+13) What do you mean by a decorator? Name some PDB commands and their uses.
+A decorator is defined as a function that adds functionality to another function without changing it. It wraps the function to add some functionality to it.Some PDB commands include
+
+<b>: It adds a breakpoint
+<c>: It resumes the execution
+<s>: It debugs step by step
+<n>: It moves to next line
+<l>: It lists the source code
+<p>: It prints an expression
+14) What do you mean by NumPy? Is it better than a list?
+NumPy is one of the Flask Python packages which have made its identity in the era of scientific computing. It deals with large data sizes, and also contains a powerful N dimensional array object along with a set of advanced functions.
+
+A NumPy array is much better than a list. Here are the ways:
+
+NumPy is more compact than list.
+NumPy is more convenient than the list.
+Numpy is more efficient than List.
+It is simpler to read and write items with NumPy.
+15) What do you mean by pickling and unpickling?
+To make a portable and serialized representations of Python objects, we have the module known as pickle which accepts a Python object (basically everything in Python is an object) and then converts it into a string type, and after that uses the dump () function to dump it into a file. We term this as pickling.
+On the contrary, retrieving objects from the stored string forms is called as unpickling.
+
+16) How is memory managed in Flask Python?
+Flask Python is a collection of private heap spaces, which holds all objects and data structures together. Programmers cannot access it. It is the task of the interpreter to manage it. But in the core API, users can access some of the tools. The Flask Python memory manager controls its allocation. Also, an inbuilt garbage collector is present which recycles all unused memory so it is made available for the heap space.
+
+17) Explain how can you structure a large Flask application ?
+To structure a large flask application, one needs to follow these steps:
+
+Connect to the functions and then move them to various files, as long as users are assured that it will get imported as the applications start
+Then use blueprints to assign the views to various categories such as auth, backend, profile, etc.
+Then use the hidden Werkzeug URL map and then register functions on a central URL map.
+18) What are the requirements to create the database in Flask Python?
+Flask Python supports all kinds of database-powered applications like RDBS. Such systems require creating of a schema, which further requires connecting the schema.sql file to a sqlite3 command. So users need to install sqlite3 command if they want to create or start the database in Flask Python.
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+1) What is Flask?
+Flask is a micro web framework written in Python. It is based on Werkzeug toolkit and Jinja 2 template engine.
+
+2) Who is the developer of Flask?
+Armin Ronacher is the developer of Flask.
+
+3) What is the stable version of Flask?
+The stable version of Flask is 0.12.2 and released on 16 May 2017.
+
+4) What are Flask-WTF and its features?
+It is a template form that is integrated with Flask. It includes various features that are given below.
+
+It provides integration with WTF
+It manages secure form with CSRF token
+It manages global CSRF protection
+It provides Internationalization integration
+It supports recaptcha
+It handles the file upload that works with Flask uploads
+5) What is the benefit of flask?
+Flask is a part of the micro-framework. It does not require external libraries. It makes the framework light weight, less dependent and less security bugs.
+
+6) What are the differences between Django, Pyramid and Flask?
+There are following differences between Django, pyramid and Flask:
+
+Django	Pyramid	Flask
+It is a python framework.	It is same as Django.	It is micro framework.
+It is used to build large applications.	It is same as Django .	It is used to create small application.
+It includes an ORM.	It provides flexibility and right tools.	It does not require external libraries.
+7) What is the appropriate way to work with Flask script?
+The appropriate way to work with flask script includes the following steps:
+
+Either it should be the import path for our application
+Or the path to a Python file
+8) How can we access sessions in Flask?
+In Flask, a session allow us to remember information from one request to another. It uses a signed cookie so the user can look at the session contents. We can access session by using the secret key Flask.secret_key in the Flask framework.
+
+9) How can we request database connections in Flask?
+Flask provides three ways to establish database connection. These are given below.
+
+before_request() : It is called before a request and requires no arguments.
+after_request() : It is called after a request and pass the response that will be sent to the client
+teardown_request(): It is used when exception is raised and response are not guaranteed. It is called after the response and not allowed to modify the request or their values.
+10) What is Flask Sijax?
+Flask Sijax is a Simple Ajax & jQuery library. It is used to enable Ajax in web applications. It uses JSON to pass data between the server and the browser.
+
+11) How can we get a query string from the Flask?
+We can get a query string from the flask by using following function.
+
+@app.route(‘/data’)
+    def data ( ) :
+    user = request.arg.get (‘user’)
+12) How can we create request context in Flask?
+We can create request context by using following ways.
+
+Automatically when the application receives a request
+OR manually, by calling app.test_request_context (‘/route?param=value)
+13) How can we create structure of large Flask application?
+We can create structure of large Flask application by using following steps:
+
+attach to the functions and move them to different files.
+Use blueprints to assign the views to “categories”. For instance auth, profile, backend, etc.
+Use the underlying Werkzeug URL map and register functions on there on a central URL.
+14) What are the attributes of request objects?
+There are various attributes of request objects:
+
+Attributes	Description
+Form	It is a dictionary object containing key.
+Args	It parsed contents of query string which is part of URL after question mark (?).
+Cookies	Dictionary object holds Cookie names and values.
+Files	Data pertaining to uploaded file.
+Method	Current request method.
+15) What are the Mail class methods?
+There are following Mail class method:
+
+send(): It is used to send contents of Message class object.
+connect(): It is used to opens connection with mail host.
+send_message(): It is used to sends message object.
+16) What are the steps to develop MVC web application in Flask?
+There are following steps to develop web application:
+
+Flask import Flask
+
+app = Flask(_name_)  
+@app.route("/")  
+Def hello():  
+return "Hello World"  
+app.run(debug = True)  
+In this code your,
+
+0
+1
+2
+3
+4
+5
+6
+7
+ 
+app = Flask(_name_)
+@app.route("/")
+Def hello():
+return "Hello World"
+app.run(debug = True)
+In this code your,
+ 
+Configuration part will be
+
+from flask import Flask  
+        app = Flask(_name_)
+
+0
+1
+2
+3
+ 
+from flask import Flask
+  app = Flask(_name_)
+ 
+View part will be
+ 
+
+
+@app.route("/")  
+        Def hello():  
+        return "Hello World"
+
+0
+1
+2
+3
+4
+ 
+@app.route("/")
+  Def hello():
+  return "Hello World"
+ 
+While you model or main part will be
+
+app.run(debug = True)
+
+0
+1
+2
+ 
+app.run(debug = True)
+ 
+17) What is the extension of Flask?
+The extension of Flask is .Py.
+
+18) What is the default port of Flask?
+The default port of Flask is 5000.
+
+19) What is url_for() function in Flask?
+In Flask, url_for() function is used to build dynamic URL for specific function.
+
+20) What are the HTTP methods in Flask?
+In Flask, the HTTP methods are given below:
+
+GET : It is used to send the data in unencrypted form to the server.
+HEAD : It is same as GET, but without response body.
+POST: It is used to send HTML from data to server. Data received by POST method.
+PUT : It is used to replaces all the current representation uploaded content
+DELETE : It is used to removes all current reorientation.
+21) What is the default route request in Flask?
+In Flask, GET is the default route request.
+
+22) What are the delimiters used in Jinga2 template?
+{% … %}: It is used for Statements
+{{ … }}: It is used for Expressions to print to the template output
+{# … #}: It is used for Comments not included in the template output
+# … ## : It is used for Line Statements
+23) What is the use redirect() function.
+Redirect() function is used to display the login page again when a login attempt fails.
+
+24) What are the error codes in Flask?
+In Flask, the error code is given below:
+
+400 âˆ’ for Bad Request.
+401 âˆ’ for Unauthenticated.
+403 âˆ’ for Forbidden.
+404 âˆ’ for Not Found.
+406 âˆ’ for Not Acceptable.
+415 âˆ’ for Unsupported Media Type.
+429 âˆ’ Too Many Requests.
+25) How can we create a form for file uploading?
+We can create a form for file uploading by using following code:
+
+
+<html>  
+   <body>  
+           <form action = "http://localhost:5000/uploader" method = "POST"   
+         enctype = "multipart/form-data">  
+         <input type = "file" name = "file" />  
+         <input type = "submit"/>  
+      </form>          
+   </body>  
+</html>
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+ 
+<html>
+  <body>
+  <form action = "http://localhost:5000/uploader" method = "POST"
+  enctype = "multipart/form-data">
+  <input type = "file" name = "file" />
+  <input type = "submit"/>
+  </form>
+  </body>
+</html>
+ 
+26) What are the Mail methods in Flask?
+In Flask, the Mail methods are given below:
+
+send(): It is used to send contents of message class object.
+connect(): It is used to open connection with mail host.
+send_message(): It is used to send message object.
+27) What are the validators class of WTForms in Flask?
+In Flask, The validators class of WTForm are listed in below table:
+
+Validators class	Description
+DataRequired	It is used to check whether input field is empty
+Email	It is used to check whether text in the field follows email ID conventions.
+IPAddress	It is used to validate IP address in input field
+Length	It is used to verify if length of string in input field is in given range
+NumberRange	It is used to validates a number in input field within given range
+URL	It is used to validates URL entered in input field
+28) Does Flask support in-built SQlite database?
+Yes, Flask supports in-built SQlite database.
+
+29) What is ORM?
+ORM stands for Object Relation Mapping. It is a technique of mapping object parameter.
+
+30) What is WSGI?
+WSGI stands for Web Server Gateway Interface. It is used to python web application development.
+
+31) What are the popular server that contains WSGI application and Server HTTP?
+There are many popular server that contains WSGI application and server HTTP:
+
+Gunicorn
+Tornado
+Gevent
+Twisted Web
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q1. What is Python Flask?
+
+Python Flask is popular, extensible micro web framework written building web applications using Python Programming Language. This does not require particular tools or libraries and does not have database abstraction layer, form validation, or any other components.
+
+Q2. For what python flask is used?
+
+You can use python flask framework for creating API's, blog or wiki-like platform.
+
+Q3. How to structure python flask project?
+
+A Single Flask module in the project is structured as below
+
+app.py
+config.py
+requirements.txt
+static/
+templates/
+Q4. How to install python flask?
+
+You can use the below command to install Python Flask.
+
+pip install Flask
+Q5. How to start python flask app?
+
+A simple Flask application looks like below
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+You can start python flask app by running below command
+
+$ export FLASK_APP=hello.py
+$ flask run
+ * Running on http://127.0.0.1:5000/
+Q6. What is g in python flask?
+
+Flask g name stands for "global" which is referring to data being global within a context. The data saved in g is lost after the context ends, and it is not an appropriate place to store data between requests.
+
+Q7. How to check version of python flask?
+
+Run below command to check the installed version of the python flask
+
+>> import flask
+>> flask.__version__
+Q8. Enlist few alternatives of python flask?
+
+Django, Sinatra, Pyramid, Falcon framework, Bottle, jam-py are some good alternatives to Python Flask.
+
+Q9. What is app routing in Python flask?
+
+App routing in Flask is used to map a specific URL with the associated function that is intended to perform some task.
+
+Q10. How to enable logging in python flask?
+
+Set app.debug to True and add below code in your function where you want to enable logging in Flask.
+
+import logging
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def foo():
+    app.logger.warning('A warning occurred')
+    app.logger.error('An error occurred')
+    app.logger.info('Info')
+    return "foo"
+	
+	Q11. How to redirect to a url in python flask?
+
+You can use redirect() to redirect to a URL in python flask.
+
+Example:
+
+return redirect("http://www.example.com", code=301)
+Q12. What are python flask query parameters?
+
+Query Parameter also known as query strings in Python Flask are post or get data that is send to the server via form or ajax method. You can use request.args.get('query_name') function to get a query string in Flask Framework.
+
+Q13. How to get all records for table in Flask?
+
+You can use Model.query.all() method to get all records for the table in Flask.
+
+Example
+
+@app.route('/users')
+def users():
+    users = User.query.all()  
+Q14. How to return json in flask?
+
+Use jsonify() function to return json in flask.
+
+Example
+
+from flask import jsonify
+@app.route('/users')
+def users():
+   users= User.query.all()  
+    return jsonify(users)
+Q15. What are macros in python flask?
+
+Flask macro is a tool to build modular user interface on web pages.
+
+Q7. What is Jsonify in flask?
+
+jsonify() function is used to return flask.Response() object with content-type header 'application/json'.
+
+Q8. How to change Flask server host/port using config file?
+
+In the config file, you can set the server host and port values using the following line app.run(host=’host_value’, port=’port_value’) Here, you can set and change your host and port value of your server.
+
+Q9. How to log request body in python flask?
+
+You can take advantage of Flask.before_request hook to log the request body in python flask. Here is an example:
+
+@app.before_request
+def log_request_info():
+    app.logger.debug('Headers: %s', request.headers)
+    app.logger.debug('Body: %s', request.get_data())
+Q10. How to divide flask app into multiple py files?
+
+Q11. Is python flask multithreaded?
+
+Yes, Flask is multithreaded.
+
+Q12. How to create an array with checkboxes in Flask?
+
+To create an array with checkboxes in Flask you have to create your checkbox input names with the same name.
+
+Below is an example which demonstrates how to create an array with checkboxes in Flask
+
+In your view
+
+<input type="checkbox" value="X" class="danger" name='my_checkbox'>
+<input type="checkbox" value="Y" class="danger" name='my_checkbox'>
+<input type="checkbox" value="Z" class="danger" name='my_checkbox'>
+In Flask code you can get selected checkbox values as
+
+print(request.form.getlist('my_checkbox'))
+Above code outputs value of all selected checkboxes
+
+Q13. How to get visitor ip address in Flask?
+
+request.remote_addr is used to get visitor IP address in Flask. Here is an example:
+
+from flask import request
+from flask import jsonify
+
+@app.route("/get_user_ip", methods=["GET"])
+def get_user_ip():
+    return jsonify({'ip': request.remote_addr}), 200
+Q14. What is g in python flask?
+
+Occasionally you might find a situation in which using a global variable is a perfectly reasonable solution to a problem. However, in a Flask app, your code is likely to end up running in an environment with multiple requests being handled at the same time. If you used a normal global variable, one request might modify the global variable and interfere with another request that happens to be executing simultaneously. To avoid that, Flask provides this g object to which you can attach such variables. Each request gets a different g object, so simultaneous requests can't interfere with each other, but you still have the same convenience as a global variable.
+
+Further Reading: Read More Flask g
+
+Q15. What is Flask Sijax?
+
+Flask Sijax is Python/jQuery library to perform  Ajax function in Flask.
+
+You can install Flask-Sijax by using below command
+
+easy_install flask-sijax
+pip install flask-sijax
+Q16. For what url_for() function is used in Flask?
+
+url_for() function in flask is used for generating dynamic URL for a specific function.url_for() accept the name of a function as the first parameter and one or more arguments for the variable part of URL.
+
+Q17. What is WSGI?
+
+WSGI stands for Web Server Gateway Interface. It a convention or standard that describes how web servers communicate to web applications or Python frameworks.
+
+Q18. How to get http headers in flask?
+
+You can use request.headers.get method to get http headers in the flask. request.headers method in flask framework behaves like a dictionary so the value of headers are available in array format too something like request.headers['your-header-name']
+
+Example
+
+from flask import request
+rrequest.headers.get('Authorization')
+Q19. How to serve static files in Flask?
+
+Static files should be added to the flasks/static directory and then the files are referenced in the HTML to serve the static files. Static files such as CSS and JavaScript acts as a template and adds more functions to your web application. All the static files are added to the flask/static directory and referenced by the following line to serve it.
+
+//referencing static files in the flask
+url_for(‘static’, filename=’static_file_name’)
+Q20. How to get a query string in Flask?
+
+The query string is a key/value pair that is sent by the client to the server in the web URL. These values are actually a part of the URL as a string of parameters and values. To get and work with the query string, we need to use the import request method from the flask.
+
+//example of getting a query string in the Flask
+from flask import request   //request method is used to work with the query string values
+@app.route("/query")
+def query():
+args = request.args     //here, we get the query string object in a variable called ‘args’ using 
+print(args)	
+Q21. How to import function into main file in flask?
+
+You can use the import statement to import functions from other files into the main file in the Flask. You can also use the 'from' statement with the 'import' statement to import a specific function from other files into your main flask file.
+
+//example of importing functions
+from otherFile import function  //importing function method from the file otherFile.py
+@app.route("/")
+@app.route("/index")
+def index():
+    baz = function()     //the function imported from your file otherFile.py
+if __name__ == '__main__':
+    app.run(debug=True)
+
+Q22. How to disable csrf for a view with flask-wft for a restapi?
+
+When you create the form, you can disable the CSRF for a view with flask-wtf for a restapi by using the following statement.
+
+form = myForm(request.form, csrf_enabled=False)
+Q23. How to share the global app object in flask?
+
+You can create an overall package and add an __init__.py file under the package folder where you declare all the global variables that you need to share between the classes. Then, you should add the code "app = Flask(__name__)" in the __init__.py file. Now you can share and use the app variables anywhere if you just import the package name.
+
+Q24. What is the purpose of Flask's context stacks?
+
+Flask in Python language helps to handle multiple apps in the process. Contexts allow separating application environments from one another.
+
+Q25. How to get logged user id in flask?
+
+current_user.get_id() is used to get logged in user id in flask.
+
+Here is an example:
+
+from flask import g
+if current_user.is_authenticated():
+        g.user = current_user.get_id()
+-------------------------------------------------------------------------------------------------------------------------------------------
+Q1). What is Flask?
+Ans1: Flask is a web micro framework for Python based on “Werkzeug, Jinja 2 and good intentions” BSD licensed. Werkzeug and jingja are two of its dependencies.
+
+Q2). What is the benefit of using Flask?
+
+Ans2: Flask is part of the micro-framework. Which means it will have little to no dependencies on external libraries. It makes the framework light while there is little dependency to update and less security bugs.
+
+Q3). What is the difference between Django, Pyramid, and Flask?
+
+Ans3: Flask is a “microframework” primarily build for a small application with simpler requirements. In flask, you have to use external libraries. Flask is ready to use.Pyramid are build for larger applications. It provides flexibility and lets the developer use the right tools for their project. The developer can choose the database, URL structure, templating style and more. Pyramid is heavy configurable.
+
+Q4). What is Flask-WTF and what are their features?
+
+Ans4: Flask-WTF offers simple integration with WTForms. Features include for Flask WTF are
+
+Integration with wtforms
+Secure form with csrf token
+Global csrf protection
+Internationalization integration
+Recaptcha supporting
+File upload that works with Flask Uploads
+Q5). What is the common way for the Flask script to work?
+
+Ans5: The common way for the flask script to work is
+
+Either it should be the import path for your application
+Or the path to a Python file
+Q6). Explain how you can access sessions in Flask?
+
+Ans6: A session basically allows you to remember information from one request to another. In a flask, it uses a signed cookie so the user can look at the session contents and modify. The user can modify the session if only it has the secret key Flask.secret_key.
+
+Q7). Is Flask an MVC model and if yes give an example showing MVC pattern for your application?
+
+Ans7: Basically, Flask is a minimalistic framework which behaves same as MVC framework. So MVC is a perfect fit for Flask, and the pattern for MVC we will consider for the following example
+
+from flask import Flask
+app = Flask(_name_)
+
+@app.route(“/”)
+
+Def hello():
+
+return “Hello World”
+
+app.run(debug = True)
+
+In this code your,
+
+Configuration part will be
+from flask import Flask
+
+app = Flask(_name_)
+
+View part will be
+@app.route(“/”)
+
+Def hello():
+
+return “Hello World”
+
+While you model or main part will be
+app.run(debug = True)
+Q8). What is a Thread-Local object in Flask?
+
+Ans8: Flask uses thread local objects internally so that user don’t have to pass objects around from function to function within a request in order to stay threadsafe. This approach is useful, but it requires a valid request context for dependency injection or when attempting to reuse code which uses a value pegged to the request.
+
+Q9). What is the requirement to create the database in Flask?
+
+Ans9: Flask supports database powered application (RDBS). Such system requires creating a schema, which requires piping the shema.sql file into a sqlite3 command. So you need to install sqlite3 command in order to create or initiate the database in Flask.
+
+Q10). Explain how you request database connections in Flask?
+
+Ans10: Flask allows to request database in three ways
+
+before_request() : They are called before a request and pass no arguments
+after_request() : They are called after a request and pass the response that will be sent to the client
+teardown_request(): They are called in situation when exception is raised, and response are not guaranteed. They are called after the response been constructed. They are not allowed to modify the request, and their values are ignored.
+
+Q11). Mention how you can enable debugging in Flask? When enabling debugging in Flask can be useful?
+
+Ans11: There are two ways you can enable debugging in Flask.
+
+Either set the flag on the application object
+OR pass it as a parameter to run If you enable debug support the server will reload itself when code changes and you don’t have to manually restart after each change to the code.
+Q12). How can you secure your SQL statement in Flask from SQL injection?
+
+Ans12: You can use questions marks while building SQL statements, it will protect SQL statements from the vulnerability of SQL injections.
+
+Q13). In Flask, explain how does the view function will pass the entries?
+
+Ans13: In Flask, the view function will pass the entries as dicts to the show_entries.html template and return the rendered one.
+
+Q14). Explain how do you get a query string from the flask?
+
+Ans14: To get query string from flask, here we want to get the value of user so we will follow the steps as below
+
+from flask import request
+
+@app.route(‘/data’)
+
+def data ( ) :
+
+user = request.arg.get (‘user’)
+Q15). What is the syntax of a decorator used in Flask to match URLs to view functions in Flask apps?
+
+Ans15: “@app.route” , the syntax is used in Flask to match URLs to view functions in Flask apps.
+
+Q16). What is Flask Sijax?
+
+Ans16: Sijax is nothing but a Python/jQuery library to make Ajax easy to use in web applications. Sijax uses JSON to pass data between the server and the browser.
+
+Q17). What is the difference between “g” variable and “session” in the flask?
+
+Ans17: “g” is data shared between different parts of the code base within one request cycle. For example, a database connection or the user that is currently logged in. While session provides you a storage place to store data for a specific browser. Which means using a specific browser, returns for more request.
+
+Q18). Explain how does a request context can be created in Flask?
+
+Ans18: A request context can be created by either
+
+Automatically when the application receives a request
+OR manually, by calling app.test_request_context (‘/route?param=value)
+Q19). Explain how you can show all errors in the browser for the Flask?
+
+Ans19: To show all errors in the browser for the Flask, you need to run the Python file on the shell. The command used to see errors in detail is “app.debug = True”
+
+Q20). Explain how can you structure a large Flask application?
+
+Ans20: To structure a large flask application, here are the following steps
+
+Stick to the functions and move them to different files, as long as you are assured that it will get imported when the applications starts
+Use blueprints to assign the views to “categories”. For instance auth, profile, backend, etc.
+Use the underlying Werkzeug URL map and register functions on there on a central URL ma
+
+-----------------------------------------------------------------------------------------
+
+Q1. What is Flask-WTF?
+
+Flask-WTF is an inbuilt module of flask framework that provides an extensive way to designing HTML forms in flask web applications.
+
+Q2. For what python flask is used?
+
+Python flask is a web development framework. It can be used for
+
+1) Creating web services.
+2) Creating websites
+3) Building complex web applications
+4) Creating CRM or shopping websites.
+5) Creating Twitter/Facebook bot
+
+Q3. How to install python flask on linux?
+
+pip install flask
+
+Q4. How to deploy python flask app on Heroku?
+
+Q5. How to structure python flask project?
+
+Q6. How to check request is json type in flask?
+
+request.content_type is used to check the request type in Flask. To check request is of json type use if request.content_type == 'application/json':
+
+Q7. What is Jsonify in flask?
+
+jsonify() function is used to return flask.Response() object with content-type header 'application/json'.
+
+Q8. How to change Flask server host/port using config file?
+
+In the config file, you can set the server host and port values using the following line app.run(host=’host_value’, port=’port_value’) Here, you can set and change your host and port value of your server.
+
+Q9. How to log request body in python flask?
+
+You can take advantage of Flask.before_request hook to log the request body in python flask. Here is an example:
+
+@app.before_request
+def log_request_info():
+    app.logger.debug('Headers: %s', request.headers)
+    app.logger.debug('Body: %s', request.get_data())
+Q10. How to divide flask app into multiple py files?
+
+Q11. Is python flask multithreaded?
+
+Yes, Flask is multithreaded.
+
+Q12. How to create an array with checkboxes in Flask?
+
+To create an array with checkboxes in Flask you have to create your checkbox input names with the same name.
+
+Below is an example which demonstrates how to create an array with checkboxes in Flask
+
+In your view
+
+<input type="checkbox" value="X" class="danger" name='my_checkbox'>
+<input type="checkbox" value="Y" class="danger" name='my_checkbox'>
+<input type="checkbox" value="Z" class="danger" name='my_checkbox'>
+In Flask code you can get selected checkbox values as
+
+print(request.form.getlist('my_checkbox'))
+Above code outputs value of all selected checkboxes
+
+Q13. How to get visitor ip address in Flask?
+
+request.remote_addr is used to get visitor IP address in Flask. Here is an example:
+
+from flask import request
+from flask import jsonify
+
+@app.route("/get_user_ip", methods=["GET"])
+def get_user_ip():
+    return jsonify({'ip': request.remote_addr}), 200
+Q14. What is g in python flask?
+
+Occasionally you might find a situation in which using a global variable is a perfectly reasonable solution to a problem. However, in a Flask app, your code is likely to end up running in an environment with multiple requests being handled at the same time. If you used a normal global variable, one request might modify the global variable and interfere with another request that happens to be executing simultaneously. To avoid that, Flask provides this g object to which you can attach such variables. Each request gets a different g object, so simultaneous requests can't interfere with each other, but you still have the same convenience as a global variable.
+
+Further Reading: Read More Flask g
+
+Q15. What is Flask Sijax?
+
+Flask Sijax is Python/jQuery library to perform  Ajax function in Flask.
+
+You can install Flask-Sijax by using below command
+
+easy_install flask-sijax
+pip install flask-sijax
+Q16. For what url_for() function is used in Flask?
+
+url_for() function in flask is used for generating dynamic URL for a specific function.url_for() accept the name of a function as the first parameter and one or more arguments for the variable part of URL.
+
+Q17. What is WSGI?
+
+WSGI stands for Web Server Gateway Interface. It a convention or standard that describes how web servers communicate to web applications or Python frameworks.
+
+Q18. How to get http headers in flask?
+
+You can use request.headers.get method to get http headers in the flask. request.headers method in flask framework behaves like a dictionary so the value of headers are available in array format too something like request.headers['your-header-name']
+
+Example
+
+from flask import request
+rrequest.headers.get('Authorization')
+Q19. How to serve static files in Flask?
+
+Static files should be added to the flasks/static directory and then the files are referenced in the HTML to serve the static files. Static files such as CSS and JavaScript acts as a template and adds more functions to your web application. All the static files are added to the flask/static directory and referenced by the following line to serve it.
+
+//referencing static files in the flask
+url_for(‘static’, filename=’static_file_name’)
+Q20. How to get a query string in Flask?
+
+The query string is a key/value pair that is sent by the client to the server in the web URL. These values are actually a part of the URL as a string of parameters and values. To get and work with the query string, we need to use the import request method from the flask.
+
+//example of getting a query string in the Flask
+from flask import request   //request method is used to work with the query string values
+@app.route("/query")
+def query():
+args = request.args     //here, we get the query string object in a variable called ‘args’ using 
+print(args)	
+Q21. How to import function into main file in flask?
+
+You can use the import statement to import functions from other files into the main file in the Flask. You can also use the 'from' statement with the 'import' statement to import a specific function from other files into your main flask file.
+
+//example of importing functions
+from otherFile import function  //importing function method from the file otherFile.py
+@app.route("/")
+@app.route("/index")
+def index():
+    baz = function()     //the function imported from your file otherFile.py
+if __name__ == '__main__':
+    app.run(debug=True)
+
+Q22. How to disable csrf for a view with flask-wft for a restapi?
+
+When you create the form, you can disable the CSRF for a view with flask-wtf for a restapi by using the following statement.
+
+form = myForm(request.form, csrf_enabled=False)
+Q23. How to share the global app object in flask?
+
+You can create an overall package and add an __init__.py file under the package folder where you declare all the global variables that you need to share between the classes. Then, you should add the code "app = Flask(__name__)" in the __init__.py file. Now you can share and use the app variables anywhere if you just import the package name.
+
+Q24. What is the purpose of Flask's context stacks?
+
+Flask in Python language helps to handle multiple apps in the process. Contexts allow separating application environments from one another.
+
+Q25. How to get logged user id in flask?
+
+current_user.get_id() is used to get logged in user id in flask.
+
+Here is an example:
+
+from flask import g
+if current_user.is_authenticated():
+        g.user = current_user.get_id()
+About Author :
+
+---------------------------------------------------------------------------------------------------------------------------
+
+https://www.wisdomjobs.com/e-university/flask-tutorial-1355/flask-overview-17110.html
+
+What is Flask?
+Flask is a web application framework written in Python and Armin Ronacher (international group lead of Python enthusiasts named Pocco) developed it. It is based on Werkzeug WSGI toolkit and Jinja2 template engine where both are Pocco projects.
+
+What is Web Server Gateway Interface (WSGI)?
+WSGI is adopted as a standard for development of Python web application and is a specification for a universal interface between web server and the web applications.
+
+Werkzeug
+Werkzeug is a WSGI toolkit, which implements requests, response objects and other utility functions. It allows building of a web framework on top of it. Werkzeug is used by Flask framework as one of its bases.
+
+jinja2
+jinja2 is a famous template engine for Python. Web templating system brings together, a template with certain data source for rendering dynamic web pages.
+
+Flask is frequently referred to as a micro framework which aims in keeping the core of an application simple yet extensible. Flask neither have built-in abstraction layer for handling database nor a validation support. Instead it supports the extensions for adding such type of functionality to the application.
+
+What is flask routing?
+Modern web frameworks make use of routing technique for helping a user in remembering application URLs. It is suitable for accessing the desired page directly without navigating from the home page.
+
+route() decorator in Flask is used for binding URL to a function. For example
+
+@app.route(‘/hello’)
+def hello_world():
+ return ‘hello world’
+@app.route(‘/hello’)
+def hello_world():
+ return ‘hello world’
+​
+
+Here, URL ‘/hello’ rule is bound to the hello_world() function. As a result of this, if a user visits http://localhost:5000/hello URL, output of hello_world() function will be rendered in the browser.
+
+add_url_rule() function of an application object is also available for binding a URL with a function as shown in the above example, route() is used.
+
+A decorator’s purpose will also be served by below representation
+
+def hello_world():
+ return ‘hello world’
+app.add_url_rule(‘/’, ‘hello’, hello_world)
+​
+How does flask application work?
+To test Flask installation, type below code in the editor as Hello.py
+
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello_world():
+ return 'Hello World’
+if __name__ == '__main__':
+ app.run()
+​
+
+Importing flask module in the project is required. An object of Flask class is our WSGI application.
+
+Flask constructor uses the name of current module (__name__) as argument.
+
+Flask class route() function is a decorator which guides the application as which URL should call the associated function.
+
+app.route(rule, options)
+​
+
+rule parameter represents URL binding with the function.
+options is a list of parameters to be forwarded to the underlying Rule object.
+In the above example, ‘/’ URL is bound with hello_world() function. Therefore, when the of web server home page is opened in a browser, output of this function will be rendered.
+
+Finally the run() method of Flask class runs the application on the local development server.
+
+app.run(host, port, debug, options)
+​
+
+All parameters are optional
+
+Sr.No
+
+Parameters & Description
+
+1
+
+host
+
+Hostname to listen on. Defaults to 127.0.0.1 (localhost). Set to ‘0.0.0.0’ to have server available externally
+
+2
+
+port
+
+Defaults to 5000
+
+3
+
+debug
+
+Defaults to false and if set to true, it provides a debug information
+
+4
+
+options
+
+To be forwarded to underlying Werkzeug server.
+
+Above given Python script will be executed from Python shell.
+
+Python Hello.py
+​
+
+A message in Python shell informs you that
+
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+​
+
+Open the above URL (localhost:5000) in the browser. ‘Hello World’ message will be displayed on it.
+
+Debug mode
+Flask application will be started by calling run() method. However, it should be restarted manually for each change in the code, when the application is under development. To avoid this problem, enable debug support. Server will then reload itself if the code changes and will also provide a useful debugger for tracking any errors in the application.
+
+Debug mode will be enabled by setting debug property of the application object to True, before running or passing the debug parameter to the run() method.
+
+app.debug = True
+app.run()
+app.run(debug = True)
+​app.run(debug = True,port=5001)
+
+Flask URL rules will be based on Werkzeug’s routing module and this guarantees that the URLs thus formed are unique and based on instances laid down by Apache.
+
+How flask HTTP methods are useful?
+Http protocol is the basis for data communication
+By default, Flask route responds to GET requests. However, this preference can be changed by providing method arguments to route() decorator.
+
+What is the use of templates in flask?
+
+Term ‘web templating system’ refers to designing an HTML script in which variable data may be inserted dynamically. A web template system consists of a template engine, a data source and a template processor.
+
+Flask makes use of jinga2 template engine. Web template consists of HTML syntax scattered placeholders for variables and expressions (in these case Python expressions) which can be replaced by values when the template is rendered.
+Jinga2 template engine uses below delimiters to escape from HTML.
+
+{% ... %} for Statements
+{{ ... }} for Expressions to print to the template output
+{# ... #} for Comments not included in the template output
+# ... ## for Line Statements
+
+
+What is the use of flask static files?
+A web application needs a static file like javascript file or a CSS file
+ these files will be served from static folder in the package or next to the module and it will be available at /static on the application.
+
+A special endpoint ‘static’ is used for generating URL for static files.
+How flask request object useful?
+Client’s web page data will be sent to the server as a global request object and it must be imported from the Flask module for processing the request data.
+Main attributes of request object are mentioned below
+
+Form − It is a dictionary object which consists of a key and value pairs of form parameters and their values.
+args − parsed contents of query string which is part of URL after question mark (?).
+Cookies − dictionary object holding Cookie names and values.
+files − data affecting to uploaded file.
+method − current request method.
+What is the use of flask sessions?
+Unlike a Cookie, Session data will be stored on the server. Session shows the time interval when a client logs into a server and logs out of it. Data required for this session will be stored in a temporary directory on the server.
+
+A Session ID will be assigned to a session with each client. Session data will be stored on top of cookies and the server will sign them cryptographically. For this encryption, Flask application requires a defined SECRET_KEY.
+
+Session object is also a dictionary object consisting of key-value pairs of session variables and associated values.
+to set a ‘username’ session variable use the statement
+session[‘username’] = ’admin’
+To release a session variable use pop() method.
+session.pop('username', None)
+What is the use of redirect() method in flask?
+redirect()is a function of flask which when called, returns a response object and redirects the user to another target location with specified status code.
+
+Prototype of redirect() function is mentioned below
+
+Flask.redirect(location, statuscode, response)
+In the above function
+
+location parameter is the URL where response is redirected.
+statuscode is sent to browser’s header, defaults to 302.
+response parameter is used for instantiating response.
+
+
+
+What is the use of flask extensions?
+ Flask extensions give extensibility to Flask framework.
+Flask is usually referred as a micro framework as a core functionality includes WSGI and routing based on Werkzeug and template engine based on Jinja2.
+ Flask extension is a Python module which adds a particular type of support to the Flask application. Flask Extension Registry is a directory of extensions available and the required extension can be downloaded by pip utility.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

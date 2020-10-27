@@ -1,0 +1,26 @@
+Python loves us and gives us a simple way to make sure all resources we use are properly cleaned up, regardless of if the code returns or an exception is thrown: context managers.
+with something_that_returns_a_context_manager() as my_resource:
+    do_something(my_resource)
+    ...
+    print('done using my_resource')
+
+
+with open('what_are_context_managers.txt', 'r') as infile:
+    for line in infile:
+        print('> {}'.format(line))
+
+
+Using with, we can call anything that returns a context manager (like the built-in open() function). We assign it to a variable using ... as <variable_name>. Crucially, the variable only exists within the indented block below the with statement. Think of with as creating a mini-function: we can use the variable freely in the indented portion, but once that block ends, the variable goes out of scope. When the variable goes out of scope, it automatically calls a special method that contains the code to clean up the resource.
+
+But where is the code that is actually being called when the variable goes out of scope? The short answer is, "wherever the context manager is defined." You see, there are a number of ways to create a context manager. The simplest is to define a class that contains two special methods: __enter__() and __exit__(). __enter__() returns the resource to be managed (like a file object in the case of open()). __exit__() does any cleanup work and returns nothing.
+
+with File('foo.txt', 'w') as infile: block. Even if code in that block raised an exception, the file would still be closed.
+
+Given that context managers are so helpful, they were added to the Standard Library in a number of places. Lock objects in threading are context managers, as are zipfile.ZipFiles. subprocess.Popen, tarfile.TarFile, telnetlib.Telnet, pathlib.Path... the list goes on and on. Essentially, any object that needs to have close called on it after use is (or should be) a context manager.
+
+
+Standard Library module contextlib contains tools for creating and working with context managers. One nice shortcut to creating a context manager from a class is to use the @contextmanager decorator. To use it, decorate a generator function that calls yield exactly once. Everything before the call to yield is considered the code for __enter__(). Everything after is the code for __exit__(). Let's rewrite our File context manager using the decorator approach:
+
+Wrapping Up
+Hopefully by now you understand what a context manager is, how it works, and why it's useful. As we just saw, there are a lot of useful (and not-so-useful) things you can do with context managers. Their goal is a noble one: to make working with resources and creating managed contexts easier. Now it's up to you to not only use them, but create new ones as well, thus making other people's lives easier. Unless you use them to generate HTML. Then you're just an awful person and you shouldn't read this blog (but I'm glad you did).
+

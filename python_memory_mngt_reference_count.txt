@@ -1,0 +1,117 @@
+What is Python Reference Count?
+For the sake of simplicity, the reference count is nothing but the number of times Python object is used
+How is reference count calculated?
+
+The Python getrefcount() is the function present inbuilt with the Python module sys. This functions takes Python object as an input and returns the number of references present for the given Python object.
+
+Here, input to the getrefcount() can be a variable name, value, function, class and anything else comes under Python object.
+import sys
+print(sys.getrefcount(1556778))  
+How is the reference count calculated?
+The reference count is calculated based on the two factors…
+
+Number of times object used in the bytecode
+If the same object used earlier, number of object reference from earlier code  (can be in the same program or in a background process of Python)
+Reference Count from Bytecode:
+When you run any Python program, it gets interpreted into the bytecode. The reference count of the object is calculated based on the number of times object is used in the bytecode (not from your high-level program code).
+
+You can also check the bytecode of your program using the dis module. It disassembles the Python bytecode.
+Reference Count from other parts of the Code:
+If the same object is used in the other part of the code, it will be counted in the reference count of the given object.
+
+Even, there are multiple cumbersome operations goes running in background Python. It may possible that this object is used in the background of your running program. It is also counted as a reference to the object.
+Reference Count for Variable and Function:
+When you pass the variable as a parameter to the function, reference count for the variable object is incremented. When the control goes out of the function, the reference count is decremented.
+import sys
+a =10
+print(sys.getrefcount(a)) #17
+ 
+def func(b):
+    print(sys.getrefcount(a)) #19
+ 
+func(a)
+print(sys.getrefcount(a)) #17
+Note: Reference count is shown as 19 instead of 18 because of variable ‘a’ is used two times in function- as a parameter to the function func(); as a parameter to the function sys.getrefcount().
+Reference Count for Python List
+Along with the list object, every element in the list has a separate reference count.
+When you delete a list or if the lifetime of the list expires, the reference count of each element in the list goes down by one.
+import sys
+ 
+liAbc = ['a', 'b', 'c']
+ 
+print(sys.getrefcount('a')) #14
+print(sys.getrefcount('b')) #12
+print(sys.getrefcount('c')) #23
+ 
+del liAbc
+ 
+print(sys.getrefcount('a')) #13
+print(sys.getrefcount('b')) #11
+print(sys.getrefcount('c')) #22
+When does the reference count increase?
+while assigning operator
+while passing the value as an argument to the function
+appending object to the list
+Use of the reference count for Memory Management in Python:
+Python uses dynamic memory allocation. While declaring a variable object, you don’t need explicitly allocate the memory. When the object is no more used in the program, the variable is deleted.
+How does Python count references use for Memory Management?
+Python count the reference for each object. When you use that object again, the reference count is incremented.
+When the reference object comes out of scope, the reference count is decremented.
+When the reference count reaches zero, means the Python object is not in use. The memory which is assigned to the object gets deleted.
+Reference Count for Integer (Immutable Object)
+When you create an integer object, the value of the object is saved in memory to use in the program. The reference count is set.
+When you assign the same integer value to another variable, the reference count increases.
+It also saves the computing resources by using a single place to store the value and assigned to all the variable storing the same value in the program.
+we can not change the value of the integer. The new value is stored in different memory with the new reference count.
+import sys
+print(sys.getrefcount(1)) #97
+print(sys.getrefcount(2)) #76
+print(sys.getrefcount(3)) #30
+There are multiple cumbersome operations goes running on Python background. So these values are used. The output may vary from system to system.
+Keys Points to remember about Python Reference Count:
+You may get a difference reference count for the same object on the different Python system. It solely depends on the number of times object is used on your system.
+If you declare the object as global (declared outside of any block, class or functions), can never have reference count zero.
+Value of the reference count is always one higher than the one you expect as it also counts reference for an object passing to function sys.getrefcount() itself.
+For Python memory management, the reference count is used. When reference count of the any Python object goes down to zero, the memory assigned to the object is deleted.
+You can relate the Reference with the pointer concepts in C programming.
+
+How to Disassemble Python Bytecode 
+What does actually happen when you compile the Python file?
+Whenever you run the python code “python <python_file>”, it gets converted into the bytecode. CPython is an interpreter that compiles the source code into the byte-code.
+The bytecode gets cached into the .pyc and .pyo file. You can check the .pyc file getting created in the same directory where your python program persists.
+When you run python code next time, it runs the bytecode from the .pyc file. It saves the time by avoiding recompilation from source code to bytecode. So the execution will be faster.
+Note: It is not necessary same bytecode will work on different virtual machines.
+How to Disassemble Python Bytecode To Analyze?
+There is a Python module called “dis“. This Python module is to analyze the CPython bytecode by dissembling it.
+You don’t need to install dis module externally as it comes with Python by default.
+The dis.dis() function Disassembles the byte source object.
+Syntax:
+dis.dis([bytesource_object])
+Here, the byte source object can be anything like module, class, method, or code object.
+Below is python program to disassemble the user-written function
+import dis
+ 
+def squareOfNumner(n):
+        return n*n
+ 
+squareOfNumner(10)
+ 
+dis.dis(squareOfNumner)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

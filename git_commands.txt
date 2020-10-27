@@ -1,0 +1,390 @@
+GIt usually serves 2 main purposes: code backup and code versioning.
+Version Control System (VCS) is a software that helps software developers to work together and maintain a complete history of their work.Following are the types of VCS −
+
+Centralized version control system (CVCS).
+Distributed/Decentralized version control system (DVCS).
+
+ Git falls under distributed version control system.
+In Git, files are not addressed by names. Everything is content-addressed.
+
+There are four fundamental elements in the Git Workflow.
+Working Directory, Staging Area, Local Repository and Remote Repository.
+
+If you consider a file in your Working Directory, it can be in three possible states.
+
+It can be staged. Which means the files with the updated changes are marked to be committed to the local repository but not yet committed.
+It can be modified. Which means the files with the updated changes are not yet stored in the local repository.
+It can be committed. Which means that the changes you made to your file are safely stored in the local repository.
+git add is a command used to add a file that is in the working directory to the staging area.
+git commit is a command used to add all files that are staged to the local repository.
+git push is a command used to add all committed files in the local repository to the remote repository. So in the remote repository, all files and changes will be visible to anyone with access to the remote repository.
+git fetch is a command used to get files from the remote repository to the local repository but not into the working directory.
+git merge is a command used to get the files from the local repository into the working directory.
+git pull is command used to get files from the remote repository directly into the working directory. It is equivalent to a git fetch and a git merge .
+
+
+
+What is a proxy server?
+A proxy server, or just proxy for short, is like having another computer that your internet requests get sent to before going to the real website. It's a server that takes all of the information you've sent outand routes it through a different IP address.
+A proxy can be physically located anywhere. You can set up a proxy on your home computer or you can deploy one to the cloud. The main thing that matters is that the proxy has the configurations you need for the functionality you want.
+
+
+
+
+git bash commands
+===============================================
+
+to change drive
+cd /d/ravi
+-----------------------------------------------------------
+mkdir edurika-repo
+
+cd edurika-repo
+----------------------------------------------------------------
+This command turns a directory into an empty git repository
+git init
+--------------------------------------------------------------
+create a file first in the directory edurika-repo
+
+touch edurika.py
+------------------------------------------------------------------
+convert the directory into localrepository
+Add all the files to the staging area for git. Before a file is available to commit to a repository , the file 
+needs to be added to the Git index (staging area).
+Git does'nt track each and every modified file,so when ever you do the commit  operation ,Git looks for the files present in the staging area,
+only those files present in the staging area considered for the commit not all the modified files.
+so first you need to put all the modified files in the staging area , then you go ahead for the commit.
+
+--------------------------------------------------------------------------
+adding all files in the directory to staging area
+git add .   ---> add all the files from local repository  to  staging area 
+--------------------------------------------------------------------------
+to list files in the local repo
+ls
+-----------------------------------------------------------------
+
+git commit records changes made to the files in a local repository 	 	 	
+git commit -m "first commit"
+-----------------------------------------------------------------------
+https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+Open terminal:
+git --version
+To check version of git
+-------------------------------------------------------------------------
+To set your username
+git config --global user.name "FIRST_NAME LAST_NAME"
+To set your email
+git config --global user.email "MY_NAME@example.com"
+-----------------------------------------------------------------------------
+git init
+This command will initialise our local repository.
+-----------------------------------------------------------------------------
+Checking status of the repository:
+git status
+--------------------------------------------------------------------------------
+Adding files to the repository:
+git add <file name>
+------------------------------------------------------------------------------
+Committing changes:
+git commit -m "your message"
+---------------------------------------------------------------------------------
+Accessing log of commits:
+Every time a commit is made a SHA-256 key is created and assigned to that commit If we wanted 
+to retrieve code at that commit it is possible using this id.
+
+git log
+-----------------------------------------------------------------------------------------
+A head is simply a reference to a commit object. Each head has a name (branch name or tag name, etc). By default, there is a head in every repository called master. A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals".
+Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation.
+You can think of the HEAD as the "current branch". When you switch branches with git checkout, the HEAD revision changes to point to the tip of the new branch.
+You can see what HEAD points to by doing:
+cat .git/HEAD
+In our case, the output is:
+$ cat .git/HEAD
+ref: refs/heads/master
+
+-------------------------------------------------------------
+To remove file from the staging area (unstage)
+git rm --cached <file name>
+-------------------------------------------------------------
+to clear the screen
+clear 
+-------------------------------------------------------------
+to create a branch
+git branch <branch name>
+git branch dev
+-------------------------------------------------------------
+to switching from current branch to the another branch
+git checkout dev
+-------------------------------------------------------------
+After modifying file,if you want to do the staging as well as commit at a time
+git commit -am "added to statging as well as commited on dev branch "
+-------------------------------------------------------------
+Again switching to master from dev
+git checkout master
+-------------------------------------------------------------
+to merge a branch into current branch
+git merge dev
+-------------------------------------------------------------
+to merge a dev changes in master branch, then first switch to master branch and give the above command.
+-------------------------------------------------------------
+To push the code in github from git local repo
+1.login into github
+2.create the empty repository on github
+3.run the below command from the local system from bash terminal to create the link between local repo and remote repo
+git remote add origin https://github.com/mravibabu/GitLearningRepo.git
+To push the code which is in master to the remote repo
+4. git push -u origin master
+Now all code of master branch is pushed to remote.
+Note:- we have a dev branch under the master , dev branch and its code will not be pushed to the remote.
+
+Again if you are modified any file in the master branch then simply run the below commands
+1. add file to staging area then commit it. After wards push to the remote repo
+2. git commit -am "alignment changed"		====> both add and commit has done in one command
+3. git push -u origin master
+------------------------------------------------------------
+Restoring the file:-
+file can be restored before adding to the staging area. That is the discarding the changes, of the modified file.
+git restore jeffknupp_list.py
+Note:- when file is in the modified state, but not added , git will not allow to switch branch
+If you are in the master branch and if the modification of the code is not yet completed , but you want to work on dev branch.
+Now you want to switch branches, but you don’t want to commit what you’ve been working on yet, so you’ll stash the changes.
+To push a new stash onto your stack, run git stash or git stash push:
+git stash
+(To restore them type "git stash apply")
+At this point, you can switch branches and do work elsewhere; your changes are stored on your stack. 
+To see which stashes you’ve stored, you can use 
+git stash list
+
+
+-------------------------------------------------------------
+To check the remote
+git remote -v
+-------------------------------------------------------------
+PUSH THE DEV BRANCH AND ITS CODE TO THE REMOTE.
+1. switch to dev branch
+2. modify the code if you want and then commit it the push to remote with the following command
+git push origin dev
+3. all the code of dev branch will be pushed to remote with above command
+--------------------------------------------------------------------------------
+To see all branches created 
+git branch -a
+To see all remote branches
+git branch -r
+You may also use the show-branch command for seeing the branches and their commits as follows:
+git show-branch
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+The changes to your files were reapplied, but the file you staged before wasn’t restaged. To do that, you must run the git stash apply command with a --index option to tell the command to try to reapply the staged changes. If you had run that instead, you’d have gotten back to your original position:
+
+$ git stash apply --index
+
+--------------------------------------------------------------------------------
+git diff
+This will show you all the unstaged changes you have made. It’s different from git status which just shows you the names 
+of the unstaged files you have changed.
+it diff --color-words to see only the words you have changed. This can be helpful if you have made a lot of changes, because git diff alone will highlight the entire line that has been changed. 
+git diff --staged to see all the changes to the files in your staging index.
+
+-----------------------------------------------------------------------------------------------------------------------
+git checkout -b <branch-name>
+This is how you make a new branch and switch to that new branch, all in one command. Your branch names should be short but meaningful.
+If you made a typo in your branch name, or otherwise just want to rename it,
+ you can do git branch -m <new-branch-name> and that will rename your current branch.
+ -----------------------------------------------------------------------
+git add <file_name> work? It adds your modified file to your staging index. If you have modified more than one file, git add . 
+will add all the files your have edited to your staging index.
+What the hell is a staging index? It’s where Git stores all your changes that are ready to be committed.
+----------------------------------------------------------------------------------------------
+The git checkout - command lets you switch to the last branch you were on without actually typing the branch name.
+It’s like the “last” button on your remote control.
+-------------------------------------------------------------------------------------------------------
+ git grep "<something you want to find>"
+This command is invaluable, git grep has saved my life so many times. It’s most helpful if you are working in a very large codebase. The git grep command is like doing a Google search within your repository. GREP is short for “globally search a regular expression and print.”
+-------------------------------------------------------------------------------------------------------------
+ git grep "<something you want to find>"
+This command is invaluable, git grep has saved my life so many times. It’s most helpful if you are working in a very large codebase. The git grep command is like doing a Google search within your repository. GREP is short for “globally search a regular expression and print.”
+Note: you can run grep without the git in front of it.
+-----------------------------------------------------------------------------------------------------------------
+what a SHA value
+A SHA (Secure Hash Algorithm) value is generated every time you make a commit. You might also hear it referred to as a checksum or a hash value. It’s just a long string of letters and numbers that is unique to each commit
+If you do git log, you will see a list of all the most recent commits in your repository and their corresponding SHA values.
+----------------------------------------------------------------------------------
+git cherry-pick <sha-value>
+This command will pick a commit from another branch and put it onto your current branch. It’s helpful if the changes you are making are dependent on changes in a different branch that haven’t been pushed up to master. It’s also helpful if something goes terribly wrong on your branch, and you need to create a new branch to get out of the dark Git hole you have found yourself in, but you want to keep the changes you have made.
+To cherry-pick a commit, you don’t even need the entire SHA value. You can use the first few characters, like so: git cherry-pick 22b620b51
+----------------------------------------------------------------------------------------------
+Your workflow should look something like this:
+git clone <url> (clone a Git repository)
+cd (change directory) into your newly cloned repository
+git checkout -b <branch-name> (create and switch to your new branch)
+git status (the output of this should be pretty boring right now)
+make your changes
+git status (you should see a list of the files you changed now)
+git diff (make sure you actually want these changes)
+git add (add your changes to your staging index)
+git status (yes, it’s my favorite command, do it)
+git commit (commit your changes)
+git push (push your changes up to the remote branch)
+merge your changes in Bitbucket or GitHub
+git checkout master (switch back to the master branch)
+git pull (pull down the changes your just merged)
+git status (just to make sure everything is nice and clean)
+repeat! (except step 1, you only need to clone once)
+--------------------------------------------------------------------------------------------------------------------------------------
+git clone <url>
+You’ll need to do this just once for each repository you work with. You can use SSH or HTTPS. It makes an exact copy of the entire repository on your local machine
+-------------------------------------------------------------------------------------------------------------------------------------------------
+https://blog.prototypr.io/git-for-beginners-12-commands-you-need-to-know-e084cce9cc94
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Colours
+A neat trick that some people often miss is that you can enable some extra colouring to git, so that you can read the output of the commands easier!
+git config --global color.ui true
+-----------------------------------------------------------------------------------------------------------------------------------------------
+git remote add origin "https//github.com/mravibabu/git-github"
+You can see what remote repositories you are configured 
+git remote -v
+----------------------------------------------------------------
+fatal: refusing to merge unrelated histories
+git pull origin master --allow-unrelated-histories
+-----------------------------------------------------
+commit refers to recording snapshots of the repository at a given time.
+commiting more then one file.
+git commit -a -m "adding 3 files together"
+-----------------------------------------------------------
+
+when ever you are merging you always remember that you always checked out in the destination branch.
+You should be in master branch, when you want to merge file which is  in firstbranch into master.
+git merge firstbranch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

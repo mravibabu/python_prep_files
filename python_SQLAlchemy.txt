@@ -1,0 +1,116 @@
+SQLAlchemy is famous for its object-relational mapper (ORM), using which, classes can be mapped to the database, thereby allowing the object model and database schema to develop in a cleanly decoupled way from the beginning.
+Statements of Expression language will be translated into corresponding raw SQL queries by SQLAlchemy engine
+The SQL Expression Language presents a system of representing relational database structures and expressions using Python constructs.
+Expression Language is one of the core components of SQLAlchemy. It allows the programmer to specify SQL statements in Python code and use it directly in more complex queries.
+SQLAlchemy is a library that facilitates the communication between Python programs and databases. Most of the times, this library is used as an Object Relational Mapper (ORM) tool that translates Python classes to tables on relational databases and automatically converts function calls to SQL statements
+SQLAlchemy (source code) is a well-regarded database toolkit and object-relational mapper (ORM) implementation written in Python. SQLAlchemy provides a generalized interface for creating and executing database-agnostic code without needing to write SQL statements.
+What is create engine in SQLAlchemy?
+The Engine is the starting point for any SQLAlchemy application. It's “home base” for the actual database and its DBAPI, delivered to the SQLAlchemy application through a connection pool and a Dialect , which describes how to talk to a specific kind of database/DBAPI combination
+SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
+What does SQLAlchemy query return?
+It returns exactly one result or raise an exception
+ORM stands for Object-Relational Mapping (ORM) is a programming technique for converting data between relational databases and object oriented programming languages such as Java, C#, etc. 
+ORM stands for Object-Relational Mapping (ORM) is a programming technique for converting data between relational databases and object oriented programming languages such as Java, C#, etc. 
+	ORM is an acronym for the object-relational mapper. The ORM's main goal is to transmit data between a relational database and application model. The ORM automates this transmission, such that the developer need not write any SQL. ORM, as from the name, maps objects attributes to respective table fields.
+SQLAlchemy is a Python library for interacting with databases either through SQL or with an object-relational mapper (ORM).
+SQLAlchemy by default only works with SQLite database without any additional drivers. To work with other databases you have to install a DBAPI complaint driver specific to the database.
+
+I'd recommend using DateTime.Now whenever you're displaying a date to a human being - that way they're comfortable with the value they see - it's something that they can easily compare to what they see on their watch or clock. Use DateTime.UtcNow when you want to store dates or use them for later calculations that way (in a client-server model) your calculations don't become confused by clients in different time zones from your server or from each other.
+We use DateTime.UtcNow because we have a global web audience
+If you don't use Utc, you must know the timezone of the person you're displaying dates and times to
+In general, you will want to work with UTC dates and times in a server application. This ensures that you are using uniform timestamps regardless of where the users are located. These timestamps will be converted to the user's local time when they are displayed
+The Python Standard Library includes a module called "sqlite3" intended for working with this database.
+
+====================================================================================================
+sqlite database:
+how to get connection object in sqlite3
+conn = sqlite3.connect(r"d:\ravi\durga\sqlite\db\pythonsqlite.db")
+Note that the prefix r in the  r"C:\sqlite\db\pythonsqlite.db" instructs Python that we are passing a raw string.
+If you skip the folder path d:\sqlite\db, the program will create the database file in the current working directory (CWD).
+If you pass the file name as :memory: to the connect() function of the sqlite3 module, it will create a new database that resides in the memory (RAM) instead of a database file on disk.
+======== ============================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

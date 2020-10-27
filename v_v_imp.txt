@@ -1,0 +1,9 @@
+https://tekshinobi.com/python-notes/
+C:\Users\Sparta Dell Laptop\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0
+https://jeffknupp.com/blog/2018/06/04/a-common-misunderstanding-about-python-generators/
+
+https://www.pydanny.com/python-partials-are-fun.html
+
+https://jeffknupp.com/blog/2016/03/07/improve-your-python-the-with-statement-and-context-managers/
+
+

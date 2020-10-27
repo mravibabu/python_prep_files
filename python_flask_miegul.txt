@@ -1,0 +1,878 @@
+https://www.youtube.com/watch?v=S-WOIl3IFds
+https://www.youtube.com/watch?v=pqx_ge05fqQ
+https://www.youtube.com/watch?v=pmWsLx4QcJg
+
+Creating simple flask application.
+
+create project directory myproject where project live
+
+then  create virtual environment..
+
+D:\RAVI\durga\python-virtual-environments\myproject>python -m venv venv
+
+virtual environment is created now you need to activate... for that go to script directory in venv 
+D:\RAVI\durga\python-virtual-environments\myproject\venv\Scripts>activate.bat
+(venv) D:\RAVI\durga\python-virtual-environments\myproject\venv\Scripts>
+now install flask
+(venv) D:\RAVI\durga\python-virtual-environments\myproject\venv\Scripts>pip install flask
+
+(venv) D:\RAVI\durga\python-virtual-environments\myproject\venv\Scripts>python ==> to check weather the flask installed properly or not
+>>> import flask		==> to check weather the flask installed properly or not
+>>> exit()   		=======> to come out of the python environment
+now create the below hello.py in myproject 
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/hello')
+@app.route('/')
+def hello_python():
+	return "hi python "
+before running set the environment variable.
+set FLASK_APP=hello.py
+
+set FLASK_ENV=development
+
+NEED TO RUN THE APPLICATION ie. flask run command ONLY from myproject directory
+flask run
+python -m flask run
+
+To run the application other then port 5000. to run the more then one application simultaneously
+flask run  --port 50001
+
+
+
+Invalid Import Name
+The FLASK_APP environment variable is the name of the module to import at flask run. In case that module is incorrectly named you will get an import error upon start (or if debug is enabled when you navigate to the application). It will tell you what it tried to import and why it failed.
+
+FLASK_ENV=development
+This does the following things:
+it activates the debugger
+it activates the automatic reloader
+it enables the debug mode on the Flask application.
+You can also control debug mode separately from the environment by exporting FLASK_DEBUG=1.
+
+Use the route() decorator to bind a function to a URL.
+
+
+
+
+
+Flask allows you to register environment variables that you want to be automatically imported when you run the flask command. To use this option you have to install the python-dotenv package:
+(venv) D:\RAVI\durga\python-virtual-environments\myproject>pip install python-dotenv
+Then you can just write the environment variable name and value in a .flaskenv file in the top-level directory of the project:
+
+
+WARNING: The script flask.exe is installed in 'C:\Users\Sparta Dell Laptop\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+
+
+Either set the path in your PATH env variable or use the complete path while running flask run
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+1.create project directory microblog
+2.create virtual environment  ===> python -m venv venv 	(python -m venv venv_microblog)
+3.activate from scripts
+4.install flask===> pip install flask
+5.write the app.py in the top level directory microblog
+6.set FLASK_APP=app.py
+7.set FLASK_ENV=development
+8.flask run  or python -m flask run
+
+SECOND WAY
+1.continue above four steps(1 to 4)
+2.create a package app (sub directory app under microblog) which host the application.(if sub directory contains  __init__.py then it is called package)
+3.create __init__.py in the app directory (now app is called package)
+4.create routes.py (which serves as view)
+5.create a file   microblog.py  at toplevl ie under microblog directory.(Python script at the top-level that defines the Flask application instance.)
+
+Now continue above 6,7,8 steps
+
+6.set FLASK_APP=microblog.py
+7.set FLASK_ENV=development
+8.flask run
+**********************
+Note:- After exit from the command prompt after running the application successfully, if you want to run again the same applicatio after some days...
+steps to be followed;-
+1. go to the scripts directory of the applicatoion   D:\RAVI\durga\python-virtual-environments\microblog\venv\Scripts>
+2. execute the activate.bat command for virtual environment.you will see below.
+(venv) D:\RAVI\durga\python-virtual-environments\microblog\venv\Scripts>
+3.set the environment variables FLASK_APP and FLASK_ENV , Since environment variables aren't remembered across terminal sessions
+4.flask run
+instead of setting these environment variables every time we run the application ..Flask allows you to register environment variables that you want to be automatically imported when you run the flcask command. To use this option you have to install the python-dotenv package: 
+Then you can just write the environment variable name and value in a .flaskenv file in the top-level directory of the project:
+.flaskenv: Environment variables for flask command
+FLASK_APP=microblog.py
+set FLASK_ENV=development
+
+you can use nH --host=0.0. 0.0 to change the default IP which is 127.0.0.1:5000
+**********************
+---------------------------------------------
+(venv) $ mkdir app/templates  ===> views will be stored
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+When you import a package, the __init__.py executes and defines what symbols the package exposes to the outside world.
+We then use the route() decorator to tell Flask what URL should trigger our function.
+---------------------------------------------------------------------------
+USING DATABASE IN FLASK
+databases: using sqllite
+Two flask extensions are using for database purpose
+The first is Flask-SQLAlchemy, an extension that provides a Flask-friendly wrapper to the popular SQLAlchemy package, which is an Object Relational Mapper or ORM. ORMs allow applications to manage a database using high-level entities such as classes, objects and methods instead of tables and SQL. The job of the ORM is to translate the high-level operations into database commands.
+The Flask-Migrate, this second  extension is a Flask wrapper for Alembic, a database migration framework for SQLAlchemy.
+Flask-SQLAlchemy   (venv) $ pip install flask-sqlalchemy
+Flask-Migrate		(venv) $ pip install flask-migrate
+Creating The Migration Repository
+The model class created in the previous section defines the initial database structure (or schema) for this application. But as the application continues to grow, there is going to be a need change that structure, very likely to add new things, but sometimes also to modify or remove items. Alembic (the migration framework used by Flask-Migrate) will make these schema changes in a way that does not require the database to be recreated from scratch.
+
+To accomplish this seemingly difficult task, Alembic maintains a migration repository, which is a directory in which it stores its migration scripts.
+Flask-Migrate exposes its commands through the flask command.The flask db sub-command is added by Flask-Migrate to manage everything related to database migrations.
+So let's create the migration repository for microblog by running flask db init:
+(venv) $ flask db init
+After running this command you will see a migration directory in the top level directory..
+----------------------------------
+The First Database Migration
+Create the  database migration, which will include the users table that maps to the User database model
+To generate a migration automatically, Alembic compares the database schema as defined by the database models, against the actual database schema currently used in the database. It then populates the migration script with the changes necessary to make the database schema match the application models.
+The flask db migrate sub-command generates these automatic migrations:
+(venv) $ flask db migrate -m "users table"
+The flask db migrate command does not make any changes to the database, it just generates the migration script. To apply the changes to the database, the flask db upgrade command must be used.
+-----------------------------------------------------------------------------------------------------------------------------
+Database Upgrade and Downgrade Workflow ===> read at below link 
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
+-------------------------------------------------------------------------------------------------------------------------------------------------
+ users = User.query.all()
+>>> users
+[<User john>, <User susan>]
+>>> for u in users:
+...     print(u.id, u.username)
+
+
+for u in users:
+    db.session.delete(u)
+>>> u = User.query.get(1)
+>>> p = Post(body='my first post!', author=u)
+>>> db.session.add(p)
+>>> db.session.commit()
+
+
+***********************************************************************************************************************************************************
+Templates help achieve this separation between presentation and business logic. In Flask, templates are written as separate files, stored in a templates folder that is inside the application package
+The operation that converts a template into a complete HTML page is called rendering. To render the template I had to import a function that comes with the Flask framework called render_template()
+The render_template() function invokes the Jinja2 template engine that comes bundled with the Flask framework. Jinja2 substitutes {{ ... }} blocks with the corresponding values, given by the arguments provided in the render_template() call.
+templates also support control statements, given inside {% ... %} blocks. and also Jinja2 offers a for control structure.
+What is flask application?
+Flask is a web framework. This means flask provides you with tools, libraries and technologies that allow you to build a web application
+app. run(debug=True, use_reloader=False)
+Is flask a Web server?
+Flask is a micro web application framework. That means it is basically a set of tools and libraries that make it easier to build web applications in Python. Flask does however include a web server that can be used for testing and development.
+Templates are files that contain static data as well as placeholders for dynamic data
+In Flask, Jinja is configured to autoescape any data that is rendered in HTML templates. This means that it’s safe to render user input; any characters they’ve entered that could mess with the HTML, such as < and > will be escaped with safe values that look the same in the browser but don’t cause unwanted effects.
+Jinja looks and behaves mostly like Python. Special delimiters are used to distinguish Jinja syntax from the static data in the template. Anything between {{ and }} is an expression that will be output to the final document. {% and %} denotes a control flow statement like if and for. Unlike Python, blocks are denoted by start and end tags rather than indentation since static text within a block could change indentation.
+Flask depends on the Jinja template engine and the Werkzeug WSGI toolkit. 
+***********************************************************************************************************************************************************
+***********************************************************************************************************************************************************
+Chapter 3: Web Forms
+-------------------------
+the Flask-WTF extension, which is a thin wrapper around the WTForms package that nicely integrates it with Flask. This is the first Flask extension that I'm presenting to you, but it is not going to be the last. Extensions are a very important part of the Flask ecosystem, as they provide solutions to problems that Flask is intentionally not opinionated about.
+Flask extensions are regular Python packages that are installed with pip
+(venv) $ pip install flask-wtf
+the new configuration class config.py module is  added in the top-level directory for the configuration purpose
+Now that I have a config file, I need to tell Flask to read it and apply it. That can be done right after the Flask application instance is created using the app.config.from_object() method:
+
+User Login Form
+The Flask-WTF extension uses Python classes to represent web forms. A form class simply defines the fields of the form as class variables.
+use a new app/forms.py module to store my web form classes.
+Form Templates
+The next step is to add the above form (forms.py) to an HTML template login.html (app/templates/login.html: Login form template) so that it can be rendered on a web page.
+
+
+***********************************************************************************************************************************************************
+The Flask Mega-Tutorial Part V: User Logins
+Password Hashing 
+*******************************************************************************************************************************************************
+One of the packages that implement password hashing is Werkzeug. since it is one of its core dependencies, Werkzeug is already installed in your virtual environment
+Introduction to Flask-Login===>  a very popular Flask extension called Flask-Login. This extension manages the user logged-in state.The Flask-Login extension works with the application's user model, and expects certain properties and methods to be implemented in it.so it can work with user models that are based on any database system.
+installing Flask-Login in your virtual environment:
+(venv) $ pip install flask-login
+
+Flask-Login needs to be created and initialized right after the application instance in app/__init__.py.
+The Flask-Login extension works with the application's user model, and expects certain properties and methods to be implemented in it
+
+The four required items are listed below:
+
+is_authenticated: a property that is True if the user has valid credentials or False otherwise.
+is_active: a property that is True if the user's account is active or False otherwise.
+is_anonymous: a property that is False for regular users, and True for a special, anonymous user.
+get_id(): a method that returns a unique identifier for the user as a string (unicode, if using Python 2).
+
+relative path (or in other words, a URL without the domain portion)
+
+The FlaskForm class uses introspection to find any methods defined in the form class that have the name "validate_", and invokes them during validation.
+
+User Loader Function
+The user loader is registered with Flask-Login with the @login.user_loader decorator.
+The id that Flask-Login passes to the function as an argument is going to be a string, so databases that use numeric IDs need to convert the string to integer
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+Logging Users In
+The current_user variable comes from Flask-Login and can be used at any time during the handling to obtain the user object that represents the client of the request. The value of this variable can be a user object from the database (which Flask-Login reads through the user loader callback I provided above), or a special anonymous user object if the user did not log in yet
+
+If the username and password are both correct, then I call the login_user() function, which comes from Flask-Login. This function will register the user as logged in, so that means that any future pages the user navigates to will have the current_user variable set to that user.
+
+
+Logging Users Out
+This can be done with Flask-Login's logout_user() function
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+The is_anonymous property is one of the attributes that Flask-Login adds to user objects through the UserMixin class. The current_user.is_anonymous expression is going to be True only when the user is not logged in.
+
+
+The way Flask-Login protects a view function against anonymous users is with a decorator called @login_required. When you add this decorator to a view function below the @app.route decorators from Flask, the function becomes protected and will not allow access to users that are not authenticated. Here is how the decorator can be applied to the index view function of the application:
+@app.route('/')
+@app.route('/index')
+@login_required
+def index():
+
+To determine if the URL is relative or absolute, I parse it with Werkzeug's url_parse() function and then check if the netloc component is set or not.
+
+When you add any methods that match the pattern validate_<field_name>, WTForms takes those as custom validators and invokes them in addition to the stock validators.
+
+
+*************************************************************************************************************************************************************
+The Flask Mega-Tutorial Part VI: Profile Page and Avatars
+***************************************************************************************************************************************************************
+
+To create a user profile page, let's first write a new view function that maps to the /user/<username> URL.
+app/routes.py: User profile view function
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
+
+Executing the query in this way I save myself from checking if the query returned a user, because when the username does not exist in the database the function will not return and instead a 404 exception will be raised.
+
+The user.html template is shown below:
+
+app/templates/user.html: User profile template
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User: {{ user.username }}</h1>
+    <hr>
+    {% for post in posts %}
+    <p>
+    {{ post.author.username }} says: <b>{{ post.body }}</b>
+    </p>
+    {% endfor %}
+{% endblock %}
+
+add a link to it in the navigation bar at the top:
+
+app/templates/base.html: User profile template
+
+    <div>
+      Microblog:
+      <a href="{{ url_for('index') }}">Home</a>
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}">Login</a>
+      {% else %}
+      <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+      {% endif %}
+    </div>
+
+The only interesting change here is the url_for() call that is used to generate the link to the profile page. Since the user profile view function takes a dynamic argument, the url_for() function receives a value for it as a keyword argument. Since this is a link that points to the logged in's user profile, I can use Flask-Login's current_user to generate the correct URL
+
+
+execute below command at python prompt
+'https://www.gravatar.com/avatar/' + md5(b'ravi.chirap@gmail.com').hexdigest()
+
+u will get below url
+
+https://www.gravatar.com/avatar/402c17c543f3d6c4595969936e9fc5dc?d=identicon
+Since avatars are associated with users, it makes sense to add the logic that generates the avatar URLs to the user model.
+
+app/models.py: User avatar URLs
+
+from hashlib import md5
+class User(UserMixin, db.Model):
+    # ...
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
+
+The new avatar() method of the User class returns the URL of the user's avatar image.For users that don't have an avatar registered, an "identicon" image will be generated.
+The next step is to insert the avatar images in the user profile template:
+
+app/templates/user.html: User avatar in template
+
+{% extends "base.html" %}
+
+{% block content %}
+    <table>
+        <tr valign="top">
+            <td><img src="{{ user.avatar(128) }}"></td>
+            <td><h1>User: {{ user.username }}</h1></td>
+        </tr>
+    </table>
+    <hr>
+    {% for post in posts %}
+    <table>
+        <tr valign="top">
+            <td><img src="{{ post.author.avatar(36) }}"></td>
+            <td>{{ post.author.username }} says:<br>{{ post.body }}</td>
+        </tr>
+    </table>
+    {% endfor %}
+{% endblock %}
+
+extra information for the profile of the users table in the database with two new fields:
+
+app/models.py: New fields in user model
+
+class User(UserMixin, db.Model):
+    # ...
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+
+Every time the database is modified it is necessary to generate a database migration.
+Now I have two new fields that I want to add to the database, so the first step is to generate the migration script:	
+(venv) $ flask db migrate -m "new fields in user model"
+
+The output of the migrate command looks good, as it shows that the two new fields in the User class were detected. 
+Now  apply this change to the database:
+The migration framework surgically applies the changes in the migration script without destroying any data.
+ next step, I'm going to add these two new fields to the user profile template:
+
+app/templates/user.html: Show user information in user profile template
+ 
+ 
+ 
+ 
+ Recording The Last Visit Time For a User
+write the current time on this field for a given user whenever that user sends a request to the server. 
+app/routes.py: Record time of last visit
+
+from datetime import datetime
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit() 
+The @before_request decorator from Flask register the decorated function to be executed right before the view function. This is extremely useful because now I can insert code that I want to execute before any view function in the application, and I can have it in a single place 
+ a server application needs to work in consistent time units, and the standard practice is to use the UTC time zone. Using the local time of the system is not a good idea, because then what goes in the database is dependent on your location. The last step is to commit the database session, so that the change made above is written to the database.
+why there is no db.session.add() before the commit, consider that when you reference current_user, Flask-Login will invoke the user loader callback function, which will run a database query that will put the target user in the database session. So you can add the user again in this function, but it is not necessary because it is already there. 
+ The fact that I'm storing these timestamps in the UTC timezone makes the time displayed on the profile page also be in UTC. In addition to that, the format of the time is not what you would expect, since it is actually the internal representation of the Python datetime object.
+ 
+
+PROFILE EDITOR
+give users a form in which they can enter some information about themselves. The form is going to let users change their username, and also write something about themselves, to be stored in the new about_me field.
+
+app/forms.py: Profile editor form
+
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired, Length
+# ...
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
+    submit = SubmitField('Submit')
+
+The template that renders this form is shown below:
+
+app/templates/edit_profile.html: Profile editor form
+
+And finally, here is the view function that ties everything together:
+
+app/routes.py: Edit profile view function
+
+from app.forms import EditProfileForm
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_profile'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', title='Edit Profile',
+                           form=form)
+						   
+This view function is slightly different to the other ones that process a form. If validate_on_submit() returns True I copy the data from the form into the user object and then write the object to the database. But when validate_on_submit() returns False it can be due to two different reasons. First, it can be because the browser just sent a GET request, which I need to respond by providing an initial version of the form template. It can also be when the browser sends a POST request with form data, but something in that data is invalid. For this form, I need to treat these two cases separately. When the form is being requested for the first time with a GET request, I want to pre-populate the fields with the data that is stored in the database, so I need to do the reverse of what I did on the submission case and move the data stored in the user fields to the form, as this will ensure that those form fields have the current data stored for the user. But in the case of a validation error I do not want to write anything to the form fields, because those were already populated by WTForms. To distinguish between these two cases, I check request.method, which will be GET for the initial request, and POST for a submission that failed validation.						   
+
+***********************************************************************************************************************************************************
+The-flask-mega-tutorial-part-vii-error-handling
+************************************************************************************************************************************************************
+Custom Error Pages
+Flask provides a mechanism for an application to install its own error pages
+let's define custom error pages for the HTTP errors 404 and 500, the two most common ones
+To declare a custom error handler, the @errorhandler decorator is used
+
+
+
+************************************************************************************************************************************************************
+The Flask Mega-Tutorial Part IX: Pagination 																	Chapter 9: Pagination (this article)
+***********************************************************************************************************************************************************
+
+So, why the redirect? It is a standard practice to respond to a POST request generated by a web form submission with a redirect. This helps mitigate an annoyance with how the refresh command is implemented in web browsers. All the web browser does when you hit the refresh key is to re-issue the last request. If a POST request with a form submission returns a regular response, then a refresh will re-submit the form. Because this is unexpected, the browser is going to ask the user to confirm the duplicate submission, but most users will not understand what the browser is asking them. But if a POST request is answered with a redirect, the browser is now instructed to send a GET request to grab the page indicated in the redirect, so now the last request is not a POST request anymore, and the refresh command works in a more predictable way.
+
+This simple trick is called the Post/Redirect/Get pattern. It avoids inserting duplicate posts when a user inadvertently refreshes the page after submitting a web form.
+
+Flask-SQLAlchemy supports pagination natively with the paginate()
+>>> user.followed_posts().paginate(1, 20, False).items
+The paginate method can be called on any query object from Flask-SQLAlchemy. It takes three arguments:
+
+the page number, starting from 1
+the number of items per page
+an error flag. If True, when an out of range page is requested a 404 error will be automatically returned to the client. If False, an empty list will be returned for out of range pages.
+The return value from paginate is a Pagination object. The items attribute of this object contains the list of items in the requested page.
+To access arguments given in the query string, I can use the Flask's request.args object.
+
+pagination object has a few other attributes that are useful when building pagination links:
+
+has_next: True if there is at least one more page after the current one
+has_prev: True if there is at least one more page before the current one
+next_num: page number for the next page
+prev_num: page number for the previous page
+With these four elements, I can generate next and previous page links and pass them down to the templates for rendering:
+
+***************************************************************************************
+
+The Flask Mega-Tutorial Part X: Email Support
+
+***********************************************************************************
+Flask has a popular extension called Flask-Mail that can make the task very easy. As always, this extension is installed with pip:
+
+(venv) $ pip install flask-mail
+
+The password reset links will have a secure token in them. To generate these tokens, I'm going to use JSON Web Tokens, which also have a popular Python package
+(venv) $ pip install pyjwt
+
+ If you want to use an emulated email server, Python provides one that is very handy that you can start in a second terminal with the following command:
+
+(venv) $ python -m smtpd -n -c DebuggingServer localhost:8025
+To configure for this server you will need to set two environment variables:
+
+(venv) $ export MAIL_SERVER=localhost
+(venv) $ export MAIL_PORT=8025
+
+If you prefer to have emails sent for real, you need to use a real email server. If you have one, then you just need to set the MAIL_SERVER, MAIL_PORT, MAIL_USE_TLS, MAIL_USERNAME and MAIL_PASSWORD environment variables for it. If you want a quick solution, you can use a Gmail account to send email, with the following settings:
+
+(venv) $ export MAIL_SERVER=smtp.googlemail.com
+(venv) $ export MAIL_PORT=587
+(venv) $ export MAIL_USE_TLS=1
+(venv) $ export MAIL_USERNAME=<your-gmail-username>
+(venv) $ export MAIL_PASSWORD=<your-gmail-password>
+
+When working with threads there is an important design aspect of Flask that needs to be kept in mind. Flask uses contexts to avoid having to pass arguments across functions. I'm not going to go into a lot of detail on this, but know that there are two types of contexts, the application context and the request context. In most cases, these contexts are automatically managed by the framework, but when the application starts custom threads, contexts for those threads may need to be manually created.
+
+
+What about logging in from other social sites like facebook, twitter, or linkedin? Is it recommended for serious apps that need high security like a banking app?
+
+
+#4 Miguel Grinberg said 3 years ago
+
+@James: I have written about FB/Twitter authentication in a Flask app here: https://blog.miguelgrinberg.com/post/oauth-authentication-with-flask. I would not use this for a high security application where you need to proof your identity (i.e. banking), but it is a secure method to authenticate users regardless.
+
+I wonder, why use pyjwt when there is itsdangerous? I mean pyjwt is one more requirement... 
+
+
+#16 Miguel Grinberg said 3 years ago
+
+@avm: As I always say, I'm showing examples of how problems are solved. If you like itsdangerous more than pyjwt, then nobody prevents you from using it, I have actually used it myself for many applications. But in case you are not aware, itsdangerous does not provide JWT tokens, while pyjwt does. The tokens generated by itsdangerous are similar to JWTs, but do not follow with the JWT specification, so they cannot be decoded with a standard JWT decoder.
+
+I am stuck getting Flask Mail to work.  I can send an email using smtplib without any issues, but when I put that same connection information in Flask Mail, I get a 'connection refused' error.  
+
+
+#21 Miguel Grinberg said 3 years ago
+
+@Jason: I'm not sure how I can help. If you run Flask in debug mode Flask-Mail will dump the communication with the email server to the console, maybe that will help you figure out what's wrong. My bet is that something in your configuration is wrong.
+
+@Satinder: Flask-Login has all the error messages translated to many languages. This is going to be activated later in the tutorial, when you add Flask-Babel to the application.
+
+@Pavel: you have a tiny mistake. In the line where you start the email sending thread, you have to pass "current_app._get_current_object()":
+
+
+Thread(target=send_async_email, args=(current_app._get_current_object(), msg)).start()
+
+
+The "current_app" object is a proxy object that looks for the application context in the current thread, if you pass the object to another thread that does not have an application context you'll get this error. Adding the _get_current_object() call forces the main thread to obtain the application instance, and then pass that to the other thread.
+
+**************************************************************************************************************************************************
+the-flask-mega-tutorial-part-xi-facelift
+***********************************************************************************************************************************************
+. A CSS framework provides a collection of high-level CSS classes with pre-made styles for common types of user interface elements. Most of these frameworks also provide JavaScript add-ons for things that cannot be done strictly with HTML and CSS.
+One of the most popular CSS frameworks is Bootstrap, created by Twitter. If you want to see the kind of pages that can be designed with this framework, the documentation has some examples.
+The most direct way to use Bootstrap is to simply import the bootstrap.min.css file in your base template. You can either download a copy of this file and add it to your project, or import it directly from a CDN. Then you can start using the general purpose CSS classes it provides, according to the documentation, which is pretty good. You may also want to import the bootstrap.min.js file containing the framework's JavaScript code, so that you can also use the most advanced features.
+
+Fortunately, there is a Flask extension called Flask-Bootstrap that provides a ready to use base template that has the Bootstrap framework installed. Let's install this extension:
+
+(venv) $ pip install flask-bootstrap
+
+Flask-Bootstrap needs to be initialized like most other Flask extensions:
+
+
+
+*****************************************************************************************************************************************************************
+the-flask-mega-tutorial-part-xii-dates-and-times																Chapter 12: Dates and Times
+**************************************************************************************************************************************************************
+The datetime.now() call returns the correct time for my location, while the datetime.utcnow() call returns the time in the UTC time zone. If I could ask many people living in different parts of the world to run the above code all at that same time with me, the datetime.now() function will return different results for each person, but datetime.utcnow() will always return the same time, regardless of location.
+
+PDT. ... Pacific Daylight Time (PDT) is 7 hours behind Coordinated Universal Time (UTC). This time zone is a Daylight Saving Time time zone and is used in: North America. This time zone is often called Pacific Daylight Time
+ Imagine a user in the PDT timezone that posts something at 3:00pm, and immediately sees that the post appears with a 10:00pm UTC time, or to be more exact 22:00.
+Coordinated Universal Time (or UTC) is the primary time standard by which the world regulates clocks and time
+
+Introducing Moment.js and Flask-Moment
+Moment.js is a small open-source JavaScript library that takes date and time rendering to another level, as it provides every imaginable formatting option, and then some. And a while ago I created Flask-Moment, a small Flask extension that makes it very easy to incorporate moment.js into your application.
+
+So let's start by installing Flask-Moment:
+
+(venv) $ pip install flask-moment
+
+*****************************************************************************************************************************************************************
+the-flask-mega-tutorial-part-xiii-i18n-and-l10n																Chapter 12: Dates and Times
+**************************************************************************************************************************************************************
+there is a Flask extension that makes working with translations very easy. The extension is called Flask-Babel and is installed with pip:
+
+(venv) $ pip install flask-babel
+
+*****************************************************************************************************************************************************************
+the-flask-mega-tutorial-part-xiv-ajax																					Chapter 14: Ajax 
+**************************************************************************************************************************************************************
+ In a strict client-side application the entire application is downloaded to the client with the initial page request, and then the application runs entirely on the client, only contacting the server to retrieve or store data and making dynamic changes to the appearance of that first and only web page. This type of applications are called Single Page Applications or SPAs.
+
+
+
+*****************************************************************************************************************************************************************
+the-flask-mega-tutorial-part-xv-a-better-application-structure																					Chapter 14: Ajax 
+**************************************************************************************************************************************************************
+Blueprints
+In Flask, a blueprint is a logical structure that represents a subset of the application. A blueprint can include elements such as routes, view functions, forms, templates and static files. If you write your blueprint in a separate Python package, then you have a component that encapsulates the elements related to specific feature of the application.
+The contents of a blueprint are initially in a dormant state. To associate these elements, the blueprint needs to be registered with the application. During the registration, all the elements that were added to the blueprint are passed on to the application
+
+
+
+
+
+The current_app variable that Flask provides is a special "context" variable that Flask initializes with the application before it dispatches a request. You have already seen another context variable before, the g variable in which I'm storing the current locale. These two, along with Flask-Login's current_user and a few others you haven't seen yet, are somewhat "magical" variables, in that they work like global variables, but are only accessible during the handling of a request, and only in the thread that is handling it. 
+
+Replacing app with Flask's current_app variable eliminates the need of importing the application instance as a global variable. I was able to change all references to app.config with current_app.config without any difficulty through simple search and replace.
+
+
+
+
+
+Remember the current_app variable, which somehow acts as a proxy for the application when there is no global application to import? This variable looks for an active application context in the current thread, and if it finds one, it gets the application from it. If there is no context, then there is no way to know what application is active, so current_app raises an exception. Below you can see how this works in a Python console. This needs to be a console started by running python, because the flask shell command automatically activates an application context for convenience.
+
+
+>>> from flask import current_app
+>>> current_app.config['SQLALCHEMY_DATABASE_URI']
+Traceback (most recent call last):
+    ...
+RuntimeError: Working outside of application context.
+
+>>> from app import create_app
+>>> app = create_app()
+>>> app.app_context().push()
+>>> current_app.config['SQLALCHEMY_DATABASE_URI']
+'sqlite:////home/miguel/microblog/app.db'
+
+So that's the secret! Before invoking your view functions, Flask pushes an application context, which brings current_app and g to life. When the request is complete, the context is removed, along with these variables. 
+
+You should also know that the application context is one of two contexts that Flask uses. There is also a request context, which is more specific, as it applies to a request. When a request context is activated right before a request is handled, Flask's request and session variables become available, as well as Flask-Login's current_user
+
+A common pattern for applications that depend on lots of environment variables is to store these in a .env file in the root application directory. The application imports the variables in this file when it starts, and that way, there is no need to have all these variables manually set by you.
+
+There is a Python package that supports .env files, called python-dotenv. So let's install that package:
+
+(venv) $ pip install python-dotenv
+Since the config.py module is where I read all the environment variables, I'm going to import a .env file before the Config class is created, so that the variables are set when the class is constructed:
+
+config.py: Import a .env file with environment variables.
+
+import os
+from dotenv import load_dotenv
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
+
+class Config(object):
+
+# ...
+
+So now you can create a .env file with all the environment variables that your application needs. It is important that you do not add your .env file to source control. 
+
+The .env file can be used for all the configuration-time variables, but it cannot be used for Flask's FLASK_APP and FLASK_DEBUG environment variables, because these are needed very early in the application bootstrap process, before the application instance and its configuration object exist.
+The following example shows a .env file
+SECRET_KEY=a-really-long-and-unique-key-that-nobody-knows
+MAIL_SERVER=localhost
+MAIL_PORT=25
+MS_TRANSLATOR_KEY=<your-translator-key-here>
+
+Requirements File
+If you ever need to regenerate your environment on another machine,what packages you had to install, so the generally accepted practice is to write a requirements.txt file in the root folder of your project listing all the dependencies, along with their versions. Producing this list is actually easy:
+
+(venv) $ pip freeze > requirements.txt
+The pip freeze command will dump all the packages that are installed on your virtual environment in the correct format for the requirements.txt file. Now, if you need to create the same virtual environment on another machine, instead of installing packages one by one, you can run:
+
+(venv) $ pip install -r requirements.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

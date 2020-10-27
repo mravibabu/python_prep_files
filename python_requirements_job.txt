@@ -1,0 +1,280 @@
+can we import required modules  automatically as packages in java.
+
+which ide is bettter
+
+
+
+
+Minimum 3-8 Years of hands-on experience in developing Python Applications.
+Must have experience in XML parsing,JSON
+Strong Hands-on experience in Django.
+
+3+ years of strong experience with technologies such as Python
+ Sound knowledge on Python scripting including knowledge of Python libraries like NumPy, SQL Alchemy etc.
+ 
+ 3+ years of strong experience with technologies such as Python
+ Sound knowledge on Python scripting including knowledge of Python libraries like NumPy, SQL Alchemy etc.
+ Exposure in Rule Engine component development
+ Experience writing complex SQL and Scripts to analyse historical data for exploratory Analysis.
+ Good experience in Python, SQL
+ Experience building integration to 3rd party applications or devices.
+2+ year(s) experience creating and defining structures of large, scalable data stores using newer DB technologies such as MongoDB, Elastic Search and Cassandra
+Understanding in creating secure RESTful-based web services in JSON
+ Knowledge of queuing architectures using ZeroMQ, Redis, RabbitMQ, kafka etc.
+Deep understanding of performance best-practices using caching and compression technologies
+ Experience with Agile and test-driven development, continuous integration (Jenkins) and version control (SVN/Github)
+ Experience with big-data search ingestion/storage/indexing
+ 
+ 4- 8 years of experience.
+Expert in Python Programming.
+Expert in JavaScript.
+Expert in My SQL.
+Minimum of 4 years of experience in Python programming
+
+Great programming skills with expertise in Python development standards.
+Must have skills MYSQL, Alchemy Pandas , JS Framework for web,AWS deployment and development on local laptop.
+Familiarity with code production standards and version control systems.
+Good knowledge of SQL and experience in working with relational databases. .
+Experience with AWS cloud services.
+Hands-on experience in at least one Python web framework such as Flask.
+Working knowledge of message queuing and stream processing.
+Good experience of working in fast paced environment for project end to end implementation Build or Enhance features in respect to the stories with defensible coding strategies.
+Present information using data visualization techniques
+
+Develop Rest API’s using python Django/Rest framework.
+
+UI development using CSS, JQuery, HTML
+
+Deploying Applications on the AWS c
+Minimum 3-8 Years of hands-on experience in developing Python Applications.
+Must have experience in XML parsing,JSON
+Strong Hands-on experience in Django.
+Excellent Communication Skillloud.
+
+Notice period:Immediate to 15days
+Experience in Python
+Experience in at least one python framework with testing (Django / Flask)
+Experience in Linux and shell scripting
+Experience in Databases (SQL / NoSQL)
+
+Job description  2-4 yrs exp
+* Good experience in Python standard library and Pythonic conventions (PEP8, etc.). * Experience in Automation Testing. * Optimize code using appropriate functions. * Knowledge of web framework. * Good knowledge in Pandas, Web scraping and Web Data extraction. * Proficient coder in Python languages and environments including Python. * Design the MySQL Database Schema and interfaced it with python in programs.
+
+2-5 yrs exp
+hould be well versed with any scripting and should be flexible to work on any programming language depending on the requirement.
+Good knowledge on RPA frameworks and open source tools
+Able to integrate multiple data sources and databases into one system
+Understanding of the multi-process architecture
+Good understanding of server-side templating languages such as Jinja 2, Mako
+Decent Understanding of front-end technologies, such as JavaScript, HTML5, and CSS3
+Understanding of accessibility and security compliance
+Knowledge of user authentication and authorization between multiple systems, servers, and environments
+Understanding of fundamental design principles behind a scalable application
+Able to create database schemas that represent and support business processes
+Strong unit test and debugging skills
+Proficient understanding of code versioning tool Git
+Proficient in designing and developing REST APIs
+
+Minimum  3+ Years of work experience as a Software Engineer or Software Developer - Backend is must
+
+Understanding of algorithms and data structures
+
+Ability to develop software in JavaScript, Python, Scala or other programming languages
+
+Proficiency in software engineering tools like Git
+
+
+
+Your Role will Include:
+
+
+
+Execute the entire backend software development cycle
+
+Develop end to end solutions in Python.
+
+Develop flowcharts, layouts, and documentation to identify requirements and solutions
+
+Write well-designed, testable code
+
+Produce specifications and determine operational feasibility Integrate software components into a fully functional software system
+
+Develop software verification plans and quality assurance procedures
+
+Document and maintain software functionality
+
+Troubleshoot, debug and upgrade existing systems
+
+5-10yrs
+We work with:
+
+Most advanced cloud based methodologies (Openstack) and technologies in Agile/SAFe SW development
+Programming languages: Python, Java, JavaScript, Perl
+Modern frameworks: Angular, Django, Flask, Spring
+Microservices architecture, messaging system (RabbitMQ)
+Continuous Integration (e.g. Jenkins, GitLab, Git, Crucible/Fisheye)
+Docker, Vagrant
+Databases (e.g. for Cassandra, PostrgreSQL)
+Dependency management (e.g. gradle, maven)
+Linux, Bash scripting
+Testing frameworks: Robot, Jasmin, Selenium
+Managing infrastructures: Terraform
+Our expectations:
+
+Advance knowledge in Python(Django/Flask) & Perl
+Good knowledge in Docker and/or Vagrant
+Basic knowledge in Javascript, Angular
+Regular knowledge in design patterns and clean code principals
+Regular Knowledge of Unix-based systems and bash scripting
+Experience in continuous Integration (e.g. Jenkins, GitLab CI, Git, Crucible/Fisheye)
+Experience in dependency management (e.g. maven, gradle)
+Experience in cloud based methodologies
+Basic knowledge about databases (preferable Cassandra and/or PostgreSQL)
+Basic knowledge about one of the testing frameworks: Robot, Jasmin, Selenium
+
+Minimum 3-8 Years of hands-on experience in developing Python Applications.
+Must have experience in XML parsing,JSON
+Strong Hands-on experience in Django.
+Excellent Communication Skill
+
+
+Job description
+Immediate Hiring for Backend Developer with 3-8yrs Exp.
+*Expertise in Python, Javascript
+* Exp in Django, React
+*Very good in Data Structures
+*Have worked on web applications
+*Write well organized modularization code with test cases
+*Exp in Linux
+
+Required Candidate profile
+
+Languages: Python, Javascript
+Frameworks: Django, React
+Databases: Postgresql, Mysql, Sqlite3
+Tools: Git, Linux tools.
+
+3+year
+Primary Role: Full Stack
+
+Strong designing, development and debugging skills
+Able to develop code independently and draw out solution design. Able to define workflow for oneself and Associates on a daily or periodic basis, contingent on the requirements of the project
+Able to contribute meaningfully to brainstorming discussions around the project requirements
+Comfortable with Development, Unit Testing, and different design Documentations
+Comfortable in mentoring junior resources, and creating an environment of learning in the team
+Helping the company with Business Development initiatives such as sales collaterals, PoCs, Case Studies
+Develop and define an area of expertise and take relevant trainings on the same for the organization
+Contribute to org level activities, such as taking interviews
+Technical Capabilities
+
+Languages: Python
+HTML5 & CSS
+React JS or AngularJS
+MySQL/PostgreSQL/MongoDB
+REST with JSON
+Exposure to AWS/Azure/GCP
+GitHub
+
+WEB BACKEND DEVELOPER _CONTRACT TO HIRE
+Skills Required:
+
+JavaScript
+Angular, node.js
+Java
+Linux Bash and Python programming
+cloud infrastructures, docker and micro-service architecture
+REST API (knowledge)
+NOSQL DB(knowledge)
+Interested can Call Immedaitely or forward your updated Cvs to the below given ID
+
+"References are highly Appreciated"
+
+Thanks & Regards
+
+Gadipally Manju Bhargavi| Associate-People Success
+
+Orcapod Consulting Services Private Limited
+
+Mobile: +91-7032889678/ gadipallymanju.bhargavi@orcapodservices.com
+
+www.orcapodservices.com
+
+Experience:2+ years
+Notice period:Immediate to 15days
+Experience in Python
+Experience in at least one python framework with testing (Django / Flask)
+Experience in Linux and shell scripting
+Experience in Databases (SQL / NoSQL)
+
+Sr. Backend developer/Sr. Python developer
+FINNEW SOLUTIONS PRIVATE LIMITED4.2(18 Reviews)
+3 - 6 years
+₹ 14,00,000 - 16,00,000 P.A. (Including Variable: 10%)
+Bengaluru( Whitefield )
+Job description
+Job description
+
+We are looking for a Python Developer to join our engineering team and help us develop and maintain various software products. Python Developer responsibilities include writing and testing code, debugging programs, and integrating applications with third-party web services. To be successful in this role, you should have experience using server-side logic and work well in a team. Ultimately, you will build highly scalable REST APIs that align with our business needs.
+
+Technical responsibilities:
+
+With the help of your team members, educate and execute on Software Engineering best practices for testing, deploying, and developing code.
+Encourage and enforce the right behaviors to ensure we continue to ship quickly without compromising production stability.
+Take up hands-on tasks that are most urgent, difficult or critical in nature
+Create clear technical specifications
+Analyze user requirements
+Deploying code to production, tracking and debugging technical issues in production environment
+Working with internal/external stakeholder
+Writing and conducting unit test cases, system integration test cases and load test for the application features/APIs developed
+Skills and Qualifications
+
+Bachelor’s degree in Computer Science or Information Technology
+4-6 years software development experience
+A thorough understanding of computer architecture, operating systems and data structures
+Extensive experience in Python with Django, flask frameworks
+Good knowledge of relational database, specifically MySQL
+Experience and rich knowledge on various Python frameworks and their suitability in different layers of application architecture.
+A thorough understanding of OOP, design patterns, and working knowledge of design patterns
+
+Backend Developer | Python Developer- Django | Backend Engineer
+FullThrottle Labs Technologies
+3 - 6 years
+₹ 10,00,000 - 20,00,000 P.A.
+Bengaluru( Koramangala )
+Key Responsibilities:
+
+Architecting and building highly-available and scalable architectures and backend for our next-gen products like Marketing Automation, Team Management Automation and Hiring Automation software.
+Working with product and design to creatively solve complex problems.
+Provide input and strategy for software architecture, testing, and deployment.
+Pushing the team towards the best working practices in the Python and Django community.
+Find and identify new opportunities to fine-tune and optimize our products.
+Required Skills:
+
+Solid Python and Django experience
+HTML5, CSS3 and JS
+Building and deploying API's
+Knowledge of the software development lifecycle and Software Architecture
+Experience with testing tools and practices
+Devops on AWS, GCP, DigitalOcean or Heroku etc
+Familiar with basic security and infrastructure design
+Bonus Optional Skills:
+
+You're familiar with Flask or Lambda and Serverless Python
+You're familiar with React, Angular or Vue.js
+Experience with CI/CD.
+
+Python Developer
+Ampcus Tech Pvt. Ltd3.6(13 Reviews)
+5 - 8 years
+Job description
+Require infrastructure developers with the below skill set -
+
+* Python
+* Django REST Framework
+* Celery
+* Database - Relational, Non-Relational
+* Microservices
+* Application Development and Delivery for Cloud
+* Knowledge of Load Balancing and/or Networking is added bonus
+
+

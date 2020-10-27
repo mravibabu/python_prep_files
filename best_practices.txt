@@ -1,0 +1,22 @@
+you will have to face criticism about one or more of the following points but not limited to:
+
+Bad coding
+Not following standard
+Not keeping performance in mind
+History, Indentation, Comments are not appropriate.
+Readability is poor
+Open files are not closed
+Allocated memory has not been released
+Too many global variables.
+Too much hard coding.
+Poor error handling.
+No modularity.
+Repeated code.
+
+Once you are done with your coding, go for a self-review atleast once. I'm sure, a self-review would help you in removing 90% problems yourself.
+
+Once you are completely done with your coding and self review, request your peer for a code review.
+
+Putty to connect to a remote machine.
+
+WinSCP or FileZilla to ftp files on a remote machine
