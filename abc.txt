@@ -1,0 +1,2 @@
+This is see as the untracked file after as soon as after creation.
+after git add abc.txt  it will add to statging area.
