@@ -11,6 +11,10 @@ git add rough.txt
 git commit -m "rough to record all work area commands and username passwords" rough.txt
 git log
 git push origin d225c9713c54b02e1810cb77708bb43d716b5aec:master
+to add a more then one file to statging area 
+git add .
+git commit -m "adding all files together"
+git push
 
 
 
