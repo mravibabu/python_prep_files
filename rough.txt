@@ -14,6 +14,7 @@ git push origin d225c9713c54b02e1810cb77708bb43d716b5aec:master
 to add a more then one file to statging area 
 git add .
 git commit -m "adding all files together"
+with the following command it will ask username and password
 git push
 to add and commit at one time
 git commit -a -m "adding rough "
