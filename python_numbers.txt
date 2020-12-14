@@ -1,0 +1,344 @@
+Python takes the number to the left of the e and multiplies it by 10 raised to the power of the number after the e . So 1e6 is equivalent to 1×10⁶. The literal 1e-4 is interpreted as 10 raised to the power -4 , which is 1/10000, or 0.0001
+
+In Python, you can’t use commas to group digits in integer literals, but you can use underscores (_).
+
+>>> 1_000_000
+1000000
+
+>>> 200000000000000000.0
+2e+17
+
+>>> 1e-4
+0.0001
+
+The maximum floating-point number depends on your system, but something like 2e400 ought to be well beyond most machines’ capabilities. 2e400 is 2×10⁴⁰⁰, which is far more than the total number of atoms in the universe!
+
+When you reach the maximum floating-point number, Python returns a special float value, inf:
+
+>>> 2e400
+inf
+
+
+inf stands for infinity, and it just means that the number you’ve tried to create is beyond the maximum floating-point value allowed on your computer. The type of inf is still float:
+
+
+Python also uses -inf, which stands for negative infinity and represents a negative floating-point number that is beyond the minimum floating-point number allowed on your computer:
+
+>>> -2e400
+-inf
+
+
+
+
+You can add an int to a float with no problem:
+
+>>> 1.0 + 2
+3.0
+
+
+Python can evaluate 1+1 just fine, but 1 + 1 is the preferred format because it’s generally easier to read. This rule of thumb applies to all the operators in this section.
+
+>>> 9 / 3
+3.0
+
+>>> 5.0 / 2
+2.5
+
+
+
+Unlike addition, subtraction, and multiplication, division with the / operator always returns a float. If you want to make sure that you get an integer after dividing two numbers, you can use int() to convert the result:
+
+
+If you want to make sure that you get an integer after dividing two numbers, you can use int() to convert the result:
+Keep in mind that int() discards any fractional part of the number:
+>>> int(9 / 3)
+3
+
+Integer Division
+If writing int(5.0 / 2) seems a little long winded to you, Python provides a second division operator called the integer division operator (//), also known as the floor division operator:
+
+>>> 9 // 3
+3
+
+>>> 5.0 // 2
+2.0
+
+>>> -3 // 2
+-2
+
+The // operator first divides the number on the left by the number on the right and then rounds down to an integer. This might not give the value you expect when one of the numbers is negative.
+
+For example, -3 // 2 returns -2. First, -3 is divided by 2 to get -1.5. Then -1.5 is rounded down to -2. On the other hand, 3 // 2 returns 1 because both numbers are positive.
+
+The above example also illustrates that // returns a floating-point number when one of the operands is a float. This is why 9 // 3 returns the integer 3, and 5.0 // 2 returns the float 2.0.
+
+
+Let’s see what happens when you try to divide a number by 0:
+
+>>> 1 / 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: division by zero
+Python gives you a ZeroDivisionError, letting you know that you just tried to break a fundamental rule of the universe.
+
+Exponents
+You can raise a number to a power using the ** operator:
+
+Exponents don’t have to be integers. They can also be floats:
+
+>>> 3 ** 1.5
+
+
+Raising a number to the power of 0.5 is the same as taking the square root, but notice that even though the square root of 9 is an integer, Python returns the float 3.0.
+
+For positive operands, the ** operator returns an int if both operands are integers and a float if any one of the operands is a floating-point number.
+
+
+You can also raise numbers to negative powers:
+
+>>> 2 ** -1
+0.5
+
+>>> 2 ** -2
+0.25
+Raising a number to a negative power is the same as dividing 1 by the number raised to the positive power. So, 2 ** -1 is the same as 1 / (2 ** 1), which is the same as 1 / 2, or 0.5. Similarly, 2 ** -2 is the same as 1 / (2 ** 2), which is the same as 1 / 4, or 0.25.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

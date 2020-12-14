@@ -1,3 +1,7 @@
+git process:---    WSLR
+==============================================================================
+
+
 GIt usually serves 2 main purposes: code backup and code versioning.
 Version Control System (VCS) is a software that helps software developers to work together and maintain a complete history of their work.Following are the types of VCS −
 
@@ -8,7 +12,7 @@ Distributed/Decentralized version control system (DVCS).
 In Git, files are not addressed by names. Everything is content-addressed.
 
 There are four fundamental elements in the Git Workflow.
-Working Directory, Staging Area, Local Repository and Remote Repository.
+Working Directory, Staging Area, Local Repository and Remote Repository.(WSLR)
 
 If you consider a file in your Working Directory, it can be in three possible states.
 
@@ -18,14 +22,14 @@ It can be committed. Which means that the changes you made to your file are safe
 git add is a command used to add a file that is in the working directory to the staging area.
 git commit is a command used to add all files that are staged to the local repository.
 git push is a command used to add all committed files in the local repository to the remote repository. So in the remote repository, all files and changes will be visible to anyone with access to the remote repository.
-git fetch is a command used to get files from the remote repository to the local repository but not into the working directory.
+git fetch is a command used to get files from the remote repository to the local repository but not into the working.
 git merge is a command used to get the files from the local repository into the working directory.
 git pull is command used to get files from the remote repository directly into the working directory. It is equivalent to a git fetch and a git merge .
 
 
 
 What is a proxy server?
-A proxy server, or just proxy for short, is like having another computer that your internet requests get sent to before going to the real website. It's a server that takes all of the information you've sent outand routes it through a different IP address.
+A proxy server, or just proxy for short, is like having another computer that your internet requests get sent to before going to the real website. It's a server that takes all of the information you've sent out and routes it through a different IP address.
 A proxy can be physically located anywhere. You can set up a proxy on your home computer or you can deploy one to the cloud. The main thing that matters is that the proxy has the configurations you need for the functionality you want.
 
 
@@ -41,6 +45,9 @@ mkdir edurika-repo
 
 cd edurika-repo
 ----------------------------------------------------------------
+To go one directory back
+cd ../
+-------------------------------------------------------------------
 This command turns a directory into an empty git repository
 git init
 --------------------------------------------------------------
@@ -119,6 +126,8 @@ git checkout dev
 -------------------------------------------------------------
 After modifying file,if you want to do the staging as well as commit at a time
 git commit -am "added to statging as well as commited on dev branch "
+git commit -a -m "modifying file edu4 "
+cat edu4.txt
 -------------------------------------------------------------
 Again switching to master from dev
 git checkout master
@@ -164,7 +173,7 @@ git remote -v
 PUSH THE DEV BRANCH AND ITS CODE TO THE REMOTE.
 1. switch to dev branch
 2. modify the code if you want and then commit it the push to remote with the following command
-git push origin dev
+   git push origin dev
 3. all the code of dev branch will be pushed to remote with above command
 --------------------------------------------------------------------------------
 To see all branches created 
@@ -256,7 +265,48 @@ git commit -a -m "adding 3 files together"
 when ever you are merging you always remember that you always checked out in the destination branch.
 You should be in master branch, when you want to merge file which is  in firstbranch into master.
 git merge firstbranch
+-----------------------------------------------------------------------
+git pull is equal to git fetch + git merge
 
+-------------------------------------------------------------------------
+Parallel development  - Rebasing 
+This is also way of combining the work between different branches.
+It can be used to make a linear sequence of commits.
+from firstbranch give the below command
+git rebase master
+from master branch give the below command, all the work done in first branch will merged in master.
+git rebase firstbranch
+--------------------------------------------------------------------------
+CREATING A BRANCH IN CENTRAL REPO FROM THE LOCAL Repository
+first checkout to firstbranch, then give the following command. firstbranch is created on the remote central repo and 
+all files are copied to remote from local repo.
+
+git checkout firstbranch
+git push origin firstbranch
+it will create firstbranch and  push the all the changes to remote 
+-----------------------------------------------------------------------------
+revert back the version
+need to use the first 8 hexadecmal digits of commit. see the below command
+git checkout 802d31b4 edu.txt
+cat edu.txt
+
+-------------------------------------------------------------------------------
+
+SINGLE FILE 
+
+------------------------------------------------------------------------------
+
+git add abc.txt
+ 
+git commit -m "single file commiting abc.txt" abc.txt
+
+pushing the abc.txt that is single file to the remote.
+need to use commit SHA in order to push the single file to remote.
+below is the command
+
+git push origin 6323e3ce89e8f3dd40837d0ff136cc7b7d7504c4:master
+
+abc.txt will be push to remote.
 
 
 

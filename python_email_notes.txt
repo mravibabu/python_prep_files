@@ -1,0 +1,140 @@
+An SMTP server isn’t always an external server on the host. In some cases, you will send email from the same machine running your Python code. You would then use “localhost” as your SMTP server.
+When you want to send email to a recipient, first you need to gather the email’s parameters. This can be either from input entered by the user or hardcoded in your code.
+
+A typical email requires the following parameters:
+
+Recipient email address
+Sender email address
+Message Subject
+Message Body
+Attachments (if any, not required)
+SMTP server address
+SMTP port (usually 25, but could also be 2525 or 587 as alternatives)
+A note about the sender address: You can use any email address that you want, but some incoming servers (i.e. Gmail) detect fake sender addresses and may drop your email into the spam folder for security purposes.
+
+The first step is to import Python’s built-in smtplib library. This library takes care of most of the code in its own methods and properties, so you don’t need much code to send an email at all.
+
+Just keep in mind that if you’re hosting a website or web-based application, your host will have an SMTP server associated with your hosting account and you’ll need to adjust the SMTP server address and credentials for this example to work.
+
+Gmail’s SMTP server is “smtp.gmail.com” and they use port 587. The username is your email address, and the password is your email password.
+
+Notice that the text variable only contains one sentence. If you need multi-line support, you can use the \\n character to add line-feeds:
+
+text = "Hello from Python\nThis is line 2\nAnd line 3"
+
+ You can communicate with the SMTP server in plain text or encrypted using SSL.
+
+Because privacy is an important issue, we’ll use the SMTP_SSL class to ensure communication between your Python program and the SMTP server is encrypted.
+
+Please note that this is true only for the first “hop” in the chain—email is a distributed system and any email you send likely travels through many independent email servers that can access the full unencrypted contents of your email. There are also no guarantees that emails are encrypted in transit from one email server to the next, so email can’t be deemed a secure medium.
+
+It’s always a good idea to use SMTP_SSL here because it will ensure we’re not leaking your SMTP credentials when connecting to the email server:
+
+The email module included with Python’s standard library helps you format and parse email messages. Instead of assembling the message payload manually using string formatting you can use the functions in the email module and make your code more robust and readable.
+Instead of directly connecting to an SMTP server and sending your emails that way, you can sign up with an email service provider that offers its own Python SDK or generic web API for sending email. Two services I can recommend are SendGrid and MailJet.
+
+****************************************************************************************************************
+https://blog.mailtrap.io/sending-emails-in-python-tutorial-with-code-examples/
+
+
+The first good news about Python is that it has a built-in module for sending emails via SMTP in its standard library.
+You can import the module using the following statement:
+import smtplib
+To make sure that the module has been imported properly and get the full description of its classes and arguments, type in an interactive Python session:
+help(smtplib)
+
+
+SMTP server for testing emails in Python
+Local SMTP server
+
+
+How to send multiple emails in Python
+Sending multiple emails to different recipients and making them personal is the special thing about emails in Python.
+
+To send emails as localhost, you need to have an email server installed at the machine where the code is running.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

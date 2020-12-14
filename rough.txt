@@ -9,6 +9,8 @@ touch rough.txt
 new file added to staging area
 git add rough.txt
 git commit -m "rough to record all work area commands and username passwords" rough.txt
+git log
+git push origin d225c9713c54b02e1810cb77708bb43d716b5aec:master
 
 
 
