@@ -308,6 +308,12 @@ git push origin 6323e3ce89e8f3dd40837d0ff136cc7b7d7504c4:master
 
 abc.txt will be push to remote.
 
+--------------------------------------------------------------
+# Delete the files from the repository
+git clean -f
+To remove directories, run git clean -f -d or git clean -fd
+To remove ignored files, run git clean -f -X or git clean -fX
+To remove ignored and non-ignored files, run git clean -f -x or git clean -fx
 
 
 
