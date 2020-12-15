@@ -17,7 +17,9 @@ git commit -m "adding all files together"
 git push
 to add and commit at one time
 git commit -a -m "adding rough "
-
+git pull origin
+git add rough.txt
+git commit  -m "rough work " rough.txt
 
 
 
