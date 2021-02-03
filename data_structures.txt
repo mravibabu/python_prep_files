@@ -1,0 +1,312 @@
+Data Structures
+===============
+Organizing the data in the memory location.
+
+There are two types of data structures
+primitive data structures and non primitive data structures
+primitive-- int, float,char,double ,pointer
+non primitive-- there are two types lenear(sequential) and non lenear(random manner)
+Lenear -- arrays,lists , stacks, queues
+in lists we have 1.single linked list 2. double LL 3. circular LL
+
+
+
+Non lenear-- trees and graphs
+IN TREES we have binary,binary search trees
+
+Major common operations in data structures
+1.searching
+2.sorting
+3.insertion
+4.deletion
+5.updation
+
+
+Arrays-- collection of elements of similar data type. elements are organised in continueous memory location.
+advantages:-1. simililar data type can be stored
+2.random access thru index value
+3. suitable when the no of elements are already known.
+4. imiplementation of  stacks queues.
+
+limitations:-
+1. static memory allocation, that is no possiblity to change to size during the run time.
+if a[10]  --> no possiblity to increase the size
+a[100] --|> if we use only 10 elements , memory of 90 elements is wasted.
+2. insertion and deletion of elements are more complex.
+in an arrays if we insert any element at a[0], then each element need to shift to right till end.
+same with the deletion.
+due to this disadvantages we are not implementing the list with this array conept , we are implementing list with linked list concept.
+lenear search:- the key element which has to be searched, we keep on searching in the array each and every element , until you find that key element.
+So there is no logic here, we compare the key element with every element in array.
+if the search element is found at starting , time will be very less to get output, if it found last then time taken shoud be more.
+so inorder to overcome this limitation in leanear search, we use the binary search.
+In binary search we have one constraint , before appliying. that is all the elements of array should be in sorted manner.
+here the key value is compared with the midvalue, then decided weather the key is available at right side or left side... the process goes on.
+here the search place should be reduced so imiplementation should be fast as compared to the leanear search.
+ 
+
+Bubble sortting:-Compare first element with second element if first element is greater than second element those elements will be interchanged. We have to repeat the procedure until reaches the last element.
+If there are n elements all the elements will be arranged in sorted order in n-1 passes.
+
+
+Linked list--implementation of list, elements need not to stored in contigious process as in array, here element (node) can be stored in any where i memory location but elements need to be linked.
+Linked list is a collection of nodes which are not necessary to be in adjacent memory locations.
+
+Each node contains 2 fields.
+1. Data Field
+2. Next field ( or ) pointer field ( or ) address field
+Data field:-  Data field contains values like 9, 6.8, ‘a’ , “ramu” , 9849984900
+Next field:- It contains address of its next node. The last node next field contains NULL which indicates end of the linked list. 
+last node contains null in address or next field as it indicates the end of the node.
+if the node has only one address (ie. address of the next element) is called single linked list.	
+advantages and disadvantages of single linked list.
+advantages:- 
+1.no wastage of memory.because prior we are not taking no of elements, every time we it call the malloc function to allocate the memory for new node.
+2.no need to use contigous memory location as like in array
+3.insertion and deletion is simple.
+4.linear data structures like stack queues can be implemented.
+5.can store any type of data in node.
+disadvantages:-
+1. Random acces is not possible. as we are not using any index positions.
+2. only forward traversal is possible, cannot go back to acces back elements.
+3. binary search algorithm is not possbile in single linked list.
+4. reversing of single linked list is complex.
+5. extra pointer is required to store the address of the next node.
+ 
+
+
+
+
+circular linked list:-
+====================
+In the address field of the last node holds the address of the first node ie head , then we can say it is cirular linked list.
+Which means if the tail holds the address of the head  it is a circular linked list.
+
+
+Circular Linked list is a collection of nodes which are not necessary to be in adjacent memory locations.
+
+
+doubly linked list:- every node will have the two different pointers , one pointer holds the address of the next node  and one holds the address of the previous node.
+Double linked list is a linear data structure which contains a collection of nodes, where each node contains 3 fields.
+1. prev   field:- It is a pointer  field which contains the address of its previous node. The first node prev field contains NULL value. 
+2. data field :- It contains a value which may be an integer, float, char and string.
+3. next field:-It is a pointer field which contains the address of its next node. The last node next field contains NULL value.
+
+if it is a head prev address field must be null.
+if it is a tail next address field mucst be null.
+
+
+STACK:-
+=======
+Stack is linear data structure, means all the elements are arranged in the sequential manner.
+It follows the LIFO, Last in first out mechanism. ex. plates in tray,coins or books in rack 
+operations of stacks
+1.push-- inserting an element
+2.pop-- deleting an element from stack.
+either insertion or deletion we can perform only on the single side that is top.
+3.top-- at the top of the stack we can do the operatons of push and pop.
+if top = top-1 then it is a we can intialization of the stack intially.
+
+stack can be implemented in two ways.
+1.using arrays.
+2.using  linked list.
+
+above rules are applied to both arrays and linked list. only implementation part is different.
+two conditions need to considered while implementation.
+1. overflow condition- inserting the element to the stack which is already having maximum elements. (while the push operation we consider this)
+2. underflow condition--deleting an element from the empty stach.(check this condition while pop operation.
+
+
+Stack implementation using arrays.
+follows LIFO Mechanism.
+stack is a linear data structure where element organised in a sequential manner and it follows last in first out machanism.
+always we have TOP at the top of the stack, if you want to insert new element, update the top then insert the top,
+if we want to delete the element , delete the element and just decreement that  the top value.
+
+
+stack implementation using linked list
+
+the disadvantage in the stack implementation using arrays is that the array is having static allocation of memory, so the number of elements is restricted , so that if you want to insert more elements beyond the size, so its not possible.	
+So that purpose we have the implementation of stack using linked list. so here before we insert the element, we give the dynamic memory allocationl.
+we did not specify the size before implementing the stack.
+
+QUEUE implementation using arrays.
+queue is also linear data structure similar to the stack, that means all the elements arranged in the sequential manner.
+here also we need to speicify the size.
+it follows the FIFO machanism ie first in first out.
+example is statnding in the line for movie tickets.
+In the stack there will be top position both insertion and deletion is done at the top position.
+two operations will be there
+1.ENQUEUE-- inserting the element in the queue
+2.DEQUEUE--  DELETING the element fron the queue.
+two condition need to be folow while implementing enqueue and dequeue
+1.overflow -- insertin in queue which is full
+2. underflow -- deletino from empty queue.
+there are two ends in queue.
+1.front-- points to starting element
+2.rear-- points to last element.
+
+enqueue operation done at the rear end.
+dequeue operation done at the front.
+
+
+QUEUE implementation using the linked list.
+the main disadvantage of implementation of queue using the arryay is static memory allocation.ie we need to specify the size of the array beofre implementation,
+that can be avoided using the imiplementing using linked list. Because we use the dynamic memory allocation in linked list implementation.
+here before inserting the element we allocate the memory then we implement.
+In linked list elements are represented as nodes.
+
+LINEAR SEARCH
+==============
+Searching is the procedure to find the search element in the array of elements.
+In Linear Search the search element will be compared with all the elements in an array from index 0 to n-1.
+THERE Is no logic here , we need to compare key element with every element in an array till it found.
+
+
+
+
+
+BINARY SEARCH
+==============
+Before applying binary search  all the elements of an array should be in sorted order.
+Here the search space will be reduced so implementation will be fast when compared to linear search.
+
+
+Bubble sort
+============
+Compare first element with second element if first element is greater than second element those elements will be interchanged. We have to repeat the procedure until reaches the last element.
+If there are n elements all the elements will be arranged in sorted order in n-1 passes.
+
+INSERTION SORT
+=============
+we compare each element with all the previous elements and we will insert the correct element in the desired location. 	
+there is no swapping concept..only copy the required elements take place in this sort.
+
+SELECTION SORT 
+==============
+As the name indicates we select the element and keep that particular  element in the desired location.
+which element should be selected?
+in first iteration  we have to select the lowest element shoudl be found and keep at index 0.
+in second iteration next lowest element shoudl be found and place at index 1.(from second element to last element)
+in third interation next lowest element should be identified and place at index 2 (from third element to last element )
+like this iteration shoudl be continue till end.
+swapping will be take place at each iteration in this sort.
+
+
+MERGE SORT
+==========
+IN THIS SORT WE ADOPT THE PROCEDURE DIVIDE AND CONQUER METHOD.
+that is we divide the large problems in to sub problems and found the solutions of the sub problems are combined to get solution last.
+here the input is unordered elements and the output is the ordered elements(ascending order).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

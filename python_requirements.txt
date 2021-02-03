@@ -61,7 +61,7 @@ Job description  2-4 yrs exp
 * Good experience in Python standard library and Pythonic conventions (PEP8, etc.). * Experience in Automation Testing. * Optimize code using appropriate functions. * Knowledge of web framework. * Good knowledge in Pandas, Web scraping and Web Data extraction. * Proficient coder in Python languages and environments including Python. * Design the MySQL Database Schema and interfaced it with python in programs.
 
 2-5 yrs exp
-hould be well versed with any scripting and should be flexible to work on any programming language depending on the requirement.
+should be well versed with any scripting and should be flexible to work on any programming language depending on the requirement.
 Good knowledge on RPA frameworks and open source tools
 Able to integrate multiple data sources and databases into one system
 Understanding of the multi-process architecture

@@ -6,7 +6,7 @@ https://svrtechnologies.com/python-interview-questions/
 
 Python Interview Questions And Answers For Experienced
 1. What is namespace in Python?
-Answer: In Python, every name introduced has a place where resides and can be found. This space is known as a namespace. It is an address location where a variable name is mapped to the object placed. Whenever the variable is searched out, this address location will be searched, to get the corresponding object.
+Answer:  This space is known as a namespace. It is an address location where a variable name is mapped to the object placed. Whenever the variable is searched out, this address location will be searched, to get the corresponding object.
 
 2. How do you make 3D plots/visualizations using NumPy/SciPy?
 Answer: Like 2D plotting, 3D graphics is beyond the scope of NumPy and SciPy, but just as in the 2D case, packages exist that integrate with NumPy. Matplotlib provides basic 3D plotting in the mplot3d subpackage, whereas Mayavi provides a wide range of high-quality 3D visualization features, utilizing the powerful VTK engine.
@@ -69,19 +69,16 @@ Answer: The module is the way to structure a program. Each Python program file i
 The folder of the Python program is a package of modules. A package can have modules or subfolders.
 
 10. How does exception handling in Python differ from Java?
-Answer: optional clauses for a block In Python.
-Python has its own method of implementing exception handling. is the block which can be used by the programmer to see the error details without having to terminate the program. Also, in some cases, this statement offers a solution to deal with the error.
+Answer: 
 
-11. Control flow statements?
-Answer: By default, python program execution starts from the first line, execute each and every statement only once and transactions the program if the last statement of the program execution is over.
-Control flow statements are used to disturb the normal flow of the execution of the program.
+
 
 12. What is a Tuple?
 Answer:
 
 1. Tuple Objects can be created by using parenthesis or by calling tuple function or by assigning multiple values to a single variable
 2. Tuple objects are immutable objects
-3. Incision order is preserved
+3. Insertion  order is preserved
 4. Duplicate elements are allowed
 5. Heterogeneous elements are allowed
 6. Tuple supports both positive and negative indexing
@@ -137,8 +134,7 @@ If the imported module is not found in any one of the above locations. Then pyth
 Built-in attributes of a module:
 By default for each and every python module some properties are added internally and we call those properties as a built-in-attribute of a module.
 
-17. What is the function of a negative index?
-Answer: The sequences in python are indexed and it consists of the positive as well as negative numbers. The numbers that are positive uses ‘0’ that is used as the first index and ‘1’ as the second index and the process goes on like that. The index for the negative number starts from ‘-1’ that represents the last index in the sequence and ‘-2’ as the penultimate index and the sequence carries forward like the positive number. The negative index is used to remove any new-line spaces from the string and allow the string to except the last character that is given as S[:-1]. The negative index is also used to show the index to represent the string in the correct order.
+
 Write a program to check whether the object is of a class or its subclass.
 There is a method which is built-in to show the instances of an object that consists of many classes by providing a tuple in a table instead of individual classes. The method is given as isinstance(obj,cls) and in more details given as:
 
@@ -158,35 +154,19 @@ obj.search()
 18. What is the function of “self”?
 Answer: “Self” is a variable that represents the instance of the object to itself. In most of the object-oriented programming language, this is passed as to the methods as a hidden parameter that is defined by an object. But, in python, it is declared it and pass it explicitly. It is the first argument that gets created in the instance of class A and the parameters to the methods are passed automatically. It refers to a separate instance of the variable for individual objects. This is the first argument that is used in the class instance and the “self” method is defined explicitly to all the methods that are used and present. The variables are referred to as “self.xxx”.
 
-19. What are the steps required to make a script executable on Unix?
-Answer: The steps that are required to make a script executable are to:
-– First, create a script file and write the code that has to be executed in it.
-– Make the file mode as executable by making the first line starts with #! this is the line that python interpreter reads.
-– Set the permission for the file by using chmod +x file. The file uses the line that is the most important line to be used:
-#!/usr/local/bin/python
-– This explains the pathname that is given to the python interpreter and it is independent of the environment programs.
-– The absolute pathname should be included so that the interpreter can interpret and execute the code accordingly. The sample code that is written:
-#! /bin/sh
-# Write your code here
-exec python $0 ${1+”$@”}
-# Write the function that needs to be included.
+
 
 20. What are the Packages??
 Answer: The package is nothing but a folder or dictionary which represents a collection of modules
 A package can also contain sub packages
-We can import the modules of the package by using the package name. module name
-We can import the modules of the package by using the package name. subpackage name.module name
+
 
 21. What is File Handling?
 Answer: The file is a named location on the disk, which stores the data in a permanent manner.
-Python language provides various functions and methods to provide communication between python programs and files.
-Python programs can open the file, perform the read or write operations on the file and close the file
-We can open the files by calling the open function of built-in-modules
-At the time of opening the file, we have to specify the mode of the file
 Mode of the file indicates for what purpose the file is going to be opened(r,w, a,b)
 
 22. When would you use a break statement in a for loop?
-Answer: The break statement states that the function of the loop is over and to move on to the next block of code. For example, when the item being searched is found, there is no need to keep looping. The break statement comes into play here and the loop terminates and the execution moves on to the next section of the code.
+Answer: The break statement terminate the loop.
 
 23. How To Save An Image Locally Using Python Whose URL Address I Already Know?
 Answer: We will use the following code to save an image locally from an URL address
@@ -220,6 +200,7 @@ Singleton patter is used to provide a mechanism that limits the number of instan
 Answer:
 
 Here is the list of most commonly used built-in types that Python supports:
+MILDS INSTRU
 
 Immutable built-in types of Python
 Numbers

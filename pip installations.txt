@@ -1,0 +1,45 @@
+Pyflakes
+A simple program which checks Python source files for errors.
+
+Pyflakes analyzes programs and detects various errors. It works by parsing the source file, not importing it, so it is safe to use on modules with side effects. It's also much faster.
+
+It is available on PyPI and it supports all active versions of Python: 2.7 and 3.4 to 3.8.
+
+
+
+Useful tips:
+
+Be sure to install it for a version of Python which is compatible with your codebase: for Python 2, pip2 install pyflakes and for Python3, pip3 install pyflakes.
+You can also invoke Pyflakes with python3 -m pyflakes . or python2 -m pyflakes . if you have it installed for both versions.
+If you require more options and more flexibility, you could give a look to Flake8 too.
+
+
+for form fields
+
+
+ Managing Packages with pip
+You can install, upgrade, and remove packages using a program called pip. By default pip will install packages from the Python Package Index, <https://pypi.org>. You can browse the Python Package Index by going to it in your web browser, or you can use pip’s limited search feature:
+
+pip has a number of subcommands: “search”, “install”, “uninstall”, “freeze”, etc
+You can also install a specific version of a package by giving the package name followed by == and the version number:
+
+If you re-run this command, pip will notice that the requested version is already installed and do nothing. You can supply a different version number to get that version, or you can run pip install --upgrade to upgrade the package to the latest version:
+
+(tutorial-env) $ python -m pip install --upgrade requests
+
+pip uninstall followed by one or more package names will remove the packages from the virtual environment.
+
+pip show will display information about a particular package:
+
+(tutorial-env) $ pip show requests
+pip list will display all of the packages installed in the virtual environment:
+pip freeze will produce a similar list of the installed packages, but the output uses the format that pip install expects. A common convention is to put this list in a requirements.txt file:
+
+(tutorial-env) $ pip freeze > requirements.txt
+(tutorial-env) $ cat requirements.txt
+
+The requirements.txt can then be committed to version control and shipped as part of an application. Users can then install all the necessary packages with install -r:
+
+(tutorial-env) $ python -m pip install -r requirements.txt
+
+

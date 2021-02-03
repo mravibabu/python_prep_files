@@ -1,0 +1,133 @@
+jupyter notebook is a web application that allows you to run live code, embed visualization and explanatory text all in one place.
+Anoconda is a bundle of some python packages and a package manager called conda (similar to pip)
+some of the popular anaconda packages are, numpy,scipy,jupyter,nltk,scikitlearnm etc.
+Conda is a package manager similar to pip. conda allows you to install non-python  library dependencies such as HDF5,MKL, etc.
+with pip you can only install python dependencies.
+With anaconda installation you will see many useful packages
+
+
+what is data science
+Data Science or data analytics  is a process of analyzing large set of data points to get answers on questions related to that data set.
+pandas is python module that makes data science easy and effective.
+process of cleaning messy data is called data munging or data wrangling.
+Dataframe is a main object in pandas. It is used to represent data with rows and columns (tabular or excel spreadsheet like data)
+
+Installling anaconda
+go to google and type download anaconda..
+download the zip on the system by going to the site
+
+
+
+ 
+
+
+
+
+PANDAS
+=========
+
+1.High performance efficient data analsys tool. 
+it happens with the 3 data structures
+a. series --> data represented in one dimensional.-->list as an argument
+b. dataframe --->  two dimensional  --> we can pass list or dictinary or series or another data frame.
+c. panel   --->data , major-axis(columns) , minor axis(rows)
+2.Working with large  data sets.
+3.supports or load files with different formats.
+4.more flexible to use.
+5.Represents data in tabular way(rows and columns) to analyze the data.
+6.more efficient to work with a missing data.
+7. it supports indexing, slicing , subsetting the large datasets.
+8. we can merge or join two different datasets easily.
+9. we can also the reshape the datasets.
+
+
+Dataframe(df)
+load the data from excel files
+load the data from csv files
+create df using dictionary
+create df using list and tuples
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

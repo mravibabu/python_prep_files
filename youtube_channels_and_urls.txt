@@ -1,0 +1,32 @@
+https://medium.com/@GalarnykMichael/install-python-on-windows-anaconda-c63c7c3d1444
+
+If you want to use PyCharm (a python IDE), please see this tutorial on Integrating Anaconda with PyCharm.
+2. If you want to use both python 2 and 3, please see the following tutorial on Environment Management with Conda.
+3. I recommend the following tutorial if you plan to Install Git on Windows. It will also give you access to some unix tools like ls, cat, pwd, nano, and ssh on your command prompt.
+4. If you want to learn how to use Anaconda, I have a LinkedIn Learning course on Pandas and Matplotlib called Python for Data Visualization. Here is a free preview video.
+vvimp url
+https://www.codegrepper.com/code-examples/python/Couldn%27t+import+Django.+Are+you+sure+it%27s+installed+and+available+on+your+PYTHONPATH+environment+variable%3F+Did+you+forget+to+activate+a+virtual+environm+ent%3F
+
+ADVANCE CHANNELS
+The Coding Train 
+
+
+youtube channels
+=================
+simplefunde
+knoweldge shelf
+harshit vashisth
+programming hero
+sentdex
+codebasics
+krish naik
+edurika
+Parwiz Forogh
+Pythoholic
+https://www.varunmalhotra.co.in/landing-page
+
+FYI--JINja2 template is basically one method to connect the html page to python page kind of thing.
+
+3 web sites recommended by knoweldge shelf 
+freecodecamp
+cs50

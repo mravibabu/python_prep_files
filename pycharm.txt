@@ -4,3 +4,10 @@ control f to search in a code
 alt shift c   ----> to list all changes you have done to code
 
 control d ----> duplicate the entire line 
+
+press shift two times to search files again press shift 2 times to search all files 
+
+installing the package in pycharm
+Open project settings (File > Settings...)
+Project > Project Interpreter.
+Press the + button.

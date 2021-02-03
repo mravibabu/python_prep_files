@@ -1,0 +1,487 @@
+https://learndjango.com/tutorials/how-learn-django
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
+https://www.digitalocean.com/community/tutorial_series/scaling-django
+=================================================================================================
+
+
+
+steps to create new project.
+1.create project directory in pycharm with vertual environment.
+
+2. in terminal give below command.
+(venv) D:\RAVI\pycharm\django_projects>python -m pip install django
+
+3. cerate the project with below command.
+(venv) D:\RAVI\pycharm\django_projects>django-admin startproject Random_Password_Generator
+
+4. change the directory to  Random_Password_Generator to start the server  to run the project, below is the command.
+(venv) D:\RAVI\pycharm\django_projects\Random_Password_Generator>python manage.py runserver
+
+5. test the server with the url http://127.0.0.1:8000/   DJANGO Landing page will display...says The install worked successfully! Congratulations!
+
+6.Create the django application with below command
+venv) D:\RAVI\pycharm\django_projects\Random_Password_Generator>python manage.py startapp password_generator
+
+CREATING THE PERSONAL PORTFOLIO PROJECT
+=========================================
+
+8808782454
+1.(venv) D:\RAVI\pycharm\django_projects>django-admin startproject personal_porfolio_project
+2.(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py runserver
+3. in personal_porfolio_project we have two apps , blog and portfolio so need to create the these 2 apps.
+4. creating the app blog
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py startapp blog
+5. creating the app portfolio
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py startapp portfolio
+
+djngo models
+============
+create the models in app which represents the columns in the database tables in 
+D:\RAVI\pycharm\django_projects\personal_porfolio_project\portfolio\models.py
+go to google and search for django model fields
+
+ERRORS:
+portfolio.project.image: (fields.E210) Cannot use ImageField because Pillow is not installed.
+
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python -m pip install PILLOW
+
+after that migration need to done to represent database columns as model feilds
+you will find these in the setting file as installed apps . which are called internal migrations.
+
+6.for internal migration
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py migrate 
+now with the above command internal migration is added to the database.
+
+7. now model class migration need to be done.
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py makemigrations
+
+Now again you need to run migrate command  for our model classes
+8  (venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py migrate
+
+ADMIN SECTION.
+=============
+Now run the server  with the url localhost:8000\admin as every django app will come with admin panel
+now create the superuser
+=========================
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py createsupersuser
+USERNAME- django
+PASSWORD-- MRAVIBABU  ----------------------WHICH IS USERNAME OF GIT
+-----------------------------------------------------------------------------
+to change the password use the below command
+python manage.py changepassword django
+
+10. NOW ADD THE model to the admin section
+in admin.py -- we need to register all models in admin.py write the below code 
+
+from .models import project
+# Register your models here.
+admin.site.register(project)
+#where project is the model class
+
+adding th media root and url in the settings.
+============================================
+ie where to store the media files need to set in the setting.py file.
+11.
+MEDIA_URL = '/media'/
+import os
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+now add the above media url in url.py which tells where the media files are stored.
+add the below code in the ur.py
+
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+
+when u added the above code in the url u can access djano admin and add media files and can click on them.
+BUT U CANT ACCESS LANDING PAGE
+
+CREATING THE LANDING PAGE OR HOME PAGE FOR THE PORTFOLIO APPLICATION
+===================================================================
+12. create the templates directory. under templates create a portfoliio directory in the portfolio app.
+create the home.html in the portfolio directory which is under the templates directory.
+
+13. now write the funciton in the view.py to render the home.html 
+def home(request):
+    return render(request,'portfolio/home.html')
+	
+14. now entry the url pattern in url.py of function home() which is in the view.py
+
+from portfolio import views
+ path('',views.home, name="home")
+
+now you can see the landing page.
+-----------------------------------------------------------------
+15.now modify the view so that all the model elements can display in the landing page.
+from .models import project
+# Create your views here.
+def home(request):
+    model_elements = project.objects.all()
+    return render(request,'portfolio/home.html',{'model_elements':model_elements})
+16.now modify the home.html to display the model elements in landing page.
+<body>
+    <h1>Portfolio landing page </h1>
+    <bR>
+    {% for model in model_elements %}
+            <h1>{{model.title}}</h1>
+            <p>{{model.description}}</p>
+            {{model.image}}
+            <br>
+            <br>
+            <img src="{{model.image.url}}" height="300"  width="500">
+            {% if model.url %}
+            <br>
+            <br>
+            <a href="{{model.url}}">Link</a>
+            {% endif %}
+    {% endfor %}
+</body>
+-----------------------------------------------------------------------------
+BLOG APPLICATION
+===================
+NOW WE ARE IN NOW PORTFOLIO APP.
+we need to create a url for blog in url.py of portfolio to access blog app.
+in order to access one app from another  app you need to write the below code in url.py of portfoliio, to modify the urlpattern
+
+17.from django.urls import include
+ path('blog/' , include('blog.urls')),
+2.above urlpattern goes to the blog app and search for the url.py of blog app
+so create the url.py in blog app
+
+from . import  views
+urlpatterns = [
+    path('',views.home_blog, name="home_blog"),
+ ]
+now create the function home_blog in views.py , which render the html page in blog home page.
+views.py
+def home_blog(request):
+    return render(request,'blog/home_blog.html')
+
+this view render the home_blog.html from blog/templates/blog/home_blog.html
+
+IMPLEMENTING MODELS IN THE BLOG
+================================
+18.write the model class in the blog app.
+class Blog (models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    date = models.DateField()
+19.now need to add these model attributes in the database with the following command.
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py makemigrations
+under migrations folder u will see one file.
+now run the following command to make permanent.
+(venv) D:\RAVI\pycharm\django_projects\personal_porfolio_project>python manage.py migrate
+now they are added in the database.
+now you check the admin 
+but there you wont see any blog app. for that you need to register ur app that blog app with the admin.
+in admin.py of  blog app write the below code
+
+from .models import Blog
+admin .site.register(Blog)
+now you will see the blog secttion in admin  panel, just refresh it .
+now you can create the blogs in the admin panel, after creating you cannot see that model data in the blog page.
+you need to modify the views.py and home_blog.html to see the blog entries.
+
+display static files
+=======================
+20. create the folder named static/portfolio under the  portfolio app...
+add the following code  in home.html of portfolio app
+ {% load static %}
+    <img src="{% static 'portfolio/img2.JPG' %}" height="500" width="500">
+
+BLOG DETAIL PAGE
+================================
+1.create the detail.html
+2.enty the path in urlpatterns in url.py
+path('<int:blog_id>/',views.detail,name='detail')
+3.change the views.py, that is add the function detail() and write the logic so that it will render in the detail.html page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. create the virtual environment. This tool provides isolated Python environments, which are more practical than installing packages systemwide. It also 		allows installing packages without administrator privileges.
+
+
+D:\RAVI\djangodir>python -m venv myjango_venv
+
+2. install the jango package in venv environment with the following command
+(myjango_venv) D:\RAVI\djangodir>python -m pip install django
+
+to check the version of the django installed.
+
+(myjango_venv) D:\RAVI\djangodir>python -m django --version
+
+to list all the subcommands of django
+(myjango_venv) D:\RAVI\djangodir>django-admin
+
+above command list the all subcommands of django
+
+to create the first project use the below command
+(myjango_venv) D:\RAVI\djangodir>django-admin startproject myproject
+this above command creates four files in the myproject directory. 
+one of them is manage.py which used to run the django server.
+
+it creates the project with myproject. go to the myproject directory there will be manage.py 
+
+run the following command to start the server or to run the project
+
+(myjango_venv) D:\RAVI\djangodir\myproject>python manage.py runserver
+
+when you run the above command to run the server , db.sqlite3 is created.
+
+by default it starts the server at the port 8000.
+test the running of the server
+http://localhost:8000/
+
+so till now we started the server.
+
+NOW CREATE THE WEB APPLICATION use the below command
+(myjango_venv) D:\RAVI\djangodir\myproject>python manage.py startapp generator
+
+
+now come out from the command prompt where the server running.
+CONTROL C TO break the server.
+
+to create the application
+
+wsgi--web server gateway interface
+asgi--asynchronous  gateway server interface
+url.py--> what ever page you develop we do the url-mapping of that page here.
+
+to use the existing virtual envrionment in pycharm see the below link in youtube
+https://www.youtube.com/watch?v=eQrFYMul8R8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

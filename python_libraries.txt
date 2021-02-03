@@ -1,0 +1,42 @@
+Introduction of libraries in python
+arrow -->working with dates and times
+Bokeh--> interactive visualisation of data , html and javascripts
+Beutiful Soap -->parsing libraries and parsing data from html
+cirq--> creating noisy intermediate scale quantum circuits to reveal the components of the circuits.
+Django--> DataAnalysis and processing of data
+Eli5--> Mathametical computation  in short times
+FlashText--> search and replacement of words in given data
+		input is setof words or string
+Keras -->Machine learning or data mining
+		implement the concept of regression , clustring etc.
+Matplotlib--> charts graphs pie charts scatterplots histograms etc
+				for data visualisation
+Mahota--> image processing libraries
+Numpy--> Most of the libraries use this numpy internally.
+	    numverical python and arrays
+nltk--> natural language processing tool kit
+networkx--> creating or working of complex networls
+openCV--> open source computer vision
+			this also completely meant for image processing
+pandas--> main use is data analysis. re-indexing,sorting ,iterative,concatination like applications etc
+pytorch--> used for machine learning algorithm as well as deep learning
+pygame-->writing vedio games, consists of computer graphics softwares
+requests--> creating http request, responsively and user friendly.
+scikit learn--> machine learning
+scikit image --> image processing
+scipy--> scientific python--statistics algebra  integration
+seaaborn  --> data visualisation libraries, high level 	 nteractive and informative
+sympy  ---> symbolic computations
+sqlalchemy--> communication btwn python and database
+tensorflow--> machine learning library to compute tensor operations
+		representing data in n dimensional matrices
+theano--> machine learning  similar to tensor flow but not efficient then tensor flow
+	it can be implimented  	in both parallel and distribuated environment
+textblob-->textual language procession , tokenization ie the dividing complete string or sentence into simple parts
+pillow--> PIL (ython image library) it is also meant for image manupulation support format BMP,PDF,JPEG,GIF etc. image filters.
+wxpython--> for gui applications.
+web2py--> used to create dynamic web development content
+
+
+		
+ 

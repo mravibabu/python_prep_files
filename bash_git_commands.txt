@@ -1,3 +1,56 @@
+creating repository from the command line:-
+===========================================
+git remote add origin https://github.com/mravibabu/spartspreadsheets.git
+$ git push -u origin master
+error: src refspec master does not match any
+$ git branch
+$ git show-ref
+
+$git remote -v
+git config --list
+
+
+====================================================================
+basic linux commands
+1.pwd
+2.cd desktop/
+3.cd..   ---> again go back
+
+
+cd d:   -----> to go to d drive
+cd ravi/python_prep_files/
+cd ~  --> to go to home directory is cd telda
+cd Desktop/
+cd ../downloads/   ---> to go to downloads directory from desktop directory.
+
+ls -a ----> gives the hidden files also
+ls -l  ---> it gives the long list of files.
+ls -al---> long list with hidden files.
+
+mkdir test  -> to create directory
+cd test
+touch index.html   -> to create a file.
+ls
+echo "hello" >> index.html    ---> to write the text in a file.
+cat index.html    --|> to view the index.html file
+clear  or control l    -------> clear or control el
+
+man is a manual command , its a reference to the interface which describe about the command description.
+
+man ls   ----> displaya the description of how to use ls
+
+rm index. html   -> delete the index.html from the test dierectory
+
+touch index.html
+
+rm -i index.htnl    ----> ask weather to remove or not
+rm test ---> does not delete as index.html file is there inside the dierectory test
+rm -r test   -> removes the directory as we use -r recursive deletion
+rm -ir test/  ---> asks
+rm -f test   ---> force fully delete never ask any thing
+rm -rf test ---> delete folder including files without asking.
+
+
 git process:---    WSLR
 ==============================================================================
 
@@ -315,9 +368,16 @@ To remove directories, run git clean -f -d or git clean -fd
 To remove ignored files, run git clean -f -X or git clean -fX
 To remove ignored and non-ignored files, run git clean -f -x or git clean -fx
 
+-------------------------------------------------------------------------------------------
+.gitignore
+The various files in your project directory that you’re not tracking in git should be indicated in a .gitignore file.
+You don’t have to have a .gitignore file, but if you don’t, those files will show up every time you type git status.
+Each subdirectory can have its own .gitignore file, too.
+Also, you can have a global such in your home directory; I use ~/.gitignore_global, which contains:
 
-
-
+You have to tell git about the global .gitignore file:
+$ git config --global core.excludesfile ~/.gitignore_global
+------------------------------------------------------------------------
 
 
 

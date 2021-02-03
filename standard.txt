@@ -1,3 +1,28 @@
+to clean up the desktop or laptop
+press windows+R
+then type cleanmgr
+
+
+search engine concept by harshit vashisht
+https://www.youtube.com/watch?v=-lAr2_a0UEg
+https://www.youtube.com/watch?v=itLfn3Wfnko
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 relational databases are a better match for applications that have structured data such as lists of users, blog posts, etc., while NoSQL databases tend to be better for data that has a less defined structure.
 Object Relational Mapper or ORM. ORMs allow applications to manage a database using high-level entities such as classes, objects and methods instead of tables and SQL. The job of the ORM is to translate the high-level operations into database commands.
 Alembic (the migration framework used by Flask-Migrate) will make these schema changes in a way that does not require the database to be recreated from scratch.
@@ -157,6 +182,21 @@ THE no of columns will be reduced to a maximum extent.repeated columns will not 
 
 
 
+==================================================================================================================================
+Object Oriented Approach Vs Procedural/Structured Programming simplified
+
+Methods define the behaviour of the object.
+The detailing of how exactly the methods will work, is encapsulated inside that particular method of entity.
+the procedure will talk about what to do which will be nothing but methods called to mix ingredients to prepare a bhel, how to do is taken care by object itself.
+
+the design approach which includes  seperation of the operations such as , how to do and what to do is known as object orientied approach.
+This approach is flexible, robust, and intutitive.
+
+If we want to caliculate the volume of the box, simply we multiply the   given length,breadth and height and print...this is the normal sequential approach. which is called procedural approach.
+
+where as in object oriented approach what and how are clealy seperated. in this approach  how the volume of box caliculated is seperated clearly by what the user do with the volume, it is none of the entity responsibility that what user will do with the volume.
+
+so which is better?
 
 
 
